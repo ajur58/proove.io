@@ -1,5 +1,10 @@
+.row {
+  max-width: none;
+}
 h1.page-title{
   text-align: left;
+  margin: 8rem 0 1rem;
+  line-height: 3rem;
 }
 .menu {
   li.menu-text {
@@ -8,5 +13,17 @@ h1.page-title{
       color: $black;
       font-size: 1.5rem;
     }
+  }
+}
+
+.hero {
+  background: #F3F3F3;
+
+  .hero-form{
+    display: flex;
+  }
+
+  .button {
+    margin-left:1rem;
   }
 }
