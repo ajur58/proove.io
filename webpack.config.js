@@ -11,11 +11,18 @@ try {
 }
 
 module.exports = {
-  entry: [
-    'script!jquery/dist/jquery.min.js',
-    'script!foundation-sites/dist/foundation.min.js',
-    './app/app.jsx'
-  ],
+  entry: {
+    bundle: [
+      'script!jquery/dist/jquery.min.js',
+      'script!foundation-sites/dist/foundation.min.js',
+      './app/app.jsx'
+    ],
+    landingPage: [
+      'script!jquery/dist/jquery.min.js',
+      'script!foundation-sites/dist/foundation.min.js',
+      './app/landingPage.jsx'
+    ]
+  },
   externals: {
     jquery: 'jQuery'
   },
@@ -41,7 +48,7 @@ module.exports = {
   ],
   output: {
     path: __dirname,
-    filename: './public/javascripts/bundle.js'
+    filename: './public/javascripts/[name].js'
   },
   resolve: {
     root: __dirname,
@@ -55,7 +62,8 @@ module.exports = {
       applicationStyles: 'app/styles/app.scss',
       actions: 'app/actions/actions.jsx',
       reducers: 'app/reducers/reducers.jsx',
-      configureStore: 'app/store/configureStore.jsx'
+      configureStore: 'app/store/configureStore.jsx',
+      landingPageStyles: 'app/styles/landingPage.scss'
     },
     extensions: ['', '.js', '.jsx']
   },
