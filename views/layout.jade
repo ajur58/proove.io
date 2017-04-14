@@ -4,7 +4,23 @@ html
     title= title
     meta(charset='UTF-8')
   body
+    script(src="/javascripts/landingPage.js")
+    div.top-bar
+        div.top-bar-left
+          ul.menu
+            li.menu-text
+             a(href='/') proove
+        div.top-bar-right
+            ul.menu
+              li
+                a(href='/pricing') Pricing
+              li
+                a(href='/blog') Blog
+              li
+                a(href='/about') About
+              li |
+              li
+                a(href='/app') Login
     div.row
       div.columns.medium-6.large-8.small-centered
         block content
-    script(src="/javascripts/landingPage.js")
