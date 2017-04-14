@@ -1,0 +1,8 @@
+# Ignore these
+node_modules/
+public/bundle.js
+config/*
+
+# But not these
+!config/development.sample.env
+!config/test.sample.env
