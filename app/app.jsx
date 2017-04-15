@@ -11,8 +11,9 @@ import router from 'app/router/'
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    store.dispatch(actions.login(user.uid))
-    hashHistory.push('/private-page')
+    console.log('was here')
+    store.dispatch(actions.login(user))
+    hashHistory.push('/tests')
   } else {
     store.dispatch(actions.logout())
     hashHistory.push('/')

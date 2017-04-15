@@ -1,9 +1,9 @@
 import firebase, {firebaseRef, githubProvider} from 'app/firebase/'
 
-export var login = (uid) => {
+export var login = (user) => {
   return {
     type: 'LOGIN',
-    uid
+    user
   }
 }
 

@@ -1,7 +1,9 @@
 import React from 'react'
 import {Route, Router, IndexRoute, hashHistory} from 'react-router'
 
-import PrivateInfo from 'PrivateInfo'
+import Main from 'Main'
+import TestsList from 'TestsList'
+import TestCreate from 'TestCreate'
 import Login from 'Login'
 import firebase from 'app/firebase/'
 
@@ -14,7 +16,7 @@ var requireLogin = (nextState, replace, next) => {
 
 var redirectIfLoggedin = (nextState, replace, next) => {
   if (firebase.auth().currentUser) {
-    replace('/private-page')
+    replace('/tests')
   }
   next()
 }
@@ -22,7 +24,10 @@ var redirectIfLoggedin = (nextState, replace, next) => {
 export default (
   <Router history={hashHistory}>
     <Route path='/'>
-      <Route path='private-page' component={PrivateInfo} onEnter={requireLogin} />
+      <Route path='tests' component={Main} onEnter={requireLogin}>
+        <IndexRoute component={TestsList} onEnter={requireLogin} />
+        <Route path='new' component={TestCreate} onEnter={requireLogin} />
+      </Route>
       <IndexRoute component={Login} onEnter={redirectIfLoggedin} />
     </Route>
   </Router>
