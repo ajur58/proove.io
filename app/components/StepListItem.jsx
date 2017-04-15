@@ -2,13 +2,13 @@ import React from 'react'
 import * as Redux from 'react-redux'
 import {Link} from 'react-router'
 
-class TestStep extends React.Component {
+export class StepListItem extends React.Component {
   render () {
     var {title, subtitle, status} = this.props
     var showContinueButton = (status) => {
       if (status === 'pending') {
         return (
-          <button className='button primary'>Continue</button>
+          <Link to='/tests/new/steps/1' className='button primary'>Continue</Link>
         )
       }
     }
@@ -22,4 +22,4 @@ class TestStep extends React.Component {
   }
 }
 
-export default Redux.connect()(TestStep)
+export default Redux.connect()(StepListItem)

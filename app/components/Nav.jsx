@@ -32,7 +32,7 @@ class Nav extends React.Component {
                 <img className='thumbnail' src={this.props.auth.photoURL} />
               </li>
               <li className='menu-text'>
-                <a href='#'>{this.props.auth.displayName}</a>
+                {this.props.auth.displayName}
               </li>
               <li className='menu-text'>
                 <a href='#' onClick={this.onLogout}>Logout</a>
