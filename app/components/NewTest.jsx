@@ -6,12 +6,12 @@ class NewTest extends React.Component {
     return (
       <div>
         <div className='row'>
-          <div className='column small-12 medium-10 large-8'>
+          <div className='column small-12 medium-8 large-8'>
             <div className='container'>
               {this.props.children}
             </div>
           </div>
-          <div className='column small-0 medium-2 large-4'>
+          <div className='column small-0 medium-4 large-4'>
             <div className='container'>
               Help container goes here
             </div>
