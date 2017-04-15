@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Redux from 'react-redux'
-import * as actions from 'actions'
+import * as testActions from '../actions/testActions'
 var {hashHistory} = require('react-router')
 
 export class StepOne extends React.Component {
@@ -12,7 +12,7 @@ export class StepOne extends React.Component {
 
     if (typeof title === 'string' && title.length > 0) {
       if (platform !== '') {
-        dispatch(actions.startAddTest(title, platform))
+        dispatch(testActions.startAddTest(title, platform))
         hashHistory.push('/tests')
       } else {
         this.refs.platform.focus()

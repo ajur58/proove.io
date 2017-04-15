@@ -60,8 +60,8 @@ module.exports = {
     alias: {
       app: 'app', // allows to access all files in the app root
       applicationStyles: 'app/styles/app.scss',
-      actions: 'app/actions/actions.jsx',
-      reducers: 'app/reducers/reducers.jsx',
+      actions: 'app/actions',
+      reducers: 'app/reducers',
       configureStore: 'app/store/configureStore.jsx',
       landingPageStyles: 'app/styles/landingPage.scss'
     },

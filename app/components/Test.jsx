@@ -1,7 +1,6 @@
 import React from 'react'
 import * as Redux from 'react-redux'
 import moment from 'moment'
-import {Link} from 'react-router'
 
 class Test extends React.Component {
   render () {

@@ -1,6 +1,5 @@
 import React from 'react'
 import * as Redux from 'react-redux'
-import {Link} from 'react-router'
 import StepListItem from 'StepListItem'
 
 export class StepsListing extends React.Component {

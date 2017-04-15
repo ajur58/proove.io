@@ -3,7 +3,8 @@ var ReactDOM = require('react-dom')
 var {Provider} = require('react-redux')
 var {hashHistory} = require('react-router')
 
-var actions = require('actions')
+var authActions = require('actions/authActions')
+var testActions = require('actions/testActions')
 var store = require('configureStore').configure()
 
 import firebase from 'app/firebase/'
@@ -11,11 +12,11 @@ import router from 'app/router/'
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    store.dispatch(actions.login(user))
-    store.dispatch(actions.startAddTests())
+    store.dispatch(authActions.login(user))
+    store.dispatch(testActions.startAddTests())
     hashHistory.push('/tests')
   } else {
-    store.dispatch(actions.logout())
+    store.dispatch(authActions.logout())
     hashHistory.push('/')
   }
 })

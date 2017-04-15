@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import * as actions from 'actions'
+import * as testActions from '../actions/testActions'
 
 export class TestsSearch extends React.Component {
   render () {
@@ -10,13 +10,13 @@ export class TestsSearch extends React.Component {
         <div>
           <input type='search' ref='searchText' placeholder='Search tests' value={searchText} onChange={() => {
             var searchText = this.refs.searchText.value
-            dispatch(actions.setSearchText(searchText))
+            dispatch(testActions.setSearchText(searchText))
           }} />
         </div>
         <div>
           <label>
             <input type='checkbox' ref='showCompleted' checked={showCompleted} onChange={() => {
-              dispatch(actions.toggleShowCompleted())
+              dispatch(testActions.toggleShowCompleted())
             }} />
             Show archived tests
           </label>

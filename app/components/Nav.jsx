@@ -2,7 +2,7 @@ import React from 'react'
 import * as Redux from 'react-redux'
 import {IndexLink} from 'react-router'
 
-import * as actions from 'actions'
+import * as authActions from '../actions/authActions'
 
 class Nav extends React.Component {
   constructor (props) {
@@ -13,7 +13,7 @@ class Nav extends React.Component {
     var {dispatch} = this.props
     e.preventDefault()
 
-    dispatch(actions.startLogout())
+    dispatch(authActions.startLogout())
   }
   render () {
     return (

@@ -1,6 +1,5 @@
 import React from 'react'
 import * as Redux from 'react-redux'
-import Step from 'Step'
 
 class NewTestNav extends React.Component {
   render () {

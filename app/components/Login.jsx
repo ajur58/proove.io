@@ -1,16 +1,16 @@
 import React from 'react'
 import * as Redux from 'react-redux'
 
-import * as actions from 'actions'
+import * as authActions from '../actions/authActions'
 
 export class Login extends React.Component {
   onGHLogin () {
     var {dispatch} = this.props
-    dispatch(actions.startLogin('github'))
+    dispatch(authActions.startLogin('github'))
   }
   onFBLogin () {
     var {dispatch} = this.props
-    dispatch(actions.startLogin('facebook'))
+    dispatch(authActions.startLogin('facebook'))
   }
   render () { // ES6 shortcut
     return (

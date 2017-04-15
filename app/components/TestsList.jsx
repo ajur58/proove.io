@@ -1,6 +1,5 @@
 import React from 'react'
 import * as Redux from 'react-redux'
-import {Link} from 'react-router'
 import Test from 'Test'
 import TestAPI from 'TestAPI'
 
