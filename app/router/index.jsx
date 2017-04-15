@@ -3,7 +3,7 @@ import {Route, Router, IndexRoute, hashHistory} from 'react-router'
 
 import firebase from 'app/firebase/'
 import Main from 'Main'
-import TestsList from 'TestsList'
+import TestsApp from 'TestsApp'
 import NewTest from 'NewTest'
 import Login from 'Login'
 import StepOne from 'StepOne'
@@ -27,7 +27,7 @@ export default (
   <Router history={hashHistory}>
     <Route path='/'>
       <Route path='tests' component={Main} onEnter={requireLogin}>
-        <IndexRoute component={TestsList} onEnter={requireLogin} />
+        <IndexRoute component={TestsApp} onEnter={requireLogin} />
         <Route path='new' component={NewTest} onEnter={requireLogin}>
           <Route path='steps' onEnter={requireLogin}>
             <Route path='1' component={StepOne} onEnter={requireLogin} />
