@@ -4,9 +4,13 @@ import * as Redux from 'react-redux'
 import * as actions from 'actions'
 
 export class Login extends React.Component {
-  onLogin () {
+  onGHLogin () {
     var {dispatch} = this.props
-    dispatch(actions.startLogin())
+    dispatch(actions.startLogin('github'))
+  }
+  onFBLogin () {
+    var {dispatch} = this.props
+    dispatch(actions.startLogin('facebook'))
   }
   render () { // ES6 shortcut
     return (
@@ -20,7 +24,12 @@ export class Login extends React.Component {
               <p>
                 Create an account for free.
               </p>
-              <button className='button' onClick={this.onLogin.bind(this)}>Login with GitHub</button>
+              <div>
+                <button className='button' onClick={this.onFBLogin.bind(this)}>Login with Facebook</button>
+              </div>
+              <div>
+                <button className='button' onClick={this.onGHLogin.bind(this)}>Login with GitHub</button>
+              </div>
             </div>
           </div>
         </div>

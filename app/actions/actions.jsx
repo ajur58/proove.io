@@ -1,4 +1,4 @@
-import firebase, {firebaseRef, githubProvider} from 'app/firebase/'
+import firebase, {firebaseRef, facebookProvider, githubProvider} from 'app/firebase/'
 import moment from 'moment'
 
 export var login = (user) => {
@@ -8,9 +8,13 @@ export var login = (user) => {
   }
 }
 
-export var startLogin = () => {
+export var startLogin = (provider) => {
   return (dispatch, getState) => {
-    return firebase.auth().signInWithPopup(githubProvider).then((result) => {
+    var useProvider = githubProvider
+    if (provider === 'facebook') {
+      useProvider = facebookProvider
+    }
+    return firebase.auth().signInWithPopup(useProvider).then((result) => {
       console.log('Auth worked', result)
     }, (error) => {
       console.log('Unable to auth', error)
