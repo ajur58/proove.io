@@ -10,6 +10,8 @@ export var testsReducer = (state = [], action) => {
         ...state,
         ...action.tests
       ]
+    case 'LOGOUT':
+      return []
     default:
       return state
   }
