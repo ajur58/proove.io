@@ -1,9 +1,15 @@
 import React from 'react'
 import * as Redux from 'react-redux'
+var {hashHistory} = require('react-router')
 
 import * as authActions from '../actions/authActions'
 
 export class Login extends React.Component {
+  componentDidUpdate () {
+    if (this.props.isLoggedIn === true) {
+      hashHistory.push('/tests')
+    }
+  }
   onGHLogin () {
     var {dispatch} = this.props
     dispatch(authActions.startLogin('github'))
@@ -38,4 +44,10 @@ export class Login extends React.Component {
   }
 }
 
-export default Redux.connect()(Login)
+function mapStateToProps (state, ownProps) {
+  return {
+    isLoggedIn: state.auth.isLoggedIn
+  }
+}
+
+export default Redux.connect(mapStateToProps)(Login)
