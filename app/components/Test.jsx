@@ -1,7 +1,7 @@
 import React from 'react'
 import * as Redux from 'react-redux'
 import moment from 'moment'
-// import {FaApple, FaAndroid, FaDesktop} from 'react-icons/lib/fa'
+import {FaApple, FaAndroid, FaDesktop} from 'react-icons/lib/fa'
 
 class Test extends React.Component {
   render () {
@@ -9,15 +9,15 @@ class Test extends React.Component {
       return 'Created at ' + moment.unix(createdAt).format('MMM Do YYYY @ h:mm a')
     }
     var renderPlatform = (platform) => {
-      // switch (platform) {
-      //   case 'ios':
-      //     return <FaApple size={100} />
-      //   case 'android':
-      //     return <FaAndroid size={100} />
-      //   case 'web':
-      //   default:
-      //     return <FaDesktop size={100} />
-      // }
+      switch (platform) {
+        case 'ios':
+          return <FaApple size={100} />
+        case 'android':
+          return <FaAndroid size={100} />
+        case 'web':
+        default:
+          return <FaDesktop size={100} />
+      }
     }
 
     var {id, dispatch, title, createdAt, platform} = this.props
