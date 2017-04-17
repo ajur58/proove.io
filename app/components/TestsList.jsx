@@ -1,7 +1,7 @@
 import React from 'react'
 import * as Redux from 'react-redux'
 import Test from 'Test'
-import TestAPI from 'TestAPI'
+import * as TestAPI from 'TestAPI'
 
 class TestsList extends React.Component {
   render () {
