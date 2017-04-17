@@ -3,7 +3,6 @@
 }
 
 .container__header {
-  border-bottom: 1px solid $light-grey-border;
   padding: 1rem;
 
   label {
@@ -18,12 +17,12 @@
 }
 
 .container__message {
-  color: $light-color;
+  color: $black;
   margin: 2rem auto;
   text-align: center;
 }
 
 .container__footer {
-  border-top: 1px solid $light-grey-border;
+  border-top: 1px solid $light-gray;
   padding: 1rem 1rem 0 1rem;
 }

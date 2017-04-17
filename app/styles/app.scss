@@ -8,9 +8,23 @@
 // Components
 @import "components/callout-auth";
 @import "components/container";
+@import "components/headings";
 @import "components/page-title";
 @import "components/page-actions";
 @import "components/navbar";
 @import "components/navbar-logged-in";
 
-@import "components/test-step";
+@import "components/step";
+@import "components/tests-list";
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga" on;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}

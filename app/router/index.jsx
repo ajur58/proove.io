@@ -8,7 +8,7 @@ import Login from 'Login'
 import StepOne from 'StepOne'
 import StepOverview from 'StepOverview'
 
-export default class RTRouter extends React.Component {
+export default class SmartRouter extends React.Component {
 
   constructor () {
     super()

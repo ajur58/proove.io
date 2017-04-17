@@ -8,8 +8,7 @@ class TestsApp extends React.Component {
   render () {
     return (
       <div>
-        <h1>Tests</h1>
-        <Link to='/tests/new'>+ Create new test</Link>
+        <h1>Tests <Link to='/tests/new'>+ Create new test</Link></h1>
         <TestsSearch />
         <TestsList />
       </div>

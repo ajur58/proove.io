@@ -22,7 +22,9 @@ class TestsList extends React.Component {
     }
     return (
       <div>
-        {renderTests()}
+        <ul className='cards'>
+          {renderTests()}
+        </ul>
       </div>
     )
   }

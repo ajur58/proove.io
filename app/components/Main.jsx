@@ -15,7 +15,7 @@ export class Main extends React.Component {
       <div>
         <Nav />
         <div className='row'>
-          <div className='column small-centered medium-11 large-10'>
+          <div className='column small-centered medium-11 large-11'>
             {this.props.children}
           </div>
         </div>

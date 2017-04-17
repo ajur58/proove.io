@@ -16,15 +16,9 @@ module.exports = {
     })
 
     // Sort tests
-    // filteredTests.sort((a, b) => {
-    //   if (!a.completed && b.completed) {
-    //     return -1
-    //   } else if (a.completed && !b.completed) {
-    //     return 1
-    //   } else {
-    //     return 0
-    //   }
-    // })
+    filteredTests.sort((a, b) => {
+      return a.core.createdAt < b.core.createdAt ? 1 : -1
+    })
 
     return filteredTests
   }
