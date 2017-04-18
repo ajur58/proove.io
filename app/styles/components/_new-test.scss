@@ -1,0 +1,31 @@
+.helper-buddy {
+  color: $gray;
+  background-color: $background-gray;
+  position: relative;
+
+  h1, h2, h3, h4, h5 {
+    color: $gray;
+  }
+  a {
+    color: $gray;
+    text-decoration: underline;
+  }
+
+  .floater-icon {
+    color: $white;
+    position: absolute;
+    bottom: -4rem;
+    right: -4rem;
+
+    svg {
+      height: 25rem;
+      width: 25rem;
+    }
+  }
+}
+
+.flexbox-container {
+	display: -ms-flex;
+	display: -webkit-flex;
+	display: flex;
+}

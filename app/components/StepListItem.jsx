@@ -4,18 +4,18 @@ import {Link} from 'react-router'
 
 export class StepListItem extends React.Component {
   render () {
-    var {title, subtitle, status} = this.props
+    var {title, description, link, status} = this.props
     var showContinueButton = (status) => {
-      if (status === 'pending') {
+      if (status === 'active') {
         return (
-          <Link to='/tests/new/steps/1' className='button primary'>Continue</Link>
+          <Link to={link} className='button primary'>Continue</Link>
         )
       }
     }
     return (
       <div className='step'>
         <h3>{title}</h3>
-        <p>{subtitle}</p>
+        <p>{description}</p>
         {showContinueButton(status)}
       </div>
     )
