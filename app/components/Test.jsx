@@ -1,7 +1,9 @@
 import React from 'react'
 import * as Redux from 'react-redux'
 import moment from 'moment'
-import {FaApple, FaAndroid, FaDesktop} from 'react-icons/lib/fa'
+import FaApple from 'react-icons/fa/apple'
+import FaAndroid from 'react-icons/fa/android'
+import FaDesktop from 'react-icons/fa/desktop'
 
 class Test extends React.Component {
   render () {
