@@ -8,11 +8,9 @@ export class StepsListing extends React.Component {
   render () {
     return (
       <div>
-        {StepsConfig.map((step) => {
-          return (
-            <StepListItem {...step} key={step.name} />
-          )
-        })}
+        {
+          StepsConfig.map((step) => <StepListItem {...step} key={step.name} />)
+        }
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Redux from 'react-redux'
-import MdEvent from 'react-icons/md/event'
+import MdEventAvailable from 'react-icons/md/event-available'
 
 class HelperBuddy extends React.Component {
   render () {
@@ -14,7 +14,7 @@ class HelperBuddy extends React.Component {
         </p>
         <a>Find out more</a>
         <div className='floater-icon'>
-          <MdEvent />
+          <MdEventAvailable />
         </div>
       </div>
     )

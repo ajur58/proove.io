@@ -8,7 +8,7 @@ export class TestsSearch extends React.Component {
     return (
       <div className='container__header'>
         <div>
-          <input type='search' ref='searchText' placeholder='Search tests' value={searchText} onChange={() => {
+          <input type='search' ref='searchText' placeholder='Search by Title or Platform' value={searchText} onChange={() => {
             var searchText = this.refs.searchText.value
             dispatch(testActions.setSearchText(searchText))
           }} />
