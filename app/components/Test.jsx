@@ -5,6 +5,8 @@ import moment from 'moment'
 import FaApple from 'react-icons/fa/apple'
 import FaAndroid from 'react-icons/fa/android'
 import FaDesktop from 'react-icons/fa/desktop'
+import FaEllipsisV from 'react-icons/fa/ellipsis-v'
+import * as testActions from '../actions/testActions'
 
 class Test extends React.Component {
   render () {
@@ -41,6 +43,12 @@ class Test extends React.Component {
               <a className='button hollow primary card__btn'>View Results</a>
             </div>
           </div>
+          <a onClick={(e) => {
+            e.preventDefault()
+            dispatch(testActions.startDeleteTest(id))
+          }}>
+            <FaEllipsisV size='22' className='card__options' />
+          </a>
         </div>
       </li>
     )

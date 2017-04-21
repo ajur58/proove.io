@@ -65,6 +65,7 @@ export var startAddTests = () => {
     })
   }
 }
+
 export var viewSingleTest = (test) => {
   return {
     type: 'VIEW_TEST',
@@ -111,5 +112,20 @@ export var isFetching = (isFetching) => {
   return {
     type: 'IS_FETCHING',
     isFetching
+  }
+}
+
+export var deleteTest = (testKey) => {
+  return {
+    type: 'DELETE_TEST',
+    testKey
+  }
+}
+export var startDeleteTest = (id) => {
+  return (dispatch, getState) => {
+    var testRef = firebaseRef.child(`tests/tuttich/${id}`).remove()
+    return testRef.then(() => {
+      dispatch(deleteTest(id))
+    })
   }
 }
