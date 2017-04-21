@@ -18,7 +18,7 @@ export class TestsSearch extends React.Component {
             <input type='checkbox' ref='showCompleted' checked={showCompleted} onChange={() => {
               dispatch(testActions.toggleShowCompleted())
             }} />
-            Show archived tests
+            Show completed tests
           </label>
         </div>
       </div>

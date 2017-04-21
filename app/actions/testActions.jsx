@@ -1,4 +1,4 @@
-import firebase, {firebaseRef, facebookProvider, githubProvider} from 'app/firebase/'
+import firebase, {firebaseRef} from 'app/firebase/'
 import moment from 'moment'
 
 export var addTest = (test) => {
@@ -26,7 +26,9 @@ export var startAddTest = (title, platform) => {
         createdAt: moment().unix(),
         createdBy: uid,
         modifiedAt: null,
-        status: 'new'
+        completed: false,
+        stepActive: 2,
+        stepScreen: 1
       }
     }
 

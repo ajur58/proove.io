@@ -1,13 +1,12 @@
 var $ = require('jquery')
 
-
 export var filterTests = (tests, showCompleted, searchText) => {
   var filteredTests = tests
 
   // Filter by showCompleted
-  // filteredTests = filteredTests.filter((test) => {
-  //   return !test.completed || showCompleted
-  // })
+  filteredTests = filteredTests.filter((test) => {
+    return !test.core.completed || showCompleted
+  })
   // Filter by searchText
   filteredTests = filteredTests.filter((test) => {
     var testText = test.core.title.toLowerCase()

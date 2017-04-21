@@ -9,7 +9,7 @@ class TestsApp extends React.Component {
     return (
       <div>
         <h1>Tests <Link to='/tests/new'>+ Create new test</Link></h1>
-        <TestsSearch />
+        <TestsSearch showCompleted={false} />
         <TestsList />
       </div>
     )
