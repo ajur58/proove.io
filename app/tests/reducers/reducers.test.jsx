@@ -1,17 +1,20 @@
 var expect = require('expect')
 var df = require('deep-freeze-strict')
 
-var reducers = require('reducers')
+var reducers = require('reducers/authReducer')
 
 describe('authReducer', () => {
   it('should set uid on LOGIN', () => {
     const action = {
       type: 'LOGIN',
-      uid: '123'
+      user: {
+        uid: 123
+      }
     }
     const res = reducers.authReducer(undefined, df(action))
 
-    expect(res).toEqual({uid: action.uid})
+    expect(res).toInclude(action.user)
+    expect(res).toInclude({isLoggedIn: true})
   })
 
   it('should unset uid on LOGOUT', () => {
@@ -23,6 +26,6 @@ describe('authReducer', () => {
     }
     const res = reducers.authReducer(df(authData), df(action))
 
-    expect(res).toEqual({})
+    expect(res).toEqual({isLoggedIn: false})
   })
 })

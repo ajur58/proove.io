@@ -4,7 +4,7 @@ var expect = require('expect')
 var $ = require('jQuery')
 var TestUtils = require('react-addons-test-utils')
 
-import * as actions from 'actions'
+import * as authActions from 'actions/authActions'
 import {Login} from 'Login'
 
 // {Todo} because of export default
