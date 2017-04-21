@@ -2,7 +2,7 @@ import React from 'react'
 import * as Redux from 'react-redux'
 import {Link} from 'react-router'
 
-export class StepListItem extends React.Component {
+export class StepsListItem extends React.Component {
   render () {
     var {title, description, link, status} = this.props
     var showContinueButton = (status) => {
@@ -22,4 +22,4 @@ export class StepListItem extends React.Component {
   }
 }
 
-export default Redux.connect()(StepListItem)
+export default Redux.connect()(StepsListItem)

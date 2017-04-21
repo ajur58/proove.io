@@ -1,5 +1,6 @@
 import React from 'react'
 import * as Redux from 'react-redux'
+import {Link} from 'react-router'
 import moment from 'moment'
 import FaApple from 'react-icons/fa/apple'
 import FaAndroid from 'react-icons/fa/android'
@@ -36,7 +37,7 @@ class Test extends React.Component {
               <span>{renderDate()}</span>
             </p>
             <div className='button-group small-centered'>
-              <a className='button primary card__btn'>Continue Editing</a>
+              <Link to={`/get-approoved/test/${id}`} className='button primary card__btn'>Continue Editing</Link>
               <a className='button hollow primary card__btn'>View Results</a>
             </div>
           </div>

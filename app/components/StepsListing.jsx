@@ -1,7 +1,7 @@
 import React from 'react'
 import * as Redux from 'react-redux'
 
-import StepListItem from 'StepListItem'
+import StepsListItem from 'StepsListItem'
 import {StepsConfig} from '../data/steps'
 
 export class StepsListing extends React.Component {
@@ -9,7 +9,7 @@ export class StepsListing extends React.Component {
     return (
       <div>
         {
-          StepsConfig.map((step) => <StepListItem {...step} key={step.name} />)
+          StepsConfig.map((step) => <StepsListItem {...step} key={step.name} />)
         }
       </div>
     )

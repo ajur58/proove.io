@@ -4,7 +4,7 @@ import StepsListing from 'StepsListing'
 import * as testActions from '../actions/testActions'
 
 class StepOverview extends React.Component {
-  componentDidMount () {
+  componentWillMount () {
     // load test
     const {dispatch, editTest} = this.props
     const testKey = this.props.params.testKey
@@ -14,7 +14,7 @@ class StepOverview extends React.Component {
     }
   }
   render () {
-    const {auth, editTest} = this.props
+    const {auth, editTest, isFetching} = this.props
     const getFirstName = () => {
       var firstName = auth.displayName
       if (typeof firstName === 'string') {
@@ -23,11 +23,12 @@ class StepOverview extends React.Component {
       return firstName
     }
 
-    if (!('core' in editTest)) {
+    if (isFetching) {
       return (
         <div>Loading</div>
       )
     } else {
+      // handle test not found case
       return (
         <div>
           <h2>You're doing great, {getFirstName()}</h2>
@@ -35,7 +36,7 @@ class StepOverview extends React.Component {
             In the next step we’ll define on which dates you would like to conduct the tests. Easy peasy!
           </h5>
           <h2>{editTest.core.title}</h2>
-          <StepsListing />
+          <StepsListing editTest={editTest} />
         </div>
       )
     }

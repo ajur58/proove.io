@@ -74,14 +74,18 @@ export var viewSingleTest = (test) => {
 
 export var getSingleTest = (testKey) => {
   return (dispatch, getState) => {
+
+    dispatch(isFetching(true))
     var testsRef = firebaseRef.child(`tests/tuttich/${testKey}`)
 
     return testsRef.once('value').then((snapshot) => {
       var editingTest = snapshot.val() || {}
-      if (editingTest) {
+
+      if (Object.keys(editingTest).length > 0) {
         // add the ID to the object too
         editingTest['id'] = testKey
         dispatch(viewSingleTest(editingTest))
+        dispatch(isFetching(false))
       } else {
         hashHistory.push(`/get-approoved/test-not-found`)
       }
@@ -100,5 +104,12 @@ export var setSearchText = (searchText) => {
 export var toggleShowCompleted = () => {
   return {
     type: 'TOGGLE_SHOW_COMPLETED'
+  }
+}
+
+export var isFetching = (isFetching) => {
+  return {
+    type: 'IS_FETCHING',
+    isFetching
   }
 }

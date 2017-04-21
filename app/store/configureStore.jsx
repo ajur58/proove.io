@@ -4,7 +4,7 @@ import thunk from 'redux-thunk'
 import { saveCurrentState } from '../redux/middleware/saveCurrentState'
 import { loadCurrentState } from '../redux/middleware/loadCurrentState'
 
-import {searchTextReducer, showCompletedReducer, testsReducer, editTestReducer} from '../reducers/testReducer'
+import {searchTextReducer, showCompletedReducer, testsReducer, editTestReducer, isFetchingReducer} from '../reducers/testReducer'
 import {authReducer, redirectUrlReducer} from '../reducers/authReducer'
 
 export var configure = (initialState = {}) => {
@@ -14,6 +14,7 @@ export var configure = (initialState = {}) => {
     searchText: searchTextReducer,
     showCompleted: showCompletedReducer,
     tests: testsReducer,
+    isFetching: isFetchingReducer,
     editTest: editTestReducer
   })
 

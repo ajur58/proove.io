@@ -26,6 +26,15 @@ export var editTestReducer = (state = {}, action) => {
   }
 }
 
+export var isFetchingReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'IS_FETCHING':
+      return action.isFetching
+    default:
+      return state
+  }
+}
+
 export var searchTextReducer = (state = '', action) => {
   switch (action.type) {
     case 'SET_SEARCH_TEXT':
