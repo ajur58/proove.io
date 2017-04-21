@@ -1,10 +1,20 @@
 import React from 'react'
 import * as Redux from 'react-redux'
 import StepsListing from 'StepsListing'
+import * as testActions from '../actions/testActions'
 
 class StepOverview extends React.Component {
+  componentDidMount () {
+    // load test
+    const {dispatch, editTest} = this.props
+    const testKey = this.props.params.testKey
+
+    if (editTest.id !== testKey) {
+      dispatch(testActions.getSingleTest(testKey))
+    }
+  }
   render () {
-    const {auth} = this.props
+    const {auth, editTest} = this.props
     const getFirstName = () => {
       var firstName = auth.displayName
       if (typeof firstName === 'string') {
@@ -12,15 +22,23 @@ class StepOverview extends React.Component {
       }
       return firstName
     }
-    return (
-      <div>
-        <h2>You're doing great, {getFirstName()}</h2>
-        <h5>
-          In the next step we’ll define on which dates you would like to conduct the tests. Easy peasy!
-        </h5>
-        <StepsListing />
-      </div>
-    )
+
+    if (!('core' in editTest)) {
+      return (
+        <div>Loading</div>
+      )
+    } else {
+      return (
+        <div>
+          <h2>You're doing great, {getFirstName()}</h2>
+          <h5>
+            In the next step we’ll define on which dates you would like to conduct the tests. Easy peasy!
+          </h5>
+          <h2>{editTest.core.title}</h2>
+          <StepsListing />
+        </div>
+      )
+    }
   }
 }
 

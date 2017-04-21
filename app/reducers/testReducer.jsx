@@ -17,6 +17,15 @@ export var testsReducer = (state = [], action) => {
   }
 }
 
+export var editTestReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'VIEW_TEST':
+      return action.test
+    default:
+      return state
+  }
+}
+
 export var searchTextReducer = (state = '', action) => {
   switch (action.type) {
     case 'SET_SEARCH_TEXT':

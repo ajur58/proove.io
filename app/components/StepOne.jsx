@@ -1,7 +1,6 @@
 import React from 'react'
 import * as Redux from 'react-redux'
 import * as testActions from '../actions/testActions'
-var {hashHistory} = require('react-router')
 
 export class StepOne extends React.Component {
   onSubmit (e) {
@@ -13,7 +12,7 @@ export class StepOne extends React.Component {
     if (typeof title === 'string' && title.length > 0) {
       if (platform !== '') {
         dispatch(testActions.startAddTest(title, platform))
-        hashHistory.push('/tests')
+        // hashHistory.push('/tests')
       } else {
         this.refs.platform.focus()
       }
@@ -24,7 +23,7 @@ export class StepOne extends React.Component {
   render () {
     return (
       <div className='step'>
-        <h3>Step One - The Basics</h3>
+        <h3>First step: Set the scene</h3>
         <form onSubmit={this.onSubmit.bind(this)}>
           <input type='text' ref='title' placeholder="Your test's title" />
           <select ref='platform'>

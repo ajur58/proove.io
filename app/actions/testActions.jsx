@@ -1,5 +1,6 @@
 import firebase, {firebaseRef} from 'app/firebase/'
 import moment from 'moment'
+import {hashHistory} from 'react-router'
 
 export var addTest = (test) => {
   return {
@@ -39,6 +40,8 @@ export var startAddTest = (title, platform) => {
         ...test,
         id: testRef.key
       }))
+
+      hashHistory.push(`/get-approoved/test/${testRef.key}`)
     })
   }
 }
@@ -52,13 +55,36 @@ export var startAddTests = () => {
       var tests = snapshot.val() || {}
       var parsedTests = []
 
-      Object.keys(tests).forEach((testId) => {
+      Object.keys(tests).forEach((testKey) => {
         parsedTests.push({
-          id: testId,
-          ...tests[testId]
+          id: testKey,
+          ...tests[testKey]
         })
       })
       dispatch(addTests(parsedTests))
+    })
+  }
+}
+export var viewSingleTest = (test) => {
+  return {
+    type: 'VIEW_TEST',
+    test
+  }
+}
+
+export var getSingleTest = (testKey) => {
+  return (dispatch, getState) => {
+    var testsRef = firebaseRef.child(`tests/tuttich/${testKey}`)
+
+    return testsRef.once('value').then((snapshot) => {
+      var editingTest = snapshot.val() || {}
+      if (editingTest) {
+        // add the ID to the object too
+        editingTest['id'] = testKey
+        dispatch(viewSingleTest(editingTest))
+      } else {
+        hashHistory.push(`/get-approoved/test-not-found`)
+      }
     })
   }
 }

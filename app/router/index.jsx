@@ -3,8 +3,8 @@ import {Route, Router, IndexRoute} from 'react-router'
 
 import Main from 'Main'
 import TestsApp from 'TestsApp'
-import NewTest from 'NewTest'
 import Login from 'Login'
+import StepsApp from 'StepsApp'
 import StepOne from 'StepOne'
 import StepOverview from 'StepOverview'
 
@@ -18,14 +18,15 @@ export default class SmartRouter extends React.Component {
     // Configure routes here as this solves a problem with hot loading where
     // the routes are recreated each time.
     this.routes = (
-      <Route path='/'>
-        <Route path='tests' component={Main}>
+      <Route path='/' component={Main}>
+        <Route path='tests'>
           <IndexRoute component={TestsApp} onEnter={this.requireLogin} />
-          <Route path='new' component={NewTest} onEnter={this.requireLogin} >
-            <Route path='steps'>
-              <Route path='1' component={StepOne} onEnter={this.requireLogin} />
-            </Route>
+        </Route>
+        <Route path='get-approoved' component={StepsApp} onEnter={this.requireLogin} >
+          <IndexRoute component={StepOne} onEnter={this.requireLogin} />
+          <Route path='test/:testKey' onEnter={this.requireLogin}>
             <IndexRoute component={StepOverview} onEnter={this.requireLogin} />
+            <Route path='set-the-scene' component={StepOne} onEnter={this.requireLogin} />
           </Route>
         </Route>
         <IndexRoute component={Login} onEnter={this.redirectIfLoggedin} />
