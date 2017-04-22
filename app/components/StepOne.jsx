@@ -6,13 +6,14 @@ export class StepOne extends React.Component {
   onSubmit (e) {
     e.preventDefault()
     var {dispatch} = this.props
-    var title = this.refs.title.value
-    var platform = this.refs.platform.value
+    var testCore = {}
+    testCore['title'] = this.refs.title.value
+    testCore['hypotheses'] = this.refs.hypotheses.value
+    testCore['scenarios'] = this.refs.scenarios.value
 
-    if (typeof title === 'string' && title.length > 0) {
-      if (platform !== '') {
-        dispatch(testActions.startAddTest(title, platform))
-        // hashHistory.push('/tests')
+    if (typeof testCore['title'] === 'string' && testCore['title'].length > 0) {
+      if (testCore['platform'] !== '') {
+        dispatch(testActions.startAddTest(testCore))
       } else {
         this.refs.platform.focus()
       }
@@ -32,6 +33,8 @@ export class StepOne extends React.Component {
             <option value='ios'>iOS</option>
             <option value='web'>Web</option>
           </select>
+          <textarea rows='10' ref='hypotheses' placeholder='What are your hypotheses?' />
+          <textarea rows='10' ref='scenarios' placeholder='Describe the scenarios you want to test' />
           <button className='button primary'>Save and Continue</button>
         </form>
       </div>

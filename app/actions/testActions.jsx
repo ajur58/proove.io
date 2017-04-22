@@ -17,13 +17,15 @@ export var addTests = (tests) => {
   }
 }
 
-export var startAddTest = (title, platform) => {
+export var startAddTest = (testCore) => {
   return (dispatch, getState) => {
     var uid = getState().auth.uid
     var test = {
       core: {
-        title: title,
-        platform: platform,
+        title: testCore['title'],
+        platform: testCore['title'],
+        hypotheses: testCore['hypotheses'],
+        scenarios: testCore['scenarios'],
         createdAt: moment().unix(),
         createdBy: uid,
         modifiedAt: null,
@@ -75,21 +77,19 @@ export var viewSingleTest = (test) => {
 
 export var getSingleTest = (testKey) => {
   return (dispatch, getState) => {
-
     dispatch(isFetching(true))
     var testsRef = firebaseRef.child(`tests/tuttich/${testKey}`)
 
     return testsRef.once('value').then((snapshot) => {
-      var editingTest = snapshot.val() || {}
-
-      if (Object.keys(editingTest).length > 0) {
+      var editingTest = snapshot.val() || null
+      if (editingTest !== null) {
         // add the ID to the object too
         editingTest['id'] = testKey
-        dispatch(viewSingleTest(editingTest))
-        dispatch(isFetching(false))
-      } else {
-        hashHistory.push(`/get-approoved/test-not-found`)
       }
+      dispatch(viewSingleTest(editingTest))
+      dispatch(isFetching(false))
+    }, (error) => {
+      console.log(error)
     })
   }
 }

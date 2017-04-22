@@ -1,5 +1,7 @@
 import React from 'react'
 import * as Redux from 'react-redux'
+import {hashHistory} from 'react-router'
+
 import StepsListing from 'StepsListing'
 import * as testActions from '../actions/testActions'
 
@@ -28,6 +30,13 @@ class StepOverview extends React.Component {
         <div>Loading</div>
       )
     } else {
+      if (editTest === null) {
+        return (
+          <div>
+            <h2>Test not found</h2>
+          </div>
+        )
+      }
       // handle test not found case
       return (
         <div>

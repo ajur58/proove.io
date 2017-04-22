@@ -6,10 +6,17 @@ export class StepsListItem extends React.Component {
   render () {
     var {title, description, link, status} = this.props
     var showContinueButton = (status) => {
+      switch (status) {
+        case 'active':
+          return <Link to={link} className='button primary'>Continue</Link>
+        case 'done':
+          return <Link to={link} className=''>Edit</Link>
+        case 'inactive':
+        default:
+          return ''
+      }
       if (status === 'active') {
-        return (
-          <Link to={link} className='button primary'>Continue</Link>
-        )
+
       }
     }
     return (

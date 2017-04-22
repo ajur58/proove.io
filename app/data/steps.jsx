@@ -1,19 +1,22 @@
 export var StepsConfig = [
   {
+    id: 1,
     name: 'Step 1',
     title: 'Set the scene',
     description: 'Hypotheses & Scenarios',
-    link: '/tests/new/steps/1',
+    link: '/basics',
     status: 'active'
   },
   {
+    id: 2,
     name: 'Step 2',
-    title: 'Users',
+    title: 'People',
     description: 'Age, gender, skills',
-    link: '/tests/new/steps/2',
+    link: '/people',
     status: 'done'
   },
   {
+    id: 3,
     name: 'Step 3',
     title: 'Schedule',
     description: 'When to conduct the test, duration, location',
@@ -21,6 +24,7 @@ export var StepsConfig = [
     status: 'inactive'
   },
   {
+    id: 4,
     name: 'Step 4',
     title: 'Showtime',
     description: 'Select applicants, print materials',
@@ -28,6 +32,7 @@ export var StepsConfig = [
     status: 'inactive'
   },
   {
+    id: 5,
     name: 'Step 5',
     title: 'Results',
     description: 'Measure & share results',

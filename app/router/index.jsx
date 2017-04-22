@@ -6,6 +6,7 @@ import TestsApp from 'TestsApp'
 import Login from 'Login'
 import StepsApp from 'StepsApp'
 import StepOne from 'StepOne'
+import StepTwo from 'StepTwo'
 import StepOverview from 'StepOverview'
 
 export default class SmartRouter extends React.Component {
@@ -26,7 +27,8 @@ export default class SmartRouter extends React.Component {
           <IndexRoute component={StepOne} onEnter={this.requireLogin} />
           <Route path='test/:testKey' onEnter={this.requireLogin}>
             <IndexRoute component={StepOverview} onEnter={this.requireLogin} />
-            <Route path='set-the-scene' component={StepOne} onEnter={this.requireLogin} />
+            <Route path='basics' component={StepOne} onEnter={this.requireLogin} />
+            <Route path='people' component={StepTwo} onEnter={this.requireLogin} />
           </Route>
         </Route>
         <IndexRoute component={Login} onEnter={this.redirectIfLoggedin} />
