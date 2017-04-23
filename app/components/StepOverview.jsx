@@ -39,13 +39,18 @@ class StepOverview extends React.Component {
       }
       // handle test not found case
       return (
-        <div>
-          <h2>You're doing great, {getFirstName()}</h2>
-          <h5>
-            In the next step we’ll define on which dates you would like to conduct the tests. Easy peasy!
-          </h5>
-          <h2>{editTest.core.title}</h2>
-          <StepsListing editTest={editTest} />
+        <div className='row'>
+          <div className='column small-11 medium-10 large-8'>
+            <div className='row'>
+              <h3 className='step__test-title'>{editTest.core.title}</h3>
+              <hr className='step__test-title-hr' />
+              <h2>You're doing great, {getFirstName()}</h2>
+              <h5>
+                In the next step we’ll define on which dates you would like to conduct the tests. Easy peasy!
+              </h5>
+            </div>
+            <StepsListing editTest={editTest} />
+          </div>
         </div>
       )
     }
