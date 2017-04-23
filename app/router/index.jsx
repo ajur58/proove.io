@@ -20,19 +20,21 @@ export default class SmartRouter extends React.Component {
     // Configure routes here as this solves a problem with hot loading where
     // the routes are recreated each time.
     this.routes = (
-      <Route path='/' component={Main}>
-        <Route path='tests'>
-          <IndexRoute component={TestsApp} onEnter={this.requireLogin} />
-        </Route>
-        <Route path='get-approoved' component={StepsApp} onEnter={this.requireLogin} >
-          <IndexRoute component={StepOne} onEnter={this.requireLogin} />
-          <Route path='test/:testKey' onEnter={this.requireLogin}>
-            <IndexRoute component={StepOverview} onEnter={this.requireLogin} />
-            <Route path='basics' component={StepOne} onEnter={this.requireLogin} />
-            <Route path='people' component={StepTwo} onEnter={this.requireLogin} />
+      <Route path='/'>
+        <Route component={Main}>
+          <Route path='tests'>
+            <IndexRoute component={TestsApp} onEnter={this.requireLogin} />
           </Route>
+          <Route path='get-approoved' component={StepsApp} onEnter={this.requireLogin} >
+            <IndexRoute component={StepOne} onEnter={this.requireLogin} />
+            <Route path='test/:testKey' onEnter={this.requireLogin}>
+              <IndexRoute component={StepOverview} onEnter={this.requireLogin} />
+              <Route path='basics' component={StepOne} onEnter={this.requireLogin} />
+              <Route path='people' component={StepTwo} onEnter={this.requireLogin} />
+            </Route>
+          </Route>
+          <Route path='test/:testKey' component={TestView} onEnter={this.requireLogin} />
         </Route>
-        <Route path='test/:testKey' component={TestView} onEnter={this.requireLogin} />
         <IndexRoute component={Login} onEnter={this.redirectIfLoggedin} />
       </Route>
     )
