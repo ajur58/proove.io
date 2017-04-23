@@ -17,12 +17,12 @@ class StepOverview extends React.Component {
       <div>
         <div>
           <div className='row flexbox-container'>
-            <div className='columns small-12 medium-8 large-8'>
+            <div className='columns small-12 medium-8 large-7'>
               <div className='container'>
                 {this.props.children}
               </div>
             </div>
-            <div className='columns hide-for-small-only medium-4 large-4 helper-buddy'>
+            <div className='columns hide-for-small-only medium-4 large-5 helper-buddy'>
               <div className='container'>
                 <HelperBuddy />
               </div>

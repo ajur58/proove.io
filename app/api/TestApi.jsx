@@ -5,18 +5,18 @@ export var filterTests = (tests, showCompleted, searchText) => {
 
   // Filter by showCompleted
   filteredTests = filteredTests.filter((test) => {
-    return !test.core.completed || showCompleted
+    return !test.completed || showCompleted
   })
   // Filter by searchText
   filteredTests = filteredTests.filter((test) => {
-    var testText = test.core.title.toLowerCase()
-    var testPlatform = test.core.platform.toLowerCase()
+    var testText = test.title.toLowerCase()
+    var testPlatform = test.platform.toLowerCase()
     return testText.indexOf(searchText.toLowerCase()) >= 0 || searchText.length === 0 || testPlatform.indexOf(searchText.toLowerCase()) >= 0
   })
 
   // Sort tests
   filteredTests.sort((a, b) => {
-    return a.core.createdAt < b.core.createdAt ? 1 : -1
+    return a.createdAt < b.createdAt ? 1 : -1
   })
 
   return filteredTests

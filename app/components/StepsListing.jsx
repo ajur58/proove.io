@@ -13,11 +13,11 @@ export class StepsListing extends React.Component {
           {
             StepsConfig.map((step) => {
               switch (true) {
-                case step.id < editTest.core.stepActive:
+                case step.id < editTest.stepActive:
                   return <StepsListItem {...step} key={step.name} status='done' testLink={testLink} />
-                case step.id === editTest.core.stepActive:
+                case step.id === editTest.stepActive:
                   return <StepsListItem {...step} key={step.name} status='active' testLink={testLink} />
-                case step.id > editTest.core.stepActive:
+                case step.id > editTest.stepActive:
                 default:
                   return <StepsListItem {...step} key={step.name} status='inactive' testLink={testLink} />
               }

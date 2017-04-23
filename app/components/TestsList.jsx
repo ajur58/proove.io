@@ -15,7 +15,7 @@ class TestsList extends React.Component {
       } else {
         return filteredTests.map((test) => {
           return (
-            <TestsListItem key={test.id} {...test.core} id={test.id} />
+            <TestsListItem key={test.id} {...test} />
           )
         })
       }

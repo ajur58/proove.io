@@ -11,9 +11,7 @@ class StepOverview extends React.Component {
     const {dispatch, editTest} = this.props
     const testKey = this.props.params.testKey
 
-    if (editTest.id !== testKey) {
-      dispatch(testActions.getSingleTest(testKey))
-    }
+    dispatch(testActions.getSingleTest(testKey))
   }
   render () {
     const {auth, editTest, isFetching} = this.props
@@ -27,12 +25,12 @@ class StepOverview extends React.Component {
 
     if (isFetching) {
       return (
-        <div>Loading</div>
+        <div className='step__pretty-high'>Loading</div>
       )
     } else {
       if (editTest === null) {
         return (
-          <div>
+          <div className='step__pretty-high'>
             <h2>Test not found</h2>
           </div>
         )
@@ -40,9 +38,9 @@ class StepOverview extends React.Component {
       // handle test not found case
       return (
         <div className='row'>
-          <div className='column small-11 medium-10 large-8'>
+          <div className='column small-11 medium-10 large-9'>
             <div className='row'>
-              <h5 className='step__test-title'>{editTest.core.title}</h5>
+              <h5 className='step__test-title'>{editTest.title}</h5>
               <hr className='step__test-title-hr' />
               <h2>You're doing great, {getFirstName()}</h2>
               <h5>

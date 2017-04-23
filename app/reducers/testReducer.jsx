@@ -10,12 +10,17 @@ export var testsReducer = (state = [], action) => {
         ...state,
         ...action.tests
       ]
-    case 'DELETE_TEST':
-      var newArray = state.filter((test) => {
-        if (test.id !== action.testKey) {
+    case 'EDIT_TEST':
+      var editedArray = state.map((test) => {
+        if (test.id === action.test.id) {
+          return Object.assign(test, action.test)
+        } else {
           return test
         }
       })
+      return editedArray
+    case 'DELETE_TEST':
+      var newArray = state.filter((test) => test.id !== action.testKey)
       return newArray
     case 'LOGOUT':
       return []

@@ -1,13 +1,28 @@
-var data = [
-    {
-        "name": "ananta",
-        "age": "15",
-        "country": "Atlanta"
-    }
-];
+// var data = [
+//     {
+//         "name": "ananta",
+//         "age": "15",
+//         "country": "Atlanta"
+//     }
+// ];
+//
+// data.push({"name": "Tony Montana", "age": "99"});
+//
+// data.push({"country": "IN"});
+// console.log(data)
 
-data.push({"name": "Tony Montana", "age": "99"});
+var a = {
+	'first': 1,
+  'second': 2
+}
 
-data.push({"country": "IN"});
+var b = {
+	'third': 1
+}
 
-console.log(data)
+console.log(a)
+console.log(b)
+console.log([
+	...a,
+  b
+])

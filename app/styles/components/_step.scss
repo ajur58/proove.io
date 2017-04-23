@@ -1,3 +1,15 @@
 .step{
+  // border-bottom: 1px solid $lightest-gray;
   padding: 1rem 0;
+}
+
+.step__pretty-high {
+  min-height: 58rem;
+}
+
+.step__form {
+  .label-text {
+    font-size: 1.3rem;
+    margin: 1.5rem 0 1rem 0;
+  }
 }

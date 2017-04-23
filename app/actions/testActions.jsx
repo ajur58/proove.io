@@ -21,18 +21,17 @@ export var startAddTest = (testCore) => {
   return (dispatch, getState) => {
     var uid = getState().auth.uid
     var test = {
-      core: {
-        title: testCore['title'],
-        platform: testCore['title'],
-        hypotheses: testCore['hypotheses'],
-        scenarios: testCore['scenarios'],
-        createdAt: moment().unix(),
-        createdBy: uid,
-        modifiedAt: null,
-        completed: false,
-        stepActive: 2,
-        stepScreen: 1
-      }
+      title: testCore['title'],
+      platform: testCore['title'],
+      hypotheses: testCore['hypotheses'],
+      scenarios: testCore['scenarios'],
+      createdAt: moment().unix(),
+      createdBy: uid,
+      modifiedAt: 0,
+      modifiedBy: '',
+      completed: false,
+      stepActive: 2,
+      stepScreen: 1
     }
 
     var testRef = firebaseRef.child(`tests/tuttich`).push(test)
@@ -42,8 +41,35 @@ export var startAddTest = (testCore) => {
         ...test,
         id: testRef.key
       }))
-
       hashHistory.push(`/get-approoved/test/${testRef.key}`)
+    })
+  }
+}
+
+export var editTest = (test) => {
+  return {
+    type: 'EDIT_TEST',
+    test
+  }
+}
+
+export var startEditTest = (test, step) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid
+    const testKey = test['id']
+
+    // set step active
+    test = {
+      ...test,
+      stepActive: ++step,
+      modifiedAt: moment().unix(),
+      modifiedBy: uid
+    }
+    var testRef = firebaseRef.child(`tests/tuttich/${testKey}`).update(test)
+
+    return testRef.then(() => {
+      dispatch(editTest(test))
+      hashHistory.push(`/get-approoved/test/${testKey}`)
     })
   }
 }
@@ -77,6 +103,9 @@ export var viewSingleTest = (test) => {
 
 export var getSingleTest = (testKey) => {
   return (dispatch, getState) => {
+    // this always fetches from server
+    // @TODO maybe optimise to fetch from local storage, if available?
+
     dispatch(isFetching(true))
     var testsRef = firebaseRef.child(`tests/tuttich/${testKey}`)
 
