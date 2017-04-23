@@ -8,6 +8,7 @@ export class StepOne extends React.Component {
     var {dispatch} = this.props
     var testCore = {}
     testCore['title'] = this.refs.title.value
+    testCore['platform'] = this.refs.platform.value
     testCore['hypotheses'] = this.refs.hypotheses.value
     testCore['scenarios'] = this.refs.scenarios.value
 

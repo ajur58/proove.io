@@ -29,7 +29,7 @@ export var testsReducer = (state = [], action) => {
   }
 }
 
-export var editTestReducer = (state = {}, action) => {
+export var currentTestReducer = (state = {}, action) => {
   switch (action.type) {
     case 'VIEW_TEST':
       return action.test

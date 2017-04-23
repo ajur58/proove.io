@@ -22,7 +22,7 @@ export var startAddTest = (testCore) => {
     var uid = getState().auth.uid
     var test = {
       title: testCore['title'],
-      platform: testCore['title'],
+      platform: testCore['platform'],
       hypotheses: testCore['hypotheses'],
       scenarios: testCore['scenarios'],
       createdAt: moment().unix(),
@@ -115,6 +115,7 @@ export var getSingleTest = (testKey) => {
         // add the ID to the object too
         editingTest['id'] = testKey
       }
+
       dispatch(viewSingleTest(editingTest))
       dispatch(isFetching(false))
     }, (error) => {

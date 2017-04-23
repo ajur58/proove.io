@@ -15,13 +15,6 @@ class StepOverview extends React.Component {
   }
   render () {
     const {auth, currentTest, isFetching} = this.props
-    const getFirstName = () => {
-      var firstName = auth.displayName
-      if (typeof firstName === 'string') {
-        firstName = firstName.split(' ')[0]
-      }
-      return firstName
-    }
 
     if (isFetching) {
       return (
@@ -40,12 +33,22 @@ class StepOverview extends React.Component {
           <div className='row'>
             <h5 className='step__test-title'>{currentTest.title}</h5>
             <hr className='step__test-title-hr' />
-            <h2>You're doing great, {getFirstName()}</h2>
-            <h5>
-              In the next step we’ll define on which dates you would like to conduct the tests. Easy peasy!
-            </h5>
+            <h5>Created at</h5>
+            <h3>{currentTest.createdAt}</h3>
+
+            <h5>Platform</h5>
+            <h3>{currentTest.platform}</h3>
+
+            <h5>Hypotheses</h5>
+            <h3>{currentTest.hypotheses}</h3>
+
+            <h5>Scenarios</h5>
+            <h3>{currentTest.scenarios}</h3>
+            <hr />
+            <h3>{`Looking for ${currentTest.people.amount} people for $${currentTest.people.reward} each`}</h3>
+            <br />
+            <h3>{currentTest.people.skills}</h3>
           </div>
-          <StepsListing currentTest={currentTest} />
         </div>
       )
     }

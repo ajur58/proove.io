@@ -10,7 +10,7 @@ export class StepTwo extends React.Component {
     var test = {people: {}}
     test['id'] = this.props.params.testKey
     test['people']['amount'] = this.refs.amount.value
-    test['people']['gender'] = this.refs.gender.value
+    test['people']['reward'] = this.refs.reward.value
     test['people']['skills'] = this.refs.skills.value
 
     if (test['people']['amount'] !== '') {
@@ -27,8 +27,8 @@ export class StepTwo extends React.Component {
           <label className='label-text' htmlFor='amount'>Number of people</label>
           <input id='amount' type='text' ref='amount' placeholder='How many testers do you need?' />
 
-          <label className='label-text' htmlFor='gender'>Reward</label>
-          <input id='gender' type='text' ref='gender' placeholder='How much will you pay them?' />
+          <label className='label-text' htmlFor='reward'>Reward</label>
+          <input id='reward' type='text' ref='reward' placeholder='How much will you pay them?' />
 
           <label className='label-text' htmlFor='skills'>Skills</label>
           <input id='skills' type='text' ref='skills' placeholder='Are you looking for something specific?' />

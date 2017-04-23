@@ -8,6 +8,7 @@ import StepsApp from 'StepsApp'
 import StepOne from 'StepOne'
 import StepTwo from 'StepTwo'
 import StepOverview from 'StepOverview'
+import TestView from 'TestView'
 
 export default class SmartRouter extends React.Component {
 
@@ -31,6 +32,7 @@ export default class SmartRouter extends React.Component {
             <Route path='people' component={StepTwo} onEnter={this.requireLogin} />
           </Route>
         </Route>
+        <Route path='test/:testKey' component={TestView} onEnter={this.requireLogin} />
         <IndexRoute component={Login} onEnter={this.redirectIfLoggedin} />
       </Route>
     )

@@ -41,7 +41,7 @@ class TestsListItem extends React.Component {
             </p>
             <div className='button-group small-centered'>
               <Link to={`/get-approoved/test/${id}`} className='button primary card__btn'>Continue Editing</Link>
-              <a className='button hollow primary card__btn'>View Results</a>
+              <Link to={`/test/${id}`} className='button hollow primary card__btn'>View Test</Link>
             </div>
           </div>
           <a onClick={(e) => {

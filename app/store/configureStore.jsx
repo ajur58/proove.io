@@ -4,7 +4,7 @@ import thunk from 'redux-thunk'
 import { saveCurrentState } from '../redux/middleware/saveCurrentState'
 import { loadCurrentState } from '../redux/middleware/loadCurrentState'
 
-import {searchTextReducer, showCompletedReducer, testsReducer, editTestReducer, isFetchingReducer} from '../reducers/testReducer'
+import {searchTextReducer, showCompletedReducer, testsReducer, currentTestReducer, isFetchingReducer} from '../reducers/testReducer'
 import {authReducer, redirectUrlReducer} from '../reducers/authReducer'
 
 export var configure = (initialState = {}) => {
@@ -15,7 +15,7 @@ export var configure = (initialState = {}) => {
     showCompleted: showCompletedReducer,
     tests: testsReducer,
     isFetching: isFetchingReducer,
-    editTest: editTestReducer
+    currentTest: currentTestReducer
   })
 
   const store = redux.createStore(reducer, initialState, redux.compose(
