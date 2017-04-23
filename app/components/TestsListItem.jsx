@@ -6,9 +6,10 @@ import FaApple from 'react-icons/fa/apple'
 import FaAndroid from 'react-icons/fa/android'
 import FaDesktop from 'react-icons/fa/desktop'
 import FaEllipsisV from 'react-icons/fa/ellipsis-v'
+import FaTrash from 'react-icons/fa/trash'
 import * as testActions from '../actions/testActions'
 
-class Test extends React.Component {
+class TestsListItem extends React.Component {
   render () {
     var renderDate = () => {
       return 'Created at ' + moment.unix(createdAt).format('MMM Do YYYY @ h:mm a')
@@ -47,7 +48,7 @@ class Test extends React.Component {
             e.preventDefault()
             dispatch(testActions.startDeleteTest(id))
           }}>
-            <FaEllipsisV size='22' className='card__options' />
+            <FaTrash size='22' className='card__options' />
           </a>
         </div>
       </li>
@@ -55,4 +56,4 @@ class Test extends React.Component {
   }
 }
 
-export default Redux.connect()(Test)
+export default Redux.connect()(TestsListItem)

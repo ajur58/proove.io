@@ -22,7 +22,7 @@ class StepOverview extends React.Component {
                 {this.props.children}
               </div>
             </div>
-            <div className='columns small-0 medium-4 large-4 helper-buddy'>
+            <div className='columns hide-for-small-only medium-4 large-4 helper-buddy'>
               <div className='container'>
                 <HelperBuddy />
               </div>

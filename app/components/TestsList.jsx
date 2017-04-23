@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Redux from 'react-redux'
-import Test from 'Test'
+import TestsListItem from 'TestsListItem'
 import * as TestAPI from 'TestApi'
 
 class TestsList extends React.Component {
@@ -15,7 +15,7 @@ class TestsList extends React.Component {
       } else {
         return filteredTests.map((test) => {
           return (
-            <Test key={test.id} {...test.core} id={test.id} />
+            <TestsListItem key={test.id} {...test.core} id={test.id} />
           )
         })
       }

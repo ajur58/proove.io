@@ -42,7 +42,7 @@ class StepOverview extends React.Component {
         <div className='row'>
           <div className='column small-11 medium-10 large-8'>
             <div className='row'>
-              <h3 className='step__test-title'>{editTest.core.title}</h3>
+              <h5 className='step__test-title'>{editTest.core.title}</h5>
               <hr className='step__test-title-hr' />
               <h2>You're doing great, {getFirstName()}</h2>
               <h5>
