@@ -1,20 +1,30 @@
 import React from 'react'
 import * as Redux from 'react-redux'
-import {hashHistory} from 'react-router'
 
-import StepsListing from 'StepsListing'
 import * as testActions from '../actions/testActions'
 
-class StepOverview extends React.Component {
+class TestView extends React.Component {
   componentWillMount () {
     // load test
-    const {dispatch, currentTest} = this.props
-    const testKey = this.props.params.testKey
+    const {dispatch} = this.props
+    const testKey = this.props.match.params.testKey
 
     dispatch(testActions.getSingleTest(testKey))
   }
   render () {
-    const {auth, currentTest, isFetching} = this.props
+    const {currentTest, isFetching} = this.props
+
+    function showPeople (test) {
+      if ('people' in test) {
+        return (
+          <div>
+            <h3>{`Looking for ${test.people.amount} people for $${test.people.reward} each`}</h3>
+            <br />
+            <h3>{test.people.skills}</h3>
+          </div>
+        )
+      }
+    }
 
     if (isFetching) {
       return (
@@ -45,9 +55,7 @@ class StepOverview extends React.Component {
             <h5>Scenarios</h5>
             <h3>{currentTest.scenarios}</h3>
             <hr />
-            <h3>{`Looking for ${currentTest.people.amount} people for $${currentTest.people.reward} each`}</h3>
-            <br />
-            <h3>{currentTest.people.skills}</h3>
+            {showPeople(currentTest)}
           </div>
         </div>
       )
@@ -57,4 +65,4 @@ class StepOverview extends React.Component {
 
 export default Redux.connect(
   (state) => state
-)(StepOverview)
+)(TestView)

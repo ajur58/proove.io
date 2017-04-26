@@ -1,17 +1,55 @@
 import React from 'react'
+import * as Redux from 'react-redux'
 import { Provider } from 'react-redux'
-import SmartRouter from 'app/router/index'
+import {
+  HashRouter as Router,
+  Route,
+  Redirect
+} from 'react-router-dom'
+
+import createHistory from 'history/createBrowserHistory'
+
+import Main from 'Main'
+import Login from 'Login'
+
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+//   <Route {...rest} render={props => {
+//     debugger
+//     props.auth.isLoggedIn !== true ? (
+//       <Component {...props} />
+//     ) : (
+//       <Redirect to={{
+//         pathname: '/login',
+//         state: { from: props.location }
+//       }} />
+//     )
+//   }} />
+// )
 
 export default class Root extends React.Component {
   render () {
-    const { store, history } = this.props
-    const { getState } = store
+    const { store } = this.props
+    const history = createHistory()
+
     return (
       <Provider store={store}>
         <div>
-          <SmartRouter history={history} getState={getState} />
+          <Router history={history}>
+            <div>
+              <Route exact path='/' component={Main} />
+              <Route path='/login' component={Login} />
+            </div>
+          </Router>
         </div>
       </Provider>
     )
   }
 }
+
+// export default Redux.connect(
+//   (state) => {
+//     return {
+//       auth: state.auth
+//     }
+//   }
+// )(Root)

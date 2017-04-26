@@ -1,6 +1,5 @@
 import firebase, {firebaseRef} from 'app/firebase/'
 import moment from 'moment'
-import {hashHistory} from 'react-router'
 
 export var addTest = (test) => {
   return {
@@ -17,7 +16,7 @@ export var addTests = (tests) => {
   }
 }
 
-export var startAddTest = (testCore) => {
+export var startAddTest = (testCore, redirect) => {
   return (dispatch, getState) => {
     var uid = getState().auth.uid
     var test = {
@@ -41,7 +40,8 @@ export var startAddTest = (testCore) => {
         ...test,
         id: testRef.key
       }))
-      hashHistory.push(`/get-approoved/test/${testRef.key}`)
+      redirect(testRef.key)
+      // hashHistory.push(`/get-approoved/test/${testRef.key}`)
     })
   }
 }
@@ -53,7 +53,8 @@ export var editTest = (test) => {
   }
 }
 
-export var startEditTest = (test, step) => {
+// put callback on success and pass it back to the view
+export var startEditTest = (test, step, redirect) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid
     const testKey = test['id']
@@ -69,7 +70,7 @@ export var startEditTest = (test, step) => {
 
     return testRef.then(() => {
       dispatch(editTest(test))
-      hashHistory.push(`/get-approoved/test/${testKey}`)
+      redirect(testKey)
     })
   }
 }

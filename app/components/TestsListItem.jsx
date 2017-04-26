@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Redux from 'react-redux'
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 import moment from 'moment'
 import FaApple from 'react-icons/fa/apple'
 import FaAndroid from 'react-icons/fa/android'

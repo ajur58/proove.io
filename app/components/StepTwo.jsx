@@ -5,16 +5,17 @@ import * as testActions from '../actions/testActions'
 export class StepTwo extends React.Component {
   onSubmit (e) {
     e.preventDefault()
-    var {dispatch} = this.props
-
+    var {dispatch, history} = this.props
     var test = {people: {}}
-    test['id'] = this.props.params.testKey
+    test['id'] = this.props.match.params.testKey
     test['people']['amount'] = this.refs.amount.value
     test['people']['reward'] = this.refs.reward.value
     test['people']['skills'] = this.refs.skills.value
 
     if (test['people']['amount'] !== '') {
-      dispatch(testActions.startEditTest(test, 2))
+      dispatch(testActions.startEditTest(test, 2, (testKey) => {
+        history.push(`/get-approoved/test/${testKey}`)
+      }))
     } else {
       this.refs.platform.focus()
     }

@@ -1,13 +1,23 @@
 import React from 'react'
 import * as Redux from 'react-redux'
-import {hashHistory} from 'react-router'
+import {Route} from 'react-router-dom'
 
 import Nav from 'Nav'
+import TestsApp from 'TestsApp'
+import StepsApp from 'StepsApp'
+import TestView from 'TestView'
 
 export class Main extends React.Component {
-  componentDidUpdate () {
+  componentDidMount () {
+    const {history} = this.props
     if (this.props.auth.isLoggedIn !== true) {
-      hashHistory.push('/')
+      history.push('/login')
+    }
+  }
+  componentDidUpdate () {
+    const {history} = this.props
+    if (this.props.auth.isLoggedIn !== true) {
+      history.push('/login')
     }
   }
   render () {
@@ -16,7 +26,9 @@ export class Main extends React.Component {
         <Nav />
         <div className='row'>
           <div className='column small-centered medium-11 large-11'>
-            {this.props.children}
+            <Route exact path='/' component={TestsApp} />
+            <Route path='/get-approoved' component={StepsApp} />
+            <Route path='/test/:testKey' component={TestView} />
           </div>
         </div>
       </div>

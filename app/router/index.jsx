@@ -17,27 +17,6 @@ export default class SmartRouter extends React.Component {
 
     this.requireLogin = this.requireLogin.bind(this)
     this.redirectIfLoggedin = this.redirectIfLoggedin.bind(this)
-    // Configure routes here as this solves a problem with hot loading where
-    // the routes are recreated each time.
-    this.routes = (
-      <Route path='/'>
-        <Route component={Main}>
-          <Route path='tests'>
-            <IndexRoute component={TestsApp} onEnter={this.requireLogin} />
-          </Route>
-          <Route path='get-approoved' component={StepsApp} onEnter={this.requireLogin} >
-            <IndexRoute component={StepOne} onEnter={this.requireLogin} />
-            <Route path='test/:testKey' onEnter={this.requireLogin}>
-              <IndexRoute component={StepOverview} onEnter={this.requireLogin} />
-              <Route path='basics' component={StepOne} onEnter={this.requireLogin} />
-              <Route path='people' component={StepTwo} onEnter={this.requireLogin} />
-            </Route>
-          </Route>
-          <Route path='test/:testKey' component={TestView} onEnter={this.requireLogin} />
-        </Route>
-        <IndexRoute component={Login} onEnter={this.redirectIfLoggedin} />
-      </Route>
-    )
   }
 
   requireLogin (nextState, replace) {
@@ -59,7 +38,21 @@ export default class SmartRouter extends React.Component {
     const {history} = this.props
     return (
       <Router history={history}>
-        { this.routes }
+        <Route path='/'>
+          <Route component={Main}>
+            <Route path='tests'component={TestsApp} onEnter={this.requireLogin} />
+            <Route path='get-approoved' component={StepsApp} onEnter={this.requireLogin} >
+              <IndexRoute component={StepOne} onEnter={this.requireLogin} />
+              <Route path='test/:testKey' onEnter={this.requireLogin}>
+                <IndexRoute component={StepOverview} onEnter={this.requireLogin} />
+                <Route path='basics' component={StepOne} onEnter={this.requireLogin} />
+                <Route path='people' component={StepTwo} onEnter={this.requireLogin} />
+              </Route>
+            </Route>
+            <Route path='test/:testKey' component={TestView} onEnter={this.requireLogin} />
+          </Route>
+          <IndexRoute component={Login} onEnter={this.redirectIfLoggedin} />
+        </Route>
       </Router>
     )
   }

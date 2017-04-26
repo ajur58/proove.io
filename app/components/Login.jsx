@@ -1,13 +1,13 @@
 import React from 'react'
 import * as Redux from 'react-redux'
-var {hashHistory} = require('react-router')
 
 import * as authActions from '../actions/authActions'
 
 export class Login extends React.Component {
   componentDidUpdate () {
+    const {history} = this.props
     if (this.props.isLoggedIn === true) {
-      hashHistory.push('/tests')
+      history.push('/')
     }
   }
   onGHLogin () {

@@ -1,11 +1,12 @@
 import React from 'react'
 import * as Redux from 'react-redux'
+
 import * as testActions from '../actions/testActions'
 
 export class StepOne extends React.Component {
   onSubmit (e) {
     e.preventDefault()
-    var {dispatch} = this.props
+    var {dispatch, history} = this.props
     var testCore = {}
     testCore['title'] = this.refs.title.value
     testCore['platform'] = this.refs.platform.value
@@ -14,7 +15,9 @@ export class StepOne extends React.Component {
 
     if (typeof testCore['title'] === 'string' && testCore['title'].length > 0) {
       if (testCore['platform'] !== '') {
-        dispatch(testActions.startAddTest(testCore))
+        dispatch(testActions.startAddTest(testCore, (testRefKey) => {
+          history.push(`/get-approoved/test/${testRefKey}`)
+        }))
       } else {
         this.refs.platform.focus()
       }

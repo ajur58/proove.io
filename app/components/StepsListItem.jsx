@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Redux from 'react-redux'
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 import FaCheckCircle from 'react-icons/fa/check-circle'
 
 export class StepsListItem extends React.Component {

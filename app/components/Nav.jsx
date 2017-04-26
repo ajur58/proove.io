@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Redux from 'react-redux'
-import {IndexLink} from 'react-router'
+import {Link} from 'react-router-dom'
 
 import * as authActions from '../actions/authActions'
 
@@ -22,7 +22,7 @@ class Nav extends React.Component {
           <div className='top-bar-left'>
             <ul className='menu'>
               <li className='menu-text logo'>
-                <IndexLink to='/' activeClassName='active'> proove.io </IndexLink>
+                <Link to='/'> proove.io </Link>
               </li>
             </ul>
           </div>

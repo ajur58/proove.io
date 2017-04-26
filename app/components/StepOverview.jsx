@@ -1,15 +1,17 @@
 import React from 'react'
 import * as Redux from 'react-redux'
-import {hashHistory} from 'react-router'
 
 import StepsListing from 'StepsListing'
 import * as testActions from '../actions/testActions'
 
 class StepOverview extends React.Component {
+  constructor ({match}) {
+    super()
+  }
   componentWillMount () {
     // load test
-    const {dispatch, currentTest} = this.props
-    const testKey = this.props.params.testKey
+    const {dispatch} = this.props
+    const testKey = this.props.match.params.testKey
 
     dispatch(testActions.getSingleTest(testKey))
   }
