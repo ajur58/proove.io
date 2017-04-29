@@ -20,8 +20,6 @@
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
     "css-loader": "^0.23.1",
-    "deep-freeze-strict": "^1.1.1",
-    "expect": "^1.14.0",
     "express": "^4.15.2",
     "firebase": "^3.0.2",
     "foundation-sites": "6.2.0",
@@ -50,6 +48,8 @@
   },
   "devDependencies": {
     "debug": "^2.6.3",
+    "deep-freeze-strict": "^1.1.1",
+    "expect": "^1.14.0",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.2",
     "karma-mocha": "^0.2.2",

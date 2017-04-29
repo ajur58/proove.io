@@ -14,7 +14,7 @@ export class StepTwo extends React.Component {
 
     if (test['people']['amount'] !== '') {
       dispatch(testActions.startEditTest(test, 2, (testKey) => {
-        history.push(`/get-approoved/test/${testKey}`)
+        history.push(`/get-approoved/${testKey}`)
       }))
     } else {
       this.refs.platform.focus()

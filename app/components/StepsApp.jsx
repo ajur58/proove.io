@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 
 import StepOne from 'StepOne'
 import StepTwo from 'StepTwo'
@@ -11,10 +11,13 @@ const StepsApp = ({ match }) => (
     <div className='columns small-12 medium-8 large-7'>
       <div className='row'>
         <div className='column small-11 medium-10 large-9'>
-          <Route exact path={match.url} component={StepOne} />
-          <Route exact path={`${match.url}/test/:testKey`} component={StepOverview} />
-          <Route path={`${match.url}/test/:testKey/basics`} component={StepOne} />
-          <Route path={`${match.url}/test/:testKey/people`} component={StepTwo} />
+          <Switch>
+            <Route exact path={match.url} component={StepOne} />
+            <Route exact path={`${match.url}/:testKey`} component={StepOverview} />
+            <Route path={`${match.url}/:testKey/basics`} component={StepOne} />
+            <Route path={`${match.url}/:testKey/people`} component={StepTwo} />
+            <Route component={NoMatch} />
+          </Switch>
         </div>
       </div>
     </div>
@@ -23,6 +26,12 @@ const StepsApp = ({ match }) => (
         <HelperBuddy />
       </div>
     </div>
+  </div>
+)
+
+const NoMatch = ({ location }) => (
+  <div>
+    <h3>Page not found <code>{location.pathname}</code></h3>
   </div>
 )
 

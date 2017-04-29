@@ -5,7 +5,6 @@ import moment from 'moment'
 import FaApple from 'react-icons/fa/apple'
 import FaAndroid from 'react-icons/fa/android'
 import FaDesktop from 'react-icons/fa/desktop'
-import FaEllipsisV from 'react-icons/fa/ellipsis-v'
 import FaTrash from 'react-icons/fa/trash'
 import * as testActions from '../actions/testActions'
 
@@ -40,8 +39,8 @@ class TestsListItem extends React.Component {
               <span>{renderDate()}</span>
             </p>
             <div className='button-group small-centered'>
-              <Link to={`/get-approoved/test/${id}`} className='button primary card__btn'>Continue Editing</Link>
-              <Link to={`/test/${id}`} className='button hollow primary card__btn'>View Test</Link>
+              <Link to={`/get-approoved/${id}`} className='button primary card__btn'>Continue Editing</Link>
+              <Link to={`/view/${id}`} className='button hollow primary card__btn'>View Test</Link>
             </div>
           </div>
           <a onClick={(e) => {

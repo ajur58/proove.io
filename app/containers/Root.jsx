@@ -1,10 +1,10 @@
 import React from 'react'
-import * as Redux from 'react-redux'
 import { Provider } from 'react-redux'
 import {
   HashRouter as Router,
   Route,
-  Redirect
+  Redirect,
+  Switch
 } from 'react-router-dom'
 
 import createHistory from 'history/createBrowserHistory'
@@ -12,32 +12,47 @@ import createHistory from 'history/createBrowserHistory'
 import Main from 'Main'
 import Login from 'Login'
 
-// const PrivateRoute = ({ component: Component, ...rest }) => (
-//   <Route {...rest} render={props => {
-//     debugger
-//     props.auth.isLoggedIn !== true ? (
-//       <Component {...props} />
-//     ) : (
-//       <Redirect to={{
-//         pathname: '/login',
-//         state: { from: props.location }
-//       }} />
-//     )
-//   }} />
-// )
-
-export default class Root extends React.Component {
+export class Root extends React.Component {
   render () {
     const { store } = this.props
     const history = createHistory()
+
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={props => (
+        store.getState().auth.isLoggedIn === true ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{
+            pathname: '/login',
+            state: { from: props.location }
+          }} />
+        )
+      )} />
+    )
+
+    // opposite of PrivateRoute aka 'redirect if logged in'
+    const LoginRoute = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={props => (
+        store.getState().auth.isLoggedIn === true ? (
+          <Redirect to={{
+            pathname: '/',
+            state: { from: props.location }
+          }} />
+        ) : (
+          <Component {...props} />
+        )
+      )} />
+    )
 
     return (
       <Provider store={store}>
         <div>
           <Router history={history}>
             <div>
-              <Route exact path='/' component={Main} />
-              <Route path='/login' component={Login} />
+              <Switch>
+                <LoginRoute exact path='/login' component={Login} />
+                <PrivateRoute path='/' component={Main} />
+              </Switch>
             </div>
           </Router>
         </div>
@@ -46,10 +61,5 @@ export default class Root extends React.Component {
   }
 }
 
-// export default Redux.connect(
-//   (state) => {
-//     return {
-//       auth: state.auth
-//     }
-//   }
-// )(Root)
+// const mapStateToProps = (state) => { auth: state.auth }
+export default Root

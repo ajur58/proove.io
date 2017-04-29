@@ -1,12 +1,12 @@
 import React from 'react'
-import * as Redux from 'react-redux'
+import {connect} from 'react-redux'
 
 import * as authActions from '../actions/authActions'
 
 export class Login extends React.Component {
   componentDidUpdate () {
-    const {history} = this.props
     if (this.props.isLoggedIn === true) {
+      const {history} = this.props
       history.push('/')
     }
   }
@@ -50,4 +50,4 @@ function mapStateToProps (state, ownProps) {
   }
 }
 
-export default Redux.connect(mapStateToProps)(Login)
+export default connect(mapStateToProps)(Login)

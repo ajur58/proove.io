@@ -1,17 +1,16 @@
 import React from 'react'
-import * as Redux from 'react-redux'
 import {Link} from 'react-router-dom'
 import FaCheckCircle from 'react-icons/fa/check-circle'
 
 export class StepsListItem extends React.Component {
   render () {
-    var {title, description, link, testLink, status} = this.props
+    var {description, match, slug, status, title} = this.props
     var showContinueButton = (status) => {
       switch (status) {
         case 'active':
-          return <Link to={testLink + link} className='button primary'>Continue</Link>
+          return <Link to={`${match.url}/${slug}`} className='button primary'>Continue</Link>
         case 'done':
-          return <Link to={testLink + link} className=''>Edit</Link>
+          return <Link to={`${match.url}/${slug}`} className=''>Edit</Link>
         case 'inactive':
         default:
           return ''
@@ -37,4 +36,4 @@ export class StepsListItem extends React.Component {
   }
 }
 
-export default Redux.connect()(StepsListItem)
+export default StepsListItem

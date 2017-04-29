@@ -1,34 +1,34 @@
 import React from 'react'
-import * as Redux from 'react-redux'
-import {Route} from 'react-router-dom'
+
+import {Route, Switch} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 import Nav from 'Nav'
+import NoMatch from 'NoMatch'
 import TestsApp from 'TestsApp'
 import StepsApp from 'StepsApp'
 import TestView from 'TestView'
 
-export class Main extends React.Component {
-  componentDidMount () {
-    const {history} = this.props
-    if (this.props.auth.isLoggedIn !== true) {
-      history.push('/login')
-    }
-  }
+class Main extends React.Component {
   componentDidUpdate () {
-    const {history} = this.props
-    if (this.props.auth.isLoggedIn !== true) {
+    if (this.props.isLoggedIn !== true) {
+      const {history} = this.props
       history.push('/login')
     }
   }
+
   render () {
     return (
       <div>
         <Nav />
         <div className='row'>
           <div className='column small-centered medium-11 large-11'>
-            <Route exact path='/' component={TestsApp} />
-            <Route path='/get-approoved' component={StepsApp} />
-            <Route path='/test/:testKey' component={TestView} />
+            <Switch>
+              <Route exact path={`${this.props.match.url}`} component={TestsApp} />
+              <Route path={`${this.props.match.url}get-approoved`} component={StepsApp} />
+              <Route path={`${this.props.match.url}view/:testKey`} component={TestView} />
+              <Route component={NoMatch} />
+            </Switch>
           </div>
         </div>
       </div>
@@ -36,10 +36,10 @@ export class Main extends React.Component {
   }
 }
 
-export default Redux.connect(
-  (state) => {
-    return {
-      auth: state.auth
-    }
+function mapStateToProps (state, ownProps) {
+  return {
+    isLoggedIn: state.auth.isLoggedIn
   }
-)(Main)
+}
+
+export default connect(mapStateToProps)(Main)

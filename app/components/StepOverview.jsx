@@ -5,9 +5,6 @@ import StepsListing from 'StepsListing'
 import * as testActions from '../actions/testActions'
 
 class StepOverview extends React.Component {
-  constructor ({match}) {
-    super()
-  }
   componentWillMount () {
     // load test
     const {dispatch} = this.props
@@ -16,7 +13,7 @@ class StepOverview extends React.Component {
     dispatch(testActions.getSingleTest(testKey))
   }
   render () {
-    const {auth, currentTest, isFetching} = this.props
+    const {auth, currentTest, isFetching, match} = this.props
     const getFirstName = () => {
       var firstName = auth.displayName
       if (typeof firstName === 'string') {
@@ -47,7 +44,7 @@ class StepOverview extends React.Component {
               In the next step we’ll define on which dates you would like to conduct the tests. Easy peasy!
             </h5>
           </div>
-          <StepsListing currentTest={currentTest} />
+          <StepsListing currentTest={currentTest} match={match} />
         </div>
       )
     }

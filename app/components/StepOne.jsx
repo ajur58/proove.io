@@ -16,7 +16,7 @@ export class StepOne extends React.Component {
     if (typeof testCore['title'] === 'string' && testCore['title'].length > 0) {
       if (testCore['platform'] !== '') {
         dispatch(testActions.startAddTest(testCore, (testRefKey) => {
-          history.push(`/get-approoved/test/${testRefKey}`)
+          history.push(`/get-approoved/${testRefKey}`)
         }))
       } else {
         this.refs.platform.focus()
