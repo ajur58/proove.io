@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import * as authActions from '../actions/authActions'
+import {startLogin} from '../actions/authActions'
 
 export class Login extends React.Component {
   componentDidUpdate () {
@@ -12,11 +12,11 @@ export class Login extends React.Component {
   }
   onGHLogin () {
     var {dispatch} = this.props
-    dispatch(authActions.startLogin('github'))
+    dispatch(startLogin('github'))
   }
   onFBLogin () {
     var {dispatch} = this.props
-    dispatch(authActions.startLogin('facebook'))
+    dispatch(startLogin('facebook'))
   }
   render () { // ES6 shortcut
     return (

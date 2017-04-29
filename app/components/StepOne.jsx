@@ -1,7 +1,7 @@
 import React from 'react'
-import * as Redux from 'react-redux'
+import {connect} from 'react-redux'
 
-import * as testActions from '../actions/testActions'
+import {startAddTest} from '../actions/testActions'
 
 export class StepOne extends React.Component {
   onSubmit (e) {
@@ -15,7 +15,7 @@ export class StepOne extends React.Component {
 
     if (typeof testCore['title'] === 'string' && testCore['title'].length > 0) {
       if (testCore['platform'] !== '') {
-        dispatch(testActions.startAddTest(testCore, (testRefKey) => {
+        dispatch(startAddTest(testCore, (testRefKey) => {
           history.push(`/get-approoved/${testRefKey}`)
         }))
       } else {
@@ -54,4 +54,4 @@ export class StepOne extends React.Component {
   }
 }
 
-export default Redux.connect()(StepOne)
+export default connect()(StepOne)

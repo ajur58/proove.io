@@ -1,5 +1,5 @@
 import React from 'react'
-import * as Redux from 'react-redux'
+import {connect} from 'react-redux'
 import TestsListItem from 'TestsListItem'
 import * as TestAPI from 'TestApi'
 
@@ -30,8 +30,12 @@ class TestsList extends React.Component {
   }
 }
 
-export default Redux.connect(
-  (state) => {
-    return state // return all 3, searchText, showCompleted, todos
+function mapStateToProps (state, ownProps) {
+  return {
+    tests: state.tests,
+    showCompleted: state.showCompleted,
+    searchText: state.searchText
   }
-)(TestsList)
+}
+
+export default connect(mapStateToProps)(TestsList)

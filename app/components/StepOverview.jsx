@@ -1,8 +1,8 @@
 import React from 'react'
-import * as Redux from 'react-redux'
+import {connect} from 'react-redux'
 
 import StepsListing from 'StepsListing'
-import * as testActions from '../actions/testActions'
+import {getSingleTest} from '../actions/testActions'
 
 class StepOverview extends React.Component {
   componentWillMount () {
@@ -10,7 +10,7 @@ class StepOverview extends React.Component {
     const {dispatch} = this.props
     const testKey = this.props.match.params.testKey
 
-    dispatch(testActions.getSingleTest(testKey))
+    dispatch(getSingleTest(testKey))
   }
   render () {
     const {auth, currentTest, isFetching, match} = this.props
@@ -51,6 +51,6 @@ class StepOverview extends React.Component {
   }
 }
 
-export default Redux.connect(
+export default connect(
   (state) => state
 )(StepOverview)

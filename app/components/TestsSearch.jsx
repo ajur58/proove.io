@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import * as testActions from '../actions/testActions'
+import {setSearchText, toggleShowCompleted} from '../actions/testActions'
 
 export class TestsSearch extends React.Component {
   render () {
@@ -10,13 +10,13 @@ export class TestsSearch extends React.Component {
         <div>
           <input type='search' ref='searchText' placeholder='Search by Title or Platform' value={searchText} onChange={() => {
             var searchText = this.refs.searchText.value
-            dispatch(testActions.setSearchText(searchText))
+            dispatch(setSearchText(searchText))
           }} />
         </div>
         <div>
           <label>
             <input type='checkbox' ref='showCompleted' checked={showCompleted} onChange={() => {
-              dispatch(testActions.toggleShowCompleted())
+              dispatch(toggleShowCompleted())
             }} />
             Show completed tests
           </label>
@@ -26,11 +26,11 @@ export class TestsSearch extends React.Component {
   }
 }
 
-export default connect(
-  (state) => {
-    return {
-      showCompleted: state.showCompleted,
-      searchText: state.searchText
-    }
+function mapStateToProps (state, ownProps) {
+  return {
+    showCompleted: state.showCompleted,
+    searchText: state.searchText
   }
-)(TestsSearch)
+}
+
+export default connect(mapStateToProps)(TestsSearch)

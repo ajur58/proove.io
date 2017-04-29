@@ -1,12 +1,12 @@
 import React from 'react'
-import * as Redux from 'react-redux'
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import moment from 'moment'
 import FaApple from 'react-icons/fa/apple'
 import FaAndroid from 'react-icons/fa/android'
 import FaDesktop from 'react-icons/fa/desktop'
 import FaTrash from 'react-icons/fa/trash'
-import * as testActions from '../actions/testActions'
+import {startDeleteTest} from '../actions/testActions'
 
 class TestsListItem extends React.Component {
   render () {
@@ -45,7 +45,7 @@ class TestsListItem extends React.Component {
           </div>
           <a onClick={(e) => {
             e.preventDefault()
-            dispatch(testActions.startDeleteTest(id))
+            dispatch(startDeleteTest(id))
           }}>
             <FaTrash size='22' className='card__options' />
           </a>
@@ -55,4 +55,4 @@ class TestsListItem extends React.Component {
   }
 }
 
-export default Redux.connect()(TestsListItem)
+export default connect()(TestsListItem)

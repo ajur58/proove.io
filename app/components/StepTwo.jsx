@@ -1,6 +1,6 @@
 import React from 'react'
-import * as Redux from 'react-redux'
-import * as testActions from '../actions/testActions'
+import {connect} from 'react-redux'
+import {startEditTest} from '../actions/testActions'
 
 export class StepTwo extends React.Component {
   onSubmit (e) {
@@ -13,7 +13,7 @@ export class StepTwo extends React.Component {
     test['people']['skills'] = this.refs.skills.value
 
     if (test['people']['amount'] !== '') {
-      dispatch(testActions.startEditTest(test, 2, (testKey) => {
+      dispatch(startEditTest(test, 2, (testKey) => {
         history.push(`/get-approoved/${testKey}`)
       }))
     } else {
@@ -54,4 +54,4 @@ export class StepTwo extends React.Component {
   }
 }
 
-export default Redux.connect()(StepTwo)
+export default connect()(StepTwo)

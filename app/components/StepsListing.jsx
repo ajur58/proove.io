@@ -1,5 +1,4 @@
 import React from 'react'
-import * as Redux from 'react-redux'
 
 import StepsListItem from 'StepsListItem'
 import {StepsConfig} from '../data/steps'
@@ -14,14 +13,14 @@ export class StepsListing extends React.Component {
             switch (true) {
               case step.id < currentTest.stepActive:
                 return <StepsListItem {...step} key={step.name} status='done'
-                   match={{url: match.url}} />
+                  match={{url: match.url}} />
               case step.id === currentTest.stepActive:
                 return <StepsListItem {...step} key={step.name} status='active'
-                   match={{url: match.url}} />
+                  match={{url: match.url}} />
               case step.id > currentTest.stepActive:
               default:
                 return <StepsListItem {...step} key={step.name} status='inactive'
-                   match={{url: match.url}} />
+                  match={{url: match.url}} />
             }
           })
         }
@@ -30,4 +29,4 @@ export class StepsListing extends React.Component {
   }
 }
 
-export default Redux.connect()(StepsListing)
+export default StepsListing

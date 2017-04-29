@@ -1,7 +1,7 @@
 import React from 'react'
-import * as Redux from 'react-redux'
+import {connect} from 'react-redux'
 
-import * as testActions from '../actions/testActions'
+import {getSingleTest} from '../actions/testActions'
 
 class TestView extends React.Component {
   componentWillMount () {
@@ -9,7 +9,7 @@ class TestView extends React.Component {
     const {dispatch} = this.props
     const testKey = this.props.match.params.testKey
 
-    dispatch(testActions.getSingleTest(testKey))
+    dispatch(getSingleTest(testKey))
   }
   render () {
     const {currentTest, isFetching} = this.props
@@ -18,7 +18,7 @@ class TestView extends React.Component {
       if ('people' in test) {
         return (
           <div>
-            <h3>{`Looking for ${test.people.amount} people for $${test.people.reward} each`}</h3>
+            <h3>{`Looking for ${test.people.amount} people for ${test.people.reward} each`}</h3>
             <br />
             <h3>{test.people.skills}</h3>
           </div>
@@ -63,6 +63,11 @@ class TestView extends React.Component {
   }
 }
 
-export default Redux.connect(
-  (state) => state
-)(TestView)
+function mapStateToProps (state, ownProps) {
+  return {
+    currentTest: state.currentTest,
+    isFetching: state.isFetching
+  }
+}
+
+export default connect(mapStateToProps)(TestView)

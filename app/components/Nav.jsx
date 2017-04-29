@@ -1,5 +1,5 @@
 import React from 'react'
-import * as Redux from 'react-redux'
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
 import * as authActions from '../actions/authActions'
@@ -45,10 +45,10 @@ class Nav extends React.Component {
   }
 }
 
-export default Redux.connect(
-  (state) => {
-    return {
-      auth: state.auth
-    }
+function mapStateToProps (state, ownProps) {
+  return {
+    auth: state.auth
   }
-)(Nav)
+}
+
+export default connect(mapStateToProps)(Nav)
