@@ -1,6 +1,7 @@
-var webpack = require('webpack')
-var path = require('path')
-var envFile = require('node-env-file')
+const webpack = require('webpack')
+const path = require('path')
+const envFile = require('node-env-file')
+const UglifyJsPlugin = require('webpack-uglify-js-plugin')
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
@@ -15,6 +16,7 @@ module.exports = {
     bundle: [
       'script!jquery/dist/jquery.min.js',
       'script!foundation-sites/dist/foundation.min.js',
+      'app/styles/app.scss',
       './app/app.jsx'
     ],
     landingPage: [
@@ -31,10 +33,8 @@ module.exports = {
       '$': 'jquery',
       'jQuery': 'jquery'
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      compressor: {
+      compress: {
         warnings: false
       }
     }),
@@ -53,8 +53,8 @@ module.exports = {
     filename: './public/javascripts/[name].js'
   },
   resolve: {
-    root: __dirname,
-    modulesDirectories: [
+    modules: [
+      __dirname,
       'node_modules',
       './app/components',
       './app/api'
@@ -67,17 +67,35 @@ module.exports = {
       configureStore: 'app/store/configureStore.jsx',
       landingPageStyles: 'app/styles/landingPage.scss'
     },
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   module: {
-    loaders: [
+    rules: [
       {
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015', 'stage-0']
-        },
         test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/
+        exclude: /(node_modules|bower_components)/,
+        include: ['./node_modules/react-icons/fa', './node_modules/react-icons/md'],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['react', 'es2015', 'stage-0']
+          }
+        }
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'style-loader'
+          }, {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: ['./node_modules/foundation-sites/scss']
+            }
+          }]
       },
       { test: /\.woff(\?.*)?$/, loader: 'url?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=application/font-woff' },
       { test: /\.woff2(\?.*)?$/, loader: 'url?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=application/font-woff2' },
@@ -85,20 +103,7 @@ module.exports = {
       { test: /\.ttf(\?.*)?$/, loader: 'url?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=application/octet-stream' },
       { test: /\.eot(\?.*)?$/, loader: 'file?prefix=fonts/&name=[hash:base64:5]-[name].[ext]' },
       { test: /\.svg(\?.*)?$/, loader: 'url?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=image/svg+xml' },
-      { test: /\.(png|jpg)$/, loader: 'url?limit=8192' },
-      {
-        test: /(\.js|\.jsx)$/,
-        loader: 'babel-loader',
-        include: [path.resolve(__dirname, './node_modules/react-icons/fa'), path.resolve(__dirname, './node_modules/react-icons/md')],
-        query: {
-          presets: ['es2015', 'react', 'stage-0']
-        }
-      }
-    ]
-  },
-  sassLoader: {
-    includePaths: [
-      path.resolve(__dirname, './node_modules/foundation-sites/scss')
+      { test: /\.(png|jpg)$/, loader: 'url?limit=8192' }
     ]
   },
   devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'

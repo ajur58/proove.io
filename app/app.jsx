@@ -27,7 +27,7 @@ auth.onAuthStateChanged((user) => {
 $(document).foundation()
 
 // App css
-require('style!css!sass!applicationStyles')
+// require('style!css!sass!applicationStyles')
 
 // React render proper
 ReactDOM.render(
