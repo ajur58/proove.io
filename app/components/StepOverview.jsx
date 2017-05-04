@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import StepsListing from 'StepsListing'
+import StepsListing from 'containers/StepsListing'
 import {getSingleTest} from 'actions/testActions'
 
 class StepOverview extends React.Component {

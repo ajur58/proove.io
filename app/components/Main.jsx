@@ -5,8 +5,8 @@ import {connect} from 'react-redux'
 
 import Nav from 'Nav'
 import NoMatch from 'NoMatch'
-import TestsApp from 'TestsApp'
-import StepsApp from 'StepsApp'
+import TestsApp from 'containers/TestsApp'
+import StepsApp from 'containers/StepsApp'
 import TestView from 'TestView'
 
 class Main extends React.Component {

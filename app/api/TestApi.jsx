@@ -1,5 +1,3 @@
-var $ = require('jquery')
-
 export var filterTests = (tests, showCompleted, searchText) => {
   var filteredTests = tests
 
