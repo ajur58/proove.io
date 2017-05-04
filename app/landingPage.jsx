@@ -1,4 +1,4 @@
 $(document).foundation()
 
 // App css
-require('style!css!sass!landingPageStyles')
+// require('style!css!sass!landingPageStyles')

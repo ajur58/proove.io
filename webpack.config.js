@@ -1,7 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
 const envFile = require('node-env-file')
-const UglifyJsPlugin = require('webpack-uglify-js-plugin')
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
@@ -14,15 +13,16 @@ try {
 module.exports = {
   entry: {
     bundle: [
-      'script!jquery/dist/jquery.min.js',
-      'script!foundation-sites/dist/foundation.min.js',
+      'script-loader!jquery/dist/jquery.min.js',
+      'script-loader!foundation-sites/dist/js/foundation.min.js',
       'app/styles/app.scss',
-      './app/app.jsx'
+      'app/app.jsx'
     ],
     landingPage: [
-      'script!jquery/dist/jquery.min.js',
-      'script!foundation-sites/dist/foundation.min.js',
-      './app/landingPage.jsx'
+      'script-loader!jquery/dist/jquery.min.js',
+      'script-loader!foundation-sites/dist/js/foundation.min.js',
+      'app/styles/landingPage.scss',
+      'app/landingPage.jsx'
     ]
   },
   externals: {
@@ -61,11 +61,9 @@ module.exports = {
     ],
     alias: {
       app: 'app', // allows to access all files in the app root
-      applicationStyles: 'app/styles/app.scss',
       actions: 'app/actions',
       reducers: 'app/reducers',
-      configureStore: 'app/store/configureStore.jsx',
-      landingPageStyles: 'app/styles/landingPage.scss'
+      configureStore: 'app/store/configureStore.jsx'
     },
     extensions: ['.js', '.jsx']
   },
@@ -73,8 +71,11 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        include: ['./node_modules/react-icons/fa', './node_modules/react-icons/md'],
+        include: [
+          path.resolve(__dirname, 'app'),
+          path.resolve(__dirname, 'node_modules/react-icons/fa'),
+          path.resolve(__dirname, 'node_modules/react-icons/md')
+        ],
         use: {
           loader: 'babel-loader',
           options: {
