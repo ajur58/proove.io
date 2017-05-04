@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {getSingleTest} from '../actions/testActions'
+import {getSingleTest} from 'actions/testActions'
 
 class TestView extends React.Component {
   componentWillMount () {

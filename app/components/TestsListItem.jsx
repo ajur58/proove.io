@@ -6,7 +6,7 @@ import FaApple from 'react-icons/fa/apple'
 import FaAndroid from 'react-icons/fa/android'
 import FaDesktop from 'react-icons/fa/desktop'
 import FaTrash from 'react-icons/fa/trash'
-import {startDeleteTest} from '../actions/testActions'
+import {startDeleteTest} from 'actions/testActions'
 
 class TestsListItem extends React.Component {
   render () {

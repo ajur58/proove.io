@@ -1,5 +1,5 @@
 import { canWriteToLocalStorage } from '../../helpers/browser'
-import { load } from '../actions/user'
+import { load } from 'actions/authActions'
 
 export const loadCurrentState = (store) => (next) => (action) => {
   const { type } = action

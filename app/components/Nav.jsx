@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-import * as authActions from '../actions/authActions'
+import * as authActions from 'actions/authActions'
 
 class Nav extends React.Component {
   constructor (props) {

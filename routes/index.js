@@ -6,7 +6,7 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'proove.io' })
 })
 
-/* GET home page. */
+/* GET REACT App. */
 router.get('/app', function (req, res, next) {
   res.render('app', { title: 'proove.io' })
 })

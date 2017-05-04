@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {startAddTest} from '../actions/testActions'
+import {startAddTest} from 'actions/testActions'
 
 export class StepOne extends React.Component {
   onSubmit (e) {

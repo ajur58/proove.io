@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import StepsListing from 'StepsListing'
-import {getSingleTest} from '../actions/testActions'
+import {getSingleTest} from 'actions/testActions'
 
 class StepOverview extends React.Component {
   componentWillMount () {

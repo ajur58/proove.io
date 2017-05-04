@@ -1,11 +1,11 @@
 import * as redux from 'redux'
 import thunk from 'redux-thunk'
 
-import { saveCurrentState } from '../redux/middleware/saveCurrentState'
-import { loadCurrentState } from '../redux/middleware/loadCurrentState'
+import { saveCurrentState } from './middleware/saveCurrentState'
+import { loadCurrentState } from './middleware/loadCurrentState'
 
-import {searchTextReducer, showCompletedReducer, testsReducer, currentTestReducer, isFetchingReducer} from '../reducers/testReducer'
-import {authReducer, redirectUrlReducer} from '../reducers/authReducer'
+import {searchTextReducer, showCompletedReducer, testsReducer, currentTestReducer, isFetchingReducer} from 'reducers/testReducer'
+import {authReducer, redirectUrlReducer} from 'reducers/authReducer'
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({

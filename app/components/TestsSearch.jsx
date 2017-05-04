@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {setSearchText, toggleShowCompleted} from '../actions/testActions'
+import {setSearchText, toggleShowCompleted} from 'actions/testActions'
 
 export class TestsSearch extends React.Component {
   render () {

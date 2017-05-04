@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {startEditTest} from '../actions/testActions'
+import {startEditTest} from 'actions/testActions'
 
 export class StepTwo extends React.Component {
   onSubmit (e) {
@@ -17,7 +17,7 @@ export class StepTwo extends React.Component {
         history.push(`/get-approoved/${testKey}`)
       }))
     } else {
-      this.refs.platform.focus()
+      this.refs.amount.focus()
     }
   }
   render () {

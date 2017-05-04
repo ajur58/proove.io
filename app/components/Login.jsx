@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {startLogin} from '../actions/authActions'
+import {startLogin} from 'actions/authActions'
 
 export class Login extends React.Component {
   componentDidUpdate () {
