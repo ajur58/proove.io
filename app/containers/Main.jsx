@@ -5,9 +5,10 @@ import {connect} from 'react-redux'
 
 import Nav from 'Nav'
 import NoMatch from 'NoMatch'
+import TestView from 'TestView'
 import TestsApp from 'containers/TestsApp'
 import StepsApp from 'containers/StepsApp'
-import TestView from 'TestView'
+import NewTest from 'containers/NewTest'
 
 class Main extends React.Component {
   componentDidUpdate () {
@@ -25,7 +26,8 @@ class Main extends React.Component {
           <div className='column small-centered medium-11 large-11'>
             <Switch>
               <Route exact path={`${this.props.match.url}`} component={TestsApp} />
-              <Route path={`${this.props.match.url}get-approoved`} component={StepsApp} />
+              <Route exact path={`${this.props.match.url}get-approoved/new`} component={NewTest} />
+              <Route path={`${this.props.match.url}get-approoved/:testKey`} component={StepsApp} />
               <Route path={`${this.props.match.url}view/:testKey`} component={TestView} />
               <Route component={NoMatch} />
             </Switch>

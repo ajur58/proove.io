@@ -2,18 +2,11 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import StepsListing from 'containers/StepsListing'
-import {getSingleTest} from 'actions/testActions'
 
 class StepOverview extends React.Component {
-  componentWillMount () {
-    // load test
-    const {dispatch} = this.props
-    const testKey = this.props.match.params.testKey
-
-    dispatch(getSingleTest(testKey))
-  }
   render () {
     const {auth, currentTest, isFetching, match} = this.props
+    const viewTest = this.props.tests[currentTest]
     const getFirstName = () => {
       var firstName = auth.displayName
       if (typeof firstName === 'string') {
@@ -21,13 +14,12 @@ class StepOverview extends React.Component {
       }
       return firstName
     }
-
-    if (isFetching) {
+    if (isFetching === true) {
       return (
         <div className='step__pretty-high'>Loading</div>
       )
     } else {
-      if (currentTest === null) {
+      if (viewTest === undefined) {
         return (
           <div className='step__pretty-high'>
             <h2>Test not found</h2>
@@ -37,14 +29,14 @@ class StepOverview extends React.Component {
       return (
         <div>
           <div className='row'>
-            <h5 className='step__test-title'>{currentTest.title}</h5>
+            <h5 className='step__test-title'>{viewTest.title}</h5>
             <hr className='step__test-title-hr' />
             <h2>You're doing great, {getFirstName()}</h2>
             <h5>
               In the next step we’ll define on which dates you would like to conduct the tests. Easy peasy!
             </h5>
           </div>
-          <StepsListing currentTest={currentTest} match={match} />
+          <StepsListing viewTest={viewTest} match={match} />
         </div>
       )
     }

@@ -5,19 +5,19 @@ import {StepsConfig} from '../data/steps'
 
 export class StepsListing extends React.Component {
   render () {
-    const {currentTest, match} = this.props
+    const {viewTest, match} = this.props
     return (
       <div className='row step__list'>
         {
           StepsConfig.map((step) => {
             switch (true) {
-              case step.id < currentTest.stepActive:
+              case step.id < viewTest.stepActive:
                 return <StepsListItem {...step} key={step.name} status='done'
                   match={{url: match.url}} />
-              case step.id === currentTest.stepActive:
+              case step.id === viewTest.stepActive:
                 return <StepsListItem {...step} key={step.name} status='active'
                   match={{url: match.url}} />
-              case step.id > currentTest.stepActive:
+              case step.id > viewTest.stepActive:
               default:
                 return <StepsListItem {...step} key={step.name} status='inactive'
                   match={{url: match.url}} />

@@ -9,7 +9,7 @@ import {
 
 import createHistory from 'history/createBrowserHistory'
 
-import Main from 'Main'
+import Main from 'containers/Main'
 import Login from 'Login'
 
 export class Root extends React.Component {

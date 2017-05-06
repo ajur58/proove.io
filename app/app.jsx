@@ -28,6 +28,7 @@ $(document).foundation()
 
 // React render proper
 ReactDOM.render(
-  <Root store={store} />,
+  <Root store={store} />
+  ,
   document.getElementById('app')
   )

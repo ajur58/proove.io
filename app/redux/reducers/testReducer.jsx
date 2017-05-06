@@ -10,9 +10,9 @@ export var testsReducer = (state = [], action) => {
         ...state,
         ...action.tests
       ]
-    case 'EDIT_TEST':
+    case 'UPDATE_TEST':
       var editedArray = state.map((test) => {
-        if (test.id === action.test.id) {
+        if (test.id === action.testKey) {
           return Object.assign(test, action.test)
         } else {
           return test
@@ -29,10 +29,12 @@ export var testsReducer = (state = [], action) => {
   }
 }
 
-export var currentTestReducer = (state = {}, action) => {
+export var currentTestReducer = (state = '', action) => {
   switch (action.type) {
     case 'VIEW_TEST':
-      return action.test
+      return action.testKey
+    case 'CLEAR_CURRENT_TEST':
+      return ''
     default:
       return state
   }

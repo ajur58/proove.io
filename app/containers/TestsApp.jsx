@@ -5,7 +5,7 @@ import TestsSearch from 'TestsSearch'
 
 const TestsApp = () => (
   <div>
-    <h1>Tests <Link to='/get-approoved'>+ Create new test</Link></h1>
+    <h1>Tests <Link to='/get-approoved/new'>+ Create new test</Link></h1>
     <TestsSearch showCompleted={false} />
     <TestsList />
   </div>

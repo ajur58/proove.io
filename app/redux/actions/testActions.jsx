@@ -41,35 +41,33 @@ export var startAddTest = (testCore, redirect) => {
         id: testRef.key
       }))
       redirect(testRef.key)
-      // hashHistory.push(`/get-approoved/test/${testRef.key}`)
     })
   }
 }
 
-export var editTest = (test) => {
+export var updateTest = (testKey, test) => {
   return {
-    type: 'EDIT_TEST',
+    type: 'UPDATE_TEST',
+    testKey,
     test
   }
 }
 
 // put callback on success and pass it back to the view
-export var startEditTest = (test, step, redirect) => {
+export var startUpdateTest = (testKey, test, redirect) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid
-    const testKey = test['id']
 
     // set step active
     test = {
       ...test,
-      stepActive: ++step,
       modifiedAt: moment().unix(),
       modifiedBy: uid
     }
     var testRef = firebaseRef.child(`tests/tuttich/${testKey}`).update(test)
 
     return testRef.then(() => {
-      dispatch(editTest(test))
+      dispatch(updateTest(testKey, test))
       redirect(testKey)
     })
   }
@@ -95,10 +93,16 @@ export var startAddTests = () => {
   }
 }
 
-export var viewSingleTest = (test) => {
+export var viewSingleTest = (testKey) => {
   return {
     type: 'VIEW_TEST',
-    test
+    testKey
+  }
+}
+
+export var clearCurrentTest = () => {
+  return {
+    type: 'CLEAR_CURRENT_TEST'
   }
 }
 
@@ -107,21 +111,32 @@ export var getSingleTest = (testKey) => {
     // this always fetches from server
     // @TODO maybe optimise to fetch from local storage, if available?
 
-    dispatch(isFetching(true))
-    var testsRef = firebaseRef.child(`tests/tuttich/${testKey}`)
+    function hasKey (element) {
+      return element.id === testKey
+    }
 
-    return testsRef.once('value').then((snapshot) => {
-      var editingTest = snapshot.val() || null
-      if (editingTest !== null) {
-        // add the ID to the object too
-        editingTest['id'] = testKey
-      }
+    const testIndex = getState().tests.findIndex(hasKey)
+    if (testIndex > -1) {
+      dispatch(viewSingleTest(testIndex))
+    } else {
+      window.alert('wooa')
+    }
 
-      dispatch(viewSingleTest(editingTest))
-      dispatch(isFetching(false))
-    }, (error) => {
-      console.log(error)
-    })
+    // What if element is not found?
+    // dispatch(isFetching(true))
+    // var testsRef = firebaseRef.child(`tests/tuttich/${testKey}`)
+    // return testsRef.once('value').then((snapshot) => {
+    //   var editingTest = snapshot.val() || null
+    //   if (editingTest !== null) {
+    //     // add the ID to the object too
+    //     editingTest['id'] = testKey
+    //   }
+    //
+    //   dispatch(viewSingleTest(editingTest))
+    //   dispatch(isFetching(false))
+    // }, (error) => {
+    //   console.log(error)
+    // })
   }
 }
 
