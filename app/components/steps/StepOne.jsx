@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
-import {renderField, renderSelect, renderTextarea} from '../helpers/forms'
+import {renderField, renderSelect, renderTextarea} from 'helpers/forms'
 
 export class StepOne extends React.Component {
   render () {
@@ -37,6 +37,13 @@ export class StepOne extends React.Component {
             rows='5'
             label='Scenarios'
             placeholder='Describe the scenarios you want to test' />
+
+          <Field
+            name='activeStep'
+            component='input'
+            type='hidden'
+            value={1}
+          />
 
           <button type='submit' className='button primary'>Save and Continue</button>
         </form>

@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import StepOne from 'StepOne'
+import StepOne from 'steps/StepOne'
 import HelperBuddy from 'HelperBuddy'
 
 import {startAddTest, clearCurrentTest} from 'actions/testActions'

@@ -32,3 +32,12 @@ export const renderTextarea = ({ input, label, placeholder, type, rows, meta: { 
     </div>
   </div>
 )
+
+export const renderFieldset = ({ input, label, children, meta: { touched, error, warning } }) => (
+  <div>
+    <fieldset className='fieldset'>
+      <legend className='label-text'>{label}</legend>
+      {children}
+    </fieldset>
+  </div>
+)

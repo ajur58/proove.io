@@ -2,9 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Route, Switch} from 'react-router-dom'
 
-import StepOne from 'StepOne'
-import StepTwo from 'StepTwo'
-import StepOverview from 'StepOverview'
+import StepOne from 'steps/StepOne'
+import StepTwo from 'steps/StepTwo'
+import StepOverview from 'steps/StepOverview'
 import HelperBuddy from 'HelperBuddy'
 
 import {startUpdateTest, getSingleTest, clearCurrentTest} from 'actions/testActions'
@@ -23,13 +23,15 @@ class StepsApp extends React.Component {
     testKey ? dispatch(getSingleTest(testKey)) : dispatch(clearCurrentTest())
   }
   submitStep (values) {
-    var {dispatch, history} = this.props
+    var {currentTest, dispatch, history} = this.props
     const testKey = this.props.match.params.testKey
 
-    values = {
-      ...values,
-      stepActive: 2
+    if (values.stepActive && values.stepActive >= this.props.tests[currentTest]) {
+      values.stepActive++
+    } else {
+      delete values.stepActive
     }
+
     dispatch(startUpdateTest(testKey, values, (testRefKey) => {
       history.push(`/get-approoved/${testRefKey}`)
     }))

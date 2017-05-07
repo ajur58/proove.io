@@ -62,9 +62,10 @@ module.exports = {
     alias: {
       app: 'app', // allows to access all files in the app root
       actions: 'app/redux/actions',
-      reducers: 'app/redux/reducers',
       containers: 'app/containers',
-      configureStore: 'app/redux/configureStore.jsx'
+      configureStore: 'app/redux/configureStore.jsx',
+      helpers: 'app/helpers',
+      reducers: 'app/redux/reducers'
     },
     extensions: ['.js', '.jsx']
   },
