@@ -93,50 +93,52 @@ export var startAddTests = () => {
   }
 }
 
-export var viewSingleTest = (testKey) => {
-  return {
-    type: 'VIEW_TEST',
-    testKey
-  }
-}
-
 export var clearCurrentTest = () => {
   return {
     type: 'CLEAR_CURRENT_TEST'
   }
 }
 
+// simple action that looks for a testkey in tests array,
+// then sets the index of currentTest to this value
+export var viewSingleTest = (testKey, tests) => {
+  function hasKey (element) {
+    return element.id === testKey
+  }
+
+  const testIndex = tests.findIndex(hasKey)
+  return {
+    type: 'VIEW_TEST',
+    testIndex
+  }
+}
+
 export var getSingleTest = (testKey) => {
   return (dispatch, getState) => {
-    // this always fetches from server
-    // @TODO maybe optimise to fetch from local storage, if available?
-
-    function hasKey (element) {
-      return element.id === testKey
-    }
-
-    const testIndex = getState().tests.findIndex(hasKey)
-    if (testIndex > -1) {
-      dispatch(viewSingleTest(testIndex))
+    // If tests are already in state, but out of sync with firebase
+    // (eg. tests were added in the meantime)
+    if (getState().tests.length > 0) {
+      dispatch(viewSingleTest(testKey, getState().tests))
     } else {
-      window.alert('wooa')
+      // If element is not in state. Can happen especially on hard refresh
+      // as tests are not added to state yet
+      // dispatch(isFetching(true))
+      // var testsRef = firebaseRef.child(`tests/tuttich/${testKey}`)
+      // return testsRef.once('value').then((snapshot) => {
+      //   var editingTest = snapshot.val() || null
+      //   if (editingTest !== null) {
+      //     // add the ID to the object too
+      //     editingTest['id'] = testKey
+      //   }
+      //   // add to tests state
+      //   dispatch(addTest(editingTest))
+      //   // set ID of currentTest
+      //   dispatch(viewSingleTest(testKey, getState().tests))
+      //   dispatch(isFetching(false))
+      // }, (error) => {
+      //   console.log(error)
+      // })
     }
-
-    // What if element is not found?
-    // dispatch(isFetching(true))
-    // var testsRef = firebaseRef.child(`tests/tuttich/${testKey}`)
-    // return testsRef.once('value').then((snapshot) => {
-    //   var editingTest = snapshot.val() || null
-    //   if (editingTest !== null) {
-    //     // add the ID to the object too
-    //     editingTest['id'] = testKey
-    //   }
-    //
-    //   dispatch(viewSingleTest(editingTest))
-    //   dispatch(isFetching(false))
-    // }, (error) => {
-    //   console.log(error)
-    // })
   }
 }
 

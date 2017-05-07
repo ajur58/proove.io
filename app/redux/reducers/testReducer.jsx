@@ -32,7 +32,7 @@ export var testsReducer = (state = [], action) => {
 export var currentTestReducer = (state = '', action) => {
   switch (action.type) {
     case 'VIEW_TEST':
-      return action.testKey
+      return action.testIndex
     case 'CLEAR_CURRENT_TEST':
       return ''
     default:

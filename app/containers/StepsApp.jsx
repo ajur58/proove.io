@@ -9,14 +9,17 @@ import HelperBuddy from 'HelperBuddy'
 
 import {startUpdateTest, getSingleTest, clearCurrentTest} from 'actions/testActions'
 
-// Parent component that handles StepsApp
-// Had to user render inline for Route as a workaround to pass onSubmit prop
 class StepsApp extends React.Component {
   componentWillMount () {
     // load test
     const {dispatch} = this.props
     const testKey = this.props.match.params.testKey
-
+    testKey ? dispatch(getSingleTest(testKey)) : dispatch(clearCurrentTest())
+  }
+  componentDidUpdate () {
+    // look again after update, important on hard refresh as tests state lags
+    const {dispatch} = this.props
+    const testKey = this.props.match.params.testKey
     testKey ? dispatch(getSingleTest(testKey)) : dispatch(clearCurrentTest())
   }
   submitStep (values) {
@@ -38,6 +41,8 @@ class StepsApp extends React.Component {
         <div className='columns small-11 medium-6 large-5'>
           <div className='row'>
             <Switch>
+              {/* Parent component that handles StepsApp
+               Had to user render inline for Route as a workaround to pass onSubmit prop */}
               <Route path={`${match.url}/basics`} render={(props) => (
                 <StepOne onSubmit={this.submitStep.bind(this)} {...props} />
               )} />
@@ -66,4 +71,10 @@ const NoMatch = ({ location }) => (
   </div>
 )
 
-export default connect()(StepsApp)
+function mapStateToProps (state, ownProps) {
+  return {
+    tests: state.tests
+  }
+}
+
+export default connect(mapStateToProps)(StepsApp)

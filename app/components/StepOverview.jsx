@@ -14,6 +14,7 @@ class StepOverview extends React.Component {
       }
       return firstName
     }
+    
     if (isFetching === true) {
       return (
         <div className='step__pretty-high'>Loading</div>

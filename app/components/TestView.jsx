@@ -8,11 +8,17 @@ class TestView extends React.Component {
     // load test
     const {dispatch} = this.props
     const testKey = this.props.match.params.testKey
-
+    dispatch(getSingleTest(testKey))
+  }
+  componentDidUpdate () {
+    // load test
+    const {dispatch} = this.props
+    const testKey = this.props.match.params.testKey
     dispatch(getSingleTest(testKey))
   }
   render () {
     const {currentTest, isFetching} = this.props
+    const viewTest = this.props.tests[currentTest]
 
     function showPeople (test) {
       if ('people' in test) {
@@ -26,12 +32,12 @@ class TestView extends React.Component {
       }
     }
 
-    if (isFetching) {
+    if (isFetching === true) {
       return (
         <div className='step__pretty-high'>Loading</div>
       )
     } else {
-      if (currentTest === null) {
+      if (currentTest.length === 0) {
         return (
           <div className='step__pretty-high'>
             <h2>Test not found</h2>
@@ -41,21 +47,21 @@ class TestView extends React.Component {
       return (
         <div>
           <div className='row'>
-            <h5 className='step__test-title'>{currentTest.title}</h5>
+            <h5 className='step__test-title'>{viewTest.title}</h5>
             <hr className='step__test-title-hr' />
             <h5>Created at</h5>
-            <h3>{currentTest.createdAt}</h3>
+            <h3>{viewTest.createdAt}</h3>
 
             <h5>Platform</h5>
-            <h3>{currentTest.platform}</h3>
+            <h3>{viewTest.platform}</h3>
 
             <h5>Hypotheses</h5>
-            <h3>{currentTest.hypotheses}</h3>
+            <h3>{viewTest.hypotheses}</h3>
 
             <h5>Scenarios</h5>
-            <h3>{currentTest.scenarios}</h3>
+            <h3>{viewTest.scenarios}</h3>
             <hr />
-            {showPeople(currentTest)}
+            {showPeople(viewTest)}
           </div>
         </div>
       )
@@ -66,6 +72,7 @@ class TestView extends React.Component {
 function mapStateToProps (state, ownProps) {
   return {
     currentTest: state.currentTest,
+    tests: state.tests,
     isFetching: state.isFetching
   }
 }
