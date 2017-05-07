@@ -24,8 +24,6 @@ auth.onAuthStateChanged((user) => {
   }
 })
 
-$(document).foundation()
-
 // React render proper
 ReactDOM.render(
   <Root store={store} />

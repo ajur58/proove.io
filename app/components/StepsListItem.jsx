@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import FaCheckCircle from 'react-icons/fa/check-circle'
 
 export class StepsListItem extends React.Component {
   render () {
@@ -18,7 +17,7 @@ export class StepsListItem extends React.Component {
     }
     var showCheckedIcon = (status) => {
       if (status === 'done') {
-        return <FaCheckCircle size={32} className='step__checked' />
+        return 'done'
       }
     }
     return (

@@ -2,10 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import moment from 'moment'
-import FaApple from 'react-icons/fa/apple'
-import FaAndroid from 'react-icons/fa/android'
-import FaDesktop from 'react-icons/fa/desktop'
-import FaTrash from 'react-icons/fa/trash'
 import {startDeleteTest} from 'actions/testActions'
 
 class TestsListItem extends React.Component {
@@ -16,12 +12,12 @@ class TestsListItem extends React.Component {
     var renderPlatform = (platform) => {
       switch (platform) {
         case 'ios':
-          return <FaApple size={100} />
+          return 'apple'
         case 'android':
-          return <FaAndroid size={100} />
+          return 'android'
         case 'web':
         default:
-          return <FaDesktop size={100} />
+          return 'desktop'
       }
     }
 
@@ -47,7 +43,7 @@ class TestsListItem extends React.Component {
             e.preventDefault()
             dispatch(startDeleteTest(id))
           }}>
-            <FaTrash size='22' className='card__options' />
+            trash
           </a>
         </div>
       </li>

@@ -21,6 +21,13 @@ app.use(function (req, res, next) {
   }
 })
 
+// middleware to handle gzip files
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz'
+  res.set('Content-Encoding', 'gzip')
+  next()
+})
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'))

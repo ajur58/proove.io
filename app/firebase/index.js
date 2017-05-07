@@ -1,4 +1,6 @@
-import firebase from 'firebase'
+var firebase = require('firebase/app')
+require('firebase/auth')
+require('firebase/database')
 
 try {
   var config = {

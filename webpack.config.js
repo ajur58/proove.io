@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const envFile = require('node-env-file')
+var CompressionPlugin = require('compression-webpack-plugin')
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
@@ -13,30 +14,20 @@ try {
 module.exports = {
   entry: {
     bundle: [
-      'script-loader!jquery/dist/jquery.min.js',
-      'script-loader!foundation-sites/dist/js/foundation.min.js',
       'app/styles/app.scss',
       'app/app.jsx'
     ],
     landingPage: [
-      'script-loader!jquery/dist/jquery.min.js',
-      'script-loader!foundation-sites/dist/js/foundation.min.js',
       'app/styles/landingPage.scss',
       'app/landingPage.jsx'
     ]
   },
-  externals: {
-    jquery: 'jQuery'
-  },
   plugins: [
-    new webpack.ProvidePlugin({
-      '$': 'jquery',
-      'jQuery': 'jquery'
-    }),
     new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
+      compress: { warnings: false },
+      comments: false,
+      sourceMap: true,
+      minimize: false
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -46,6 +37,13 @@ module.exports = {
         DATABASE_URL: JSON.stringify(process.env.DATABASE_URL),
         STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET)
       }
+    }),
+    new CompressionPlugin ({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
     })
   ],
   output: {
@@ -74,9 +72,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         include: [
-          path.resolve(__dirname, 'app'),
-          path.resolve(__dirname, 'node_modules/react-icons/fa'),
-          path.resolve(__dirname, 'node_modules/react-icons/md')
+          path.resolve(__dirname, 'app')
         ],
         use: {
           loader: 'babel-loader',
@@ -94,10 +90,7 @@ module.exports = {
             loader: 'css-loader'
           },
           {
-            loader: 'sass-loader',
-            options: {
-              includePaths: ['./node_modules/foundation-sites/scss']
-            }
+            loader: 'sass-loader'
           }]
       },
       { test: /\.woff(\?.*)?$/, loader: 'url?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=application/font-woff' },
