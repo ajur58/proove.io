@@ -63,9 +63,10 @@ module.exports = {
       containers: 'app/containers',
       configureStore: 'app/redux/configureStore.jsx',
       helpers: 'app/helpers',
-      reducers: 'app/redux/reducers'
+      reducers: 'app/redux/reducers',
+      styles: `app/styles/`
     },
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx', '.css', '.json', '.scss']
   },
   module: {
     rules: [
@@ -82,24 +83,58 @@ module.exports = {
         }
       },
       {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'resolve-url-loader'
+          }]
+      },
+      {
         test: /\.scss$/,
         use: [
           {
             loader: 'style-loader'
-          }, {
+          },
+          {
             loader: 'css-loader'
+          },
+          {
+            loader: 'resolve-url-loader'
           },
           {
             loader: 'sass-loader'
           }]
       },
-      { test: /\.woff(\?.*)?$/, loader: 'url?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=application/font-woff' },
-      { test: /\.woff2(\?.*)?$/, loader: 'url?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=application/font-woff2' },
-      { test: /\.otf(\?.*)?$/, loader: 'file?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=font/opentype' },
-      { test: /\.ttf(\?.*)?$/, loader: 'url?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=application/octet-stream' },
-      { test: /\.eot(\?.*)?$/, loader: 'file?prefix=fonts/&name=[hash:base64:5]-[name].[ext]' },
-      { test: /\.svg(\?.*)?$/, loader: 'url?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=image/svg+xml' },
-      { test: /\.(png|jpg)$/, loader: 'url?limit=8192' }
+      {
+        test: /\.(ico|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
+        use: 'file-loader?limit=100000'
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        use: [
+          'file-loader?limit=100000',
+          {
+            loader: 'img-loader',
+            options: {
+              enabled: true,
+              optipng: true
+            }
+          }
+        ]
+      }
+      // { test: /\.woff(\?.*)?$/, loader: 'url-loader?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=application/font-woff' },
+      // { test: /\.woff2(\?.*)?$/, loader: 'url-loader?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=application/font-woff2' },
+      // { test: /\.otf(\?.*)?$/, loader: 'file-loader?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=font/opentype' },
+      // { test: /\.ttf(\?.*)?$/, loader: 'url-loader?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=application/octet-stream' },
+      // { test: /\.eot(\?.*)?$/, loader: 'file-loader?prefix=fonts/&name=[hash:base64:5]-[name].[ext]' },
+      // { test: /\.svg(\?.*)?$/, loader: 'url-loader?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=image/svg+xml' },
+      // { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' }
     ]
   },
   devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'

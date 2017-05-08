@@ -47,16 +47,12 @@ export class Root extends React.Component {
 
     return (
       <Provider store={store}>
-        <div>
-          <Router history={history}>
-            <div>
-              <Switch>
-                <LoginRoute exact path='/login' component={Login} />
-                <PrivateRoute path='/' component={Main} />
-              </Switch>
-            </div>
-          </Router>
-        </div>
+        <Router history={history}>
+          <Switch>
+            <LoginRoute exact path='/login' component={Login} />
+            <PrivateRoute path='/' component={Main} />
+          </Switch>
+        </Router>
       </Provider>
     )
   }
