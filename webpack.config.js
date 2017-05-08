@@ -128,13 +128,6 @@ module.exports = {
           }
         ]
       }
-      // { test: /\.woff(\?.*)?$/, loader: 'url-loader?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=application/font-woff' },
-      // { test: /\.woff2(\?.*)?$/, loader: 'url-loader?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=application/font-woff2' },
-      // { test: /\.otf(\?.*)?$/, loader: 'file-loader?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=font/opentype' },
-      // { test: /\.ttf(\?.*)?$/, loader: 'url-loader?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=application/octet-stream' },
-      // { test: /\.eot(\?.*)?$/, loader: 'file-loader?prefix=fonts/&name=[hash:base64:5]-[name].[ext]' },
-      // { test: /\.svg(\?.*)?$/, loader: 'url-loader?prefix=fonts/&name=[hash:base64:5]-[name].[ext]&limit=8192&mimetype=image/svg+xml' },
-      // { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' }
     ]
   },
   devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'

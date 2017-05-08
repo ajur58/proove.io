@@ -38,19 +38,21 @@ class StepsApp extends React.Component {
   }
   render () {
     const {match} = this.props
+    // Parent component that handles StepsApp
+    // Had to user render inline for Route as a workaround to pass onSubmit prop
+    const RoutedStep = (Step, path) => (
+      <Route path={`${match.url}/${path}`} render={(props) => (
+        <Step onSubmit={this.submitStep.bind(this)} {...props} />
+      )} />
+    )
     return (
       <div className='row flexbox-container'>
         <div className='columns small-11 medium-6 large-5'>
           <div className='row'>
             <Switch>
-              {/* Parent component that handles StepsApp
-               Had to user render inline for Route as a workaround to pass onSubmit prop */}
-              <Route path={`${match.url}/basics`} render={(props) => (
-                <StepOne onSubmit={this.submitStep.bind(this)} {...props} />
-              )} />
-              <Route path={`${match.url}/people`} render={(props) => (
-                <StepTwo onSubmit={this.submitStep.bind(this)} {...props} />
-              )} />
+              {/* @TODO Create object with steps and iterate with foreach */}
+              {RoutedStep(StepOne, 'basics')}
+              {RoutedStep(StepTwo, 'people')}
               <Route exact path={`${match.url}`} component={StepOverview} />
               <Route component={NoMatch} />
             </Switch>
