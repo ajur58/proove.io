@@ -1,10 +1,10 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
-import {whyDidYouUpdate} from 'why-did-you-update'
+// import {whyDidYouUpdate} from 'why-did-you-update'
 
 // Styles
-import 'styles/app.scss'
-import 'semantic-ui-css/semantic.css'
+// import 'styles/app.scss'
+// import 'semantic-ui-css/semantic.css'
 
 var authActions = require('actions/authActions')
 var testActions = require('actions/testActions')
@@ -29,9 +29,9 @@ auth.onAuthStateChanged((user) => {
   }
 })
 
-if (process.env.NODE_ENV === 'development') {
-  whyDidYouUpdate(React)
-}
+// if (process.env.NODE_ENV === 'development') {
+//   whyDidYouUpdate(React)
+// }
 
 // React render proper
 ReactDOM.render(

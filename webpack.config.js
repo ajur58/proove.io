@@ -14,6 +14,7 @@ try {
 module.exports = {
   entry: {
     bundle: [
+      'semantic/dist/semantic.min.css',
       'app/styles/app.scss',
       'app/app.jsx'
     ],
@@ -38,7 +39,7 @@ module.exports = {
         STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET)
       }
     }),
-    new CompressionPlugin ({
+    new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/,

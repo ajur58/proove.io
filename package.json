@@ -23,6 +23,7 @@
     "express": "^4.15.2",
     "file-loader": "^0.11.1",
     "firebase": "^3.9.0",
+    "flexboxgrid": "^6.3.1",
     "history": "^4.6.1",
     "img-loader": "^2.0.0",
     "jade": "^1.11.0",
@@ -44,7 +45,6 @@
     "resolve-url-loader": "^2.0.2",
     "sass-loader": "^6.0.3",
     "script-loader": "^0.7.0",
-    "semantic-ui-css": "^2.2.10",
     "semantic-ui-react": "^0.68.3",
     "serve-favicon": "^2.4.2",
     "style-loader": "^0.17.0",
@@ -63,7 +63,8 @@
     "karma-mocha-reporter": "^2.0.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.3",
-    "mocha": "^3.3.0"
+    "mocha": "^3.3.0",
+    "semantic-ui": "^2.2.10"
   },
   "repository": "git@github.com:jurasadam/proove.io.git"
 }

@@ -22,18 +22,9 @@ class NewTest extends React.Component {
   }
   render () {
     return (
-      <div className='row flexbox-container'>
-        <div className='columns small-11 medium-6 large-5'>
-          <div className='row'>
-            <StepOne onSubmit={this.submitStep.bind(this)} />
-          </div>
-        </div>
-        <div className='columns hide-for-small-only medium-2 large-2' />
-        <div className='columns hide-for-small-only medium-4 large-5 helper-buddy'>
-          <div className='container'>
-            <HelperBuddy />
-          </div>
-        </div>
+      <div className='row'>
+        <StepOne onSubmit={this.submitStep.bind(this)} />
+        <HelperBuddy />
       </div>
     )
   }

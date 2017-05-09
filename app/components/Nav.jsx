@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { Image, Menu } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
 import * as authActions from 'actions/authActions'
@@ -17,30 +18,16 @@ class Nav extends React.Component {
   }
   render () {
     return (
-      <div>
-        <div className='top-bar'>
-          <div className='top-bar-left'>
-            <ul className='menu'>
-              <li className='menu-text logo'>
-                <Link to='/'> proove.io </Link>
-              </li>
-            </ul>
-          </div>
-          <div className='top-bar-right'>
-            <ul className='menu'>
-              <li>
-                <img className='thumbnail' src={this.props.auth.photoURL} />
-              </li>
-              <li className='menu-text'>
-                {this.props.auth.displayName}
-              </li>
-              <li className='menu-text'>
-                <a href='#' onClick={this.onLogout}>Logout</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <Menu secondary>
+        <Menu.Item as={Link} to='/' name='proove' />
+        <Menu.Menu position='right'>
+          <Menu.Item>
+            <Image src={this.props.auth.photoURL} avatar />
+            <span>{this.props.auth.displayName}</span>
+          </Menu.Item>
+          <Menu.Item name='logout' onClick={this.onLogout} />
+        </Menu.Menu>
+      </Menu>
     )
   }
 }
