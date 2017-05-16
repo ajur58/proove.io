@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { Button, Column, Form, Grid, Header, Icon, Message, Segment } from 'semantic-ui-react'
 
 import {startLogin} from 'actions/authActions'
 
@@ -20,26 +21,28 @@ export class Login extends React.Component {
   }
   render () { // ES6 shortcut
     return (
-      <div>
-        <h1 className='page-title'>proove.io</h1>
+      <Grid columns='1' verticalAlign='middle' centered>
+        <Grid.Column>
+          <Header as='h2' textAlign='center'>
+            proove.io
+          </Header>
+          <Form>
+            <Segment raised>
+              <Button color='facebook' size='large' fluid onClick={this.onFBLogin.bind(this)}>
+                <Icon name='facebook' /> Facebook auth
+              </Button>
+              <Button color='black' size='large' fluid onClick={this.onGHLogin.bind(this)}>
+                <Icon name='github' /> Github auth
+              </Button>
+            </Segment>
 
-        <div className='row'>
-          <div className='columns small-centered small-10 medium-6 large-4'>
-            <div className='callout callout-auth'>
-              <h3>Login</h3>
-              <p>
-                Create an account for free.
-              </p>
-              <div>
-                <button className='button' onClick={this.onFBLogin.bind(this)}>Login with Facebook</button>
-              </div>
-              <div>
-                <button className='button' onClick={this.onGHLogin.bind(this)}>Login with GitHub</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            <div className='ui error message' />
+          </Form>
+          <Message>
+            Need an invite? <a href='#'>Request here</a>
+          </Message>
+        </Grid.Column>
+      </Grid>
     )
   }
 }

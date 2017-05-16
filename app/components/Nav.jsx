@@ -19,7 +19,9 @@ class Nav extends React.Component {
   render () {
     return (
       <Menu secondary>
-        <Menu.Item as={Link} to='/' name='proove' />
+        <Menu.Item as={Link} to='/' name='proove' className='logo'>
+          proove.io
+        </Menu.Item>
         <Menu.Menu position='right'>
           <Menu.Item>
             <Image src={this.props.auth.photoURL} avatar />
