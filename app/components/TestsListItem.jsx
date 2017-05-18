@@ -28,9 +28,9 @@ class TestsListItem extends React.Component {
       return <Icon name={iconName} size='large' color='grey' />
     }
 
-    var {id, dispatch, title, description, createdAt, platform} = this.props
+    var {id, dispatch, title, hypotheses, createdAt, platform} = this.props
     return (
-      <Card key={id}>
+      <Card centered key={id}>
         <Card.Content>
           <Card.Header>
             {title} {renderPlatform(platform)}
@@ -39,13 +39,13 @@ class TestsListItem extends React.Component {
             {renderDate()}
           </Card.Meta>
           <Card.Description>
-            {description}
+            {hypotheses}
             <br />
             <a onClick={(e) => {
               e.preventDefault()
               dispatch(startDeleteTest(id))
             }}>
-              trash
+              <Icon name='trash' size='large' color='grey' />
             </a>
           </Card.Description>
         </Card.Content>

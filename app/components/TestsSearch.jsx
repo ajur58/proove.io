@@ -11,9 +11,8 @@ export class TestsSearch extends React.Component {
       <Grid.Row className='container__header'>
         <Grid.Row>
           <Input size='large' icon='search' fluid placeholder='Search by Title or Platform'
-            ref='searchText' value={searchText} onChange={() => {
-              var searchText = this.refs.searchText.value
-              dispatch(setSearchText(searchText))
+            ref='searchText' value={searchText} onChange={(event, data) => {
+              dispatch(setSearchText(data.value))
             }} />
         </Grid.Row>
         <Grid.Row>
