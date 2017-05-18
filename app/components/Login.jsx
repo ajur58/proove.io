@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { Button, Column, Form, Grid, Header, Icon, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Icon, Message, Segment } from 'semantic-ui-react'
 
 import {startLogin} from 'actions/authActions'
 
@@ -22,15 +22,16 @@ export class Login extends React.Component {
   render () { // ES6 shortcut
     return (
       <Grid columns='1' verticalAlign='middle' centered>
-        <Grid.Column>
-          <Header as='h2' textAlign='center'>
+        <Grid.Column mobile={14} tablet={10} computer={7} >
+          <Header as='h1' textAlign='center'>
             proove.io
           </Header>
           <Form>
-            <Segment raised>
+            <Segment raised padded='very' ref='segment'>
               <Button color='facebook' size='large' fluid onClick={this.onFBLogin.bind(this)}>
                 <Icon name='facebook' /> Facebook auth
               </Button>
+              <br /><br />
               <Button color='black' size='large' fluid onClick={this.onGHLogin.bind(this)}>
                 <Icon name='github' /> Github auth
               </Button>
