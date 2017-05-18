@@ -27,7 +27,7 @@ export class Login extends React.Component {
             proove.io
           </Header>
           <Form>
-            <Segment raised padded='very' ref='segment'>
+            <Segment raised padded='very'>
               <Button color='facebook' size='large' fluid onClick={this.onFBLogin.bind(this)}>
                 <Icon name='facebook' /> Facebook auth
               </Button>

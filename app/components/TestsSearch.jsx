@@ -1,27 +1,28 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Grid, Checkbox, Input} from 'semantic-ui-react'
+
 import {setSearchText, toggleShowCompleted} from 'actions/testActions'
 
 export class TestsSearch extends React.Component {
   render () {
     var {dispatch, showCompleted, searchText} = this.props
     return (
-      <div className='container__header'>
-        <div>
-          <input type='search' ref='searchText' placeholder='Search by Title or Platform' value={searchText} onChange={() => {
-            var searchText = this.refs.searchText.value
-            dispatch(setSearchText(searchText))
-          }} />
-        </div>
-        <div>
-          <label>
-            <input type='checkbox' ref='showCompleted' checked={showCompleted} onChange={() => {
+      <Grid.Row className='container__header'>
+        <Grid.Row>
+          <Input size='large' icon='search' fluid placeholder='Search by Title or Platform'
+            ref='searchText' value={searchText} onChange={() => {
+              var searchText = this.refs.searchText.value
+              dispatch(setSearchText(searchText))
+            }} />
+        </Grid.Row>
+        <Grid.Row>
+          <Checkbox label='Show completed tests' ref='showCompleted'
+            checked={showCompleted} onChange={() => {
               dispatch(toggleShowCompleted())
             }} />
-            Show completed tests
-          </label>
-        </div>
-      </div>
+        </Grid.Row>
+      </Grid.Row>
     )
   }
 }

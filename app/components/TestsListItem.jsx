@@ -1,7 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import moment from 'moment'
+import {Button, Card, Icon} from 'semantic-ui-react'
+
 import {startDeleteTest} from 'actions/testActions'
 
 class TestsListItem extends React.Component {
@@ -10,43 +12,52 @@ class TestsListItem extends React.Component {
       return 'Created at ' + moment.unix(createdAt).format('MMM Do YYYY @ h:mm a')
     }
     var renderPlatform = (platform) => {
+      var iconName = 'laptop'
       switch (platform) {
         case 'ios':
-          return 'apple'
+          iconName = 'apple'
+          break
         case 'android':
-          return 'android'
+          iconName = 'android'
+          break
         case 'web':
         default:
-          return 'desktop'
+          iconName = 'laptop'
       }
+
+      return <Icon name={iconName} size='large' color='grey' />
     }
 
-    var {id, dispatch, title, createdAt, platform} = this.props
+    var {id, dispatch, title, description, createdAt, platform} = this.props
     return (
-      <li className='cards__item' key={id}>
-        <div className='card'>
-          <div className='card__image card__image--fence'>
-            {renderPlatform(platform)}
+      <Card key={id}>
+        <Card.Content>
+          <Card.Header>
+            {title} {renderPlatform(platform)}
+          </Card.Header>
+          <Card.Meta>
+            {renderDate()}
+          </Card.Meta>
+          <Card.Description>
+            {description}
+            <br />
+            <a onClick={(e) => {
+              e.preventDefault()
+              dispatch(startDeleteTest(id))
+            }}>
+              trash
+            </a>
+          </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          <div className='ui two buttons'>
+            <Button as='a' primary href={`/get-approoved/${id}`}>
+              <Icon name='pencil' /> Continue
+            </Button>
+            <Button as='a' basic href={`/view/${id}`}>View Test</Button>
           </div>
-          <div className='card__content'>
-            <div className='card__title'>{title}</div>
-            <p className='card__text'>
-              Here you will see some text about the test, yo.
-              <span>{renderDate()}</span>
-            </p>
-            <div className='button-group small-centered'>
-              <Link to={`/get-approoved/${id}`} className='button primary card__btn'>Continue Editing</Link>
-              <Link to={`/view/${id}`} className='button hollow primary card__btn'>View Test</Link>
-            </div>
-          </div>
-          <a onClick={(e) => {
-            e.preventDefault()
-            dispatch(startDeleteTest(id))
-          }}>
-            trash
-          </a>
-        </div>
-      </li>
+        </Card.Content>
+      </Card>
     )
   }
 }

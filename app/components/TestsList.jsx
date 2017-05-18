@@ -1,5 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Card} from 'semantic-ui-react'
+
 import TestsListItem from 'TestsListItem'
 import * as TestAPI from 'TestApi'
 
@@ -21,11 +23,9 @@ class TestsList extends React.Component {
       }
     }
     return (
-      <div>
-        <ul className='cards'>
-          {renderTests()}
-        </ul>
-      </div>
+      <Card.Group>
+        {renderTests()}
+      </Card.Group>
     )
   }
 }
