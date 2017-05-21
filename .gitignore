@@ -3,8 +3,10 @@ config/*
 node_modules/
 public/javascripts/bundle*
 public/javascripts/landingPage*
+semantic/*
 .idea
 
 # But not these
+!semantic/dist
 !config/development.sample.env
 !config/test.sample.env
