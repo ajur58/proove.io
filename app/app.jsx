@@ -2,12 +2,8 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 // import {whyDidYouUpdate} from 'why-did-you-update'
 
-// Styles
-// import 'styles/app.scss'
-// import 'semantic-ui-css/semantic.css'
-
-var authActions = require('actions/authActions')
-var testActions = require('actions/testActions')
+import * as authActions from 'actions/authActions'
+import {startAddTests} from 'actions/testActions'
 var store = require('configureStore').configure()
 
 import firebase from 'app/firebase/'
@@ -22,7 +18,7 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(authActions.login(user))
     // Fill up redux store with tests
-    store.dispatch(testActions.startAddTests())
+    store.dispatch(startAddTests())
   } else {
     store.dispatch(authActions.logout())
     localStorage.removeItem('PROOVE_STATE')

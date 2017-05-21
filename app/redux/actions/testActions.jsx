@@ -73,10 +73,12 @@ export var startUpdateTest = (testKey, test, redirect) => {
   }
 }
 
-// update on Firebase changes version
+// Delete & Add all tests to redux
 export var startAddTests = () => {
   return (dispatch, getState) => {
     var testsRef = firebaseRef.child(`tests/tuttich`)
+
+    //@TODO delete all tests first
 
     return testsRef.once('value').then((snapshot) => {
       var tests = snapshot.val() || {}
@@ -119,25 +121,6 @@ export var getSingleTest = (testKey) => {
     // (eg. tests were added in the meantime)
     if (getState().tests.length > 0) {
       dispatch(viewSingleTest(testKey, getState().tests))
-    } else {
-      // If element is not in state. Can happen especially on hard refresh
-      // as tests are not added to state yet
-      // dispatch(isFetching(true))
-      // var testsRef = firebaseRef.child(`tests/tuttich/${testKey}`)
-      // return testsRef.once('value').then((snapshot) => {
-      //   var editingTest = snapshot.val() || null
-      //   if (editingTest !== null) {
-      //     // add the ID to the object too
-      //     editingTest['id'] = testKey
-      //   }
-      //   // add to tests state
-      //   dispatch(addTest(editingTest))
-      //   // set ID of currentTest
-      //   dispatch(viewSingleTest(testKey, getState().tests))
-      //   dispatch(isFetching(false))
-      // }, (error) => {
-      //   console.log(error)
-      // })
     }
   }
 }
@@ -163,17 +146,19 @@ export var isFetching = (isFetching) => {
   }
 }
 
-export var deleteTest = (testKey) => {
+export var deleteTest = (testKey = null) => {
   return {
     type: 'DELETE_TEST',
     testKey
   }
 }
 export var startDeleteTest = (id) => {
-  return (dispatch, getState) => {
-    var testRef = firebaseRef.child(`tests/tuttich/${id}`).remove()
-    return testRef.then(() => {
-      dispatch(deleteTest(id))
-    })
+  if (id) {
+    return (dispatch, getState) => {
+      var testRef = firebaseRef.child(`tests/tuttich/${id}`).remove()
+      return testRef.then(() => {
+        dispatch(deleteTest(id))
+      })
+    }
   }
 }

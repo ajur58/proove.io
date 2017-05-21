@@ -1,18 +1,8 @@
 @import "base/variables";
 
 // Components
-@import "components/callout-auth";
-@import "components/container";
-@import "components/headings";
-@import "components/page-title";
 @import "components/page-actions";
 @import "components/navbar";
-@import "components/navbar-logged-in";
-
-@import "components/steps-app";
-@import "components/step";
-@import "components/steps-listing";
-@import "components/tests-list";
 
 body {
   -webkit-font-smoothing: antialiased;

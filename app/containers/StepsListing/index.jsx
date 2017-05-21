@@ -1,7 +1,9 @@
 import React from 'react'
 
 import StepsListItem from 'StepsListItem'
-import {StepsConfig} from '../data/steps'
+import {StepsConfig} from './steps'
+
+import './steps_listing.scss'
 
 export class StepsListing extends React.Component {
   render () {

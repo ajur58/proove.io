@@ -23,7 +23,7 @@ class TestsList extends React.Component {
       }
     }
     return (
-      <Card.Group>
+      <Card.Group itemsPerRow='4' doubling>
         {renderTests()}
       </Card.Group>
     )

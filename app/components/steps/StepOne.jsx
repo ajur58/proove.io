@@ -4,6 +4,8 @@ import { Field, reduxForm } from 'redux-form'
 
 import {renderField, renderSelect, renderTextarea} from 'helpers/forms'
 
+import './step.scss'
+
 export class StepOne extends React.Component {
   render () {
     const {handleSubmit} = this.props

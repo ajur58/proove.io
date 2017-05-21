@@ -7,6 +7,8 @@ import StepTwo from 'steps/StepTwo'
 import StepOverview from 'steps/StepOverview'
 import HelperBuddy from 'HelperBuddy'
 
+import './steps_app.scss'
+
 import {startUpdateTest, getSingleTest, clearCurrentTest} from 'actions/testActions'
 
 class StepsApp extends React.Component {

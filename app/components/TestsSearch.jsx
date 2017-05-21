@@ -8,20 +8,22 @@ export class TestsSearch extends React.Component {
   render () {
     var {dispatch, showCompleted, searchText} = this.props
     return (
-      <Grid.Row className='container__header'>
-        <Grid.Row>
-          <Input size='large' icon='search' fluid placeholder='Search by Title or Platform'
-            ref='searchText' value={searchText} onChange={(event, data) => {
-              dispatch(setSearchText(data.value))
-            }} />
+      <Grid>
+        <Grid.Row className='container__header'>
+          <Grid.Column mobile='16' tablet='12' computer='10'>
+            <Input size='large' icon='search' fluid placeholder='Search by Title or Platform'
+              ref='searchText' value={searchText} onChange={(event, data) => {
+                dispatch(setSearchText(data.value))
+              }} />
+          </Grid.Column>
+          <Grid.Column mobile='16' tablet='4' computer='6'>
+            <Checkbox label='Show completed tests' ref='showCompleted'
+              checked={showCompleted} onChange={() => {
+                dispatch(toggleShowCompleted())
+              }} />
+          </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-          <Checkbox label='Show completed tests' ref='showCompleted'
-            checked={showCompleted} onChange={() => {
-              dispatch(toggleShowCompleted())
-            }} />
-        </Grid.Row>
-      </Grid.Row>
+      </Grid>
     )
   }
 }

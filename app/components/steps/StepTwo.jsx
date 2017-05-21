@@ -2,7 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
-import {renderField, renderFieldset} from 'helpers/forms'
+import {renderField} from 'helpers/forms'
+
+import './step.scss'
 
 export class StepTwo extends React.Component {
   render () {

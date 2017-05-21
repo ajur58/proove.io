@@ -20,8 +20,7 @@ export var testsReducer = (state = [], action) => {
       })
       return editedArray
     case 'DELETE_TEST':
-      var newArray = state.filter((test) => test.id !== action.testKey)
-      return newArray
+      return state.filter((test) => test.id !== action.testKey)
     case 'LOGOUT':
       return []
     default:

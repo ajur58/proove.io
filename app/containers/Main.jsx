@@ -11,8 +11,6 @@ import TestsApp from 'containers/TestsApp'
 import StepsApp from 'containers/StepsApp'
 import NewTest from 'containers/NewTest'
 
-
-
 class Main extends React.Component {
   componentDidUpdate () {
     if (this.props.isLoggedIn !== true) {
@@ -25,9 +23,9 @@ class Main extends React.Component {
     return (
       <div>
         <Nav />
-        <Container>
-          <Grid.Column mobile={12} tablet={11} computer={10}>
-            <Grid.Row>
+        <Grid columns={1}>
+          <Container>
+            <Grid.Column mobile={16} tablet={15} computer={14}>
               <Switch>
                 <Route exact path={`${this.props.match.url}`} component={TestsApp} />
                 <Route exact path={`${this.props.match.url}get-approoved/new`} component={NewTest} />
@@ -35,9 +33,9 @@ class Main extends React.Component {
                 <Route path={`${this.props.match.url}view/:testKey`} component={TestView} />
                 <Route component={NoMatch} />
               </Switch>
-            </Grid.Row>
-          </Grid.Column>
-        </Container>
+            </Grid.Column>
+          </Container>
+        </Grid>
       </div>
     )
   }
