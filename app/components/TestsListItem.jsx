@@ -2,17 +2,11 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import moment from 'moment'
-import {Button, Card, Icon, Modal, Header} from 'semantic-ui-react'
+import {Button, Card, Icon} from 'semantic-ui-react'
 
-import {startDeleteTest} from 'actions/testActions'
+import DeleteTestModal from 'DeleteTestModal'
 
 class TestsListItem extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      modalOpen: false
-    }
-  }
 
   render () {
     var renderDate = () => {
@@ -22,57 +16,30 @@ class TestsListItem extends React.Component {
       var iconName = 'laptop'
       switch (platform) {
         case 'ios':
-          iconName = 'apple'
+          iconName = 'iOS'
           break
         case 'android':
-          iconName = 'android'
+          iconName = 'Android'
           break
         case 'web':
         default:
-          iconName = 'laptop'
+          iconName = 'Web'
       }
 
-      return <Icon name={iconName} size='large' />
+      return <span>{iconName}</span>
     }
 
-    var {id, dispatch, title, hypotheses, createdAt, platform} = this.props
-
-    const trashCanStyle = {
-      float: 'right'
-    }
-
-    const ModalDelete = () => (
-      <Modal open={this.state.modalOpen} basic size='small' closeOnDimmerClick closeOnDocumentClick>
-        <Header icon='trash' content='Delete test' />
-        <Modal.Content>
-          <p>Are you sure you want to delete <i>{title}</i>?
-          <br />
-          You will not be able to recover the test.
-          </p>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button basic inverted onClick={() => this.setState({modalOpen: false})}>
-            Cancel
-          </Button>
-          <Button color='red' inverted onClick={() => dispatch(startDeleteTest(id))}>
-            <Icon name='trash' /> Yes, I want to delete the test
-          </Button>
-        </Modal.Actions>
-      </Modal>
-    )
+    var {id, title, hypotheses, createdAt, platform} = this.props
 
     return (
       <Card key={id}>
         <Card.Content>
-          <Icon name='trash' size='large' color='grey' style={trashCanStyle}
-            onClick={() => this.setState({modalOpen: true})} />
-          {ModalDelete()}
+          <DeleteTestModal testId={id} title={title} />
           <Card.Header>
-            {title}
+            <span>{title} on {renderPlatform(platform)}</span>
           </Card.Header>
           <Card.Meta>
-            {renderDate()} <br />
-            Platform: {renderPlatform(platform)}
+            {renderDate()}
           </Card.Meta>
           <Card.Description>
             {hypotheses}
