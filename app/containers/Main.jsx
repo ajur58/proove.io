@@ -23,9 +23,9 @@ class Main extends React.Component {
     return (
       <div>
         <Nav />
-        <Grid columns={1}>
-          <Container>
-            <Grid.Column mobile={16} tablet={15} computer={14}>
+        <Grid columns={1} centered>
+          <Grid.Column mobile={16} tablet={15} computer={14}>
+            <Grid.Row>
               <Switch>
                 <Route exact path={`${this.props.match.url}`} component={TestsApp} />
                 <Route exact path={`${this.props.match.url}get-approoved/new`} component={NewTest} />
@@ -33,8 +33,8 @@ class Main extends React.Component {
                 <Route path={`${this.props.match.url}view/:testKey`} component={TestView} />
                 <Route component={NoMatch} />
               </Switch>
-            </Grid.Column>
-          </Container>
+            </Grid.Row>
+          </Grid.Column>
         </Grid>
       </div>
     )

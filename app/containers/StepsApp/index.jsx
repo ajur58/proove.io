@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Route, Switch} from 'react-router-dom'
+import {Grid} from 'semantic-ui-react'
 
 import StepOne from 'steps/StepOne'
 import StepTwo from 'steps/StepTwo'
@@ -41,16 +42,16 @@ class StepsApp extends React.Component {
   render () {
     const {match} = this.props
     // Parent component that handles StepsApp
-    // Had to user render inline for Route as a workaround to pass onSubmit prop
+    // Had to use render inline for Route as a workaround to pass onSubmit prop
     const RoutedStep = (Step, path) => (
       <Route path={`${match.url}/${path}`} render={(props) => (
         <Step onSubmit={this.submitStep.bind(this)} {...props} />
       )} />
     )
     return (
-      <div className='row flexbox-container'>
-        <div className='columns small-11 medium-6 large-5'>
-          <div className='row'>
+      <Grid>
+        <Grid.Column mobile={16} tablet={10} computer={10}>
+          <Grid.Row>
             <Switch>
               {/* @TODO Create object with steps and iterate with foreach */}
               {RoutedStep(StepOne, 'basics')}
@@ -58,15 +59,14 @@ class StepsApp extends React.Component {
               <Route exact path={`${match.url}`} component={StepOverview} />
               <Route component={NoMatch} />
             </Switch>
-          </div>
-        </div>
-        <div className='columns hide-for-small-only medium-2 large-2' />
-        <div className='columns hide-for-small-only medium-4 large-5 helper-buddy'>
-          <div className='container'>
+          </Grid.Row>
+        </Grid.Column>
+        <Grid.Column tablet={6} computer={6} className='columns hide-for-small-only medium-4 large-5 helper-buddy'>
+          <Grid.Row>
             <HelperBuddy />
-          </div>
-        </div>
-      </div>
+          </Grid.Row>
+        </Grid.Column>
+      </Grid>
     )
   }
 }
