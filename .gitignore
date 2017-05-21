@@ -3,10 +3,14 @@ config/*
 node_modules/
 public/javascripts/bundle*
 public/javascripts/landingPage*
-semantic/*
+semantic/dist/*
+semantic/src
+semantic/tasks
+semantic/gulpfile.js
 .idea
 
 # But not these
-!semantic/dist
+!semantic/dist/semantic.min.js
+!semantic/dist/semantic.min.css
 !config/development.sample.env
 !config/test.sample.env
