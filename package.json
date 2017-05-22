@@ -7,7 +7,7 @@
     "test": "NODE_ENV=test karma start",
     "build": "webpack",
     "semantic:build": "gulp --gulpfile ./semantic/gulpfile.js clean && gulp --gulpfile ./semantic/gulpfile.js build-assets && gulp --gulpfile ./semantic/gulpfile.js build-css",
-    "start": "npm run build && node ./bin/www"
+    "start": "node ./bin/www"
   },
   "author": "Adam Juras",
   "license": "MIT",

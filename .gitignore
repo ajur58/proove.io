@@ -1,8 +1,6 @@
 # Ignore these
 config/*
 node_modules/
-public/javascripts/bundle*
-public/javascripts/landingPage*
 semantic/*
 .idea
 
