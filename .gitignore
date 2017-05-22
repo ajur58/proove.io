@@ -1,10 +1,11 @@
 # Ignore these
-config/*
+config/
 node_modules/
-semantic/*
+semantic/
 .idea
 
 # But not these
-!semantic/dist
+!semantic/dist/semantic.min.css
+!semantic/dist/semantic.min.js
 !config/development.sample.env
 !config/test.sample.env
