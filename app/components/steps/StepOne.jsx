@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
+import { Button, Container, Form, Message } from 'semantic-ui-react'
 
 import {renderField, renderSelect, renderTextarea} from 'helpers/forms'
 
@@ -8,35 +9,52 @@ import './step.scss'
 
 export class StepOne extends React.Component {
   render () {
+    var displayErrors = () => {
+      var errors = 'as'
+      return errors
+      // for (let s of form.stepOne.syncErrors) {
+      //   console.log(s)
+      // }
+    }
+
     const {handleSubmit} = this.props
     return (
-      <div className='step__form'>
+      <Container className='step__form'>
         <h3>First step: Set the scene</h3>
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} error>
           <Field
             name='title'
             component={renderField}
             type='text'
             label='Title'
             placeholder="Your test's title" />
-
-          <Field name='platform' component={renderSelect} label='Platform'>
-            <option value=''>Choose platform</option>
-            <option value='android'>Android</option>
-            <option value='ios'>iOS</option>
-            <option value='web'>Web</option>
-          </Field>
+          <Field name='platform' component={renderSelect} label='Platform'
+            options={[
+              {
+                text: 'Android',
+                value: 'android'
+              },
+              {
+                text: 'iOS',
+                value: 'ios'
+              },
+              {
+                text: 'Desktop',
+                value: 'web'
+              }
+            ]}
+          />
           <Field
             name='hypotheses'
+            type='textarea'
             component={renderTextarea}
-            rows='5'
             label='Hypotheses'
             placeholder='What are your hypotheses?' />
 
           <Field
             name='scenarios'
+            type='textarea'
             component={renderTextarea}
-            rows='5'
             label='Scenarios'
             placeholder='Describe the scenarios you want to test' />
 
@@ -46,10 +64,14 @@ export class StepOne extends React.Component {
             type='hidden'
             value={1}
           />
-
-          <button type='submit' className='button primary'>Save and Continue</button>
-        </form>
-      </div>
+          <Message
+            error
+            header='Oops, you missed some fields'
+            content={displayErrors()}
+          />
+          <Button type='submit' primary>Save and Continue</Button>
+        </Form>
+      </Container>
     )
   }
 }
@@ -85,6 +107,7 @@ const StepOneForm = reduxForm({
 function mapStateToProps (state, ownProps) {
   return {
     initialValues: state.tests[state.currentTest]
+
   }
 }
 

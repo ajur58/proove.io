@@ -22,7 +22,7 @@ export class Login extends React.Component {
   render () { // ES6 shortcut
     return (
       <Grid columns='1' verticalAlign='middle' centered>
-        <Grid.Column mobile={14} tablet={10} computer={7} >
+        <Grid.Column mobile={11} tablet={7} computer={5} >
           <Header as='h1' textAlign='center'>
             proove.io
           </Header>

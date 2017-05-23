@@ -9,7 +9,7 @@ import NoMatch from 'NoMatch'
 import TestView from 'TestView'
 import TestsApp from 'containers/TestsApp'
 import StepsApp from 'containers/StepsApp'
-import NewTest from 'containers/NewTest'
+import NewTest from 'containers/StepsApp/NewTest'
 
 class Main extends React.Component {
   componentDidUpdate () {

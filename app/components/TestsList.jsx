@@ -7,7 +7,7 @@ import * as TestAPI from 'TestApi'
 
 class TestsList extends React.Component {
   render () {
-    var {tests, showCompleted, searchText} = this.props // works because of connect at EOF
+    var {tests, showCompleted, searchText} = this.props
     var renderTests = () => {
       var filteredTests = TestAPI.filterTests(tests, showCompleted, searchText)
       if (filteredTests.length === 0) {
