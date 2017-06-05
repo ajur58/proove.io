@@ -1,12 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Route, Switch} from 'react-router-dom'
-import {Grid} from 'semantic-ui-react'
 
 import StepOne from 'steps/StepOne'
 import StepTwo from 'steps/StepTwo'
 import StepOverview from 'steps/StepOverview'
-import HelperBuddy from 'HelperBuddy'
 
 import './steps_app.scss'
 
@@ -49,24 +47,13 @@ class StepsApp extends React.Component {
       )} />
     )
     return (
-      <Grid>
-        <Grid.Column mobile={16} tablet={10} computer={10}>
-          <Grid.Row>
-            <Switch>
-              {/* @TODO Create object with steps and iterate with foreach */}
-              {RoutedStep(StepOne, 'basics')}
-              {RoutedStep(StepTwo, 'people')}
-              <Route exact path={`${match.url}`} component={StepOverview} />
-              <Route component={NoMatch} />
-            </Switch>
-          </Grid.Row>
-        </Grid.Column>
-        <Grid.Column tablet={6} computer={6} className='columns hide-for-small-only medium-4 large-5 helper-buddy'>
-          <Grid.Row>
-            <HelperBuddy />
-          </Grid.Row>
-        </Grid.Column>
-      </Grid>
+      <Switch>
+        {/* @TODO Create object with steps and iterate with foreach */}
+        {RoutedStep(StepOne, 'basics')}
+        {RoutedStep(StepTwo, 'people')}
+        <Route exact path={`${match.url}`} component={StepOverview} />
+        <Route component={NoMatch} />
+      </Switch>
     )
   }
 }

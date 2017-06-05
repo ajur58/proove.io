@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
 import {renderField} from 'helpers/forms'
+import stepsLayoutHOC from 'containers/StepsApp/StepsLayoutHOC'
 
 import './step.scss'
 
@@ -82,4 +83,4 @@ function mapStateToProps (state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps)(StepTwoForm)
+export default stepsLayoutHOC(connect(mapStateToProps)(StepTwoForm))

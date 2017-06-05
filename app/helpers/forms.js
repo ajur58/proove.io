@@ -16,7 +16,8 @@ export const renderField = ({ input, label, placeholder, type, meta: { touched, 
 export const renderSelect = ({ input, label, children, placeholder, options, meta: { touched, error, warning } }) => (
   <Form.Field>
     <label>{label}</label>
-    <Select options={options} placeholder={placeholder} error={showError(error, touched, warning)} />
+    <Select simple {...input} options={options} placeholder={placeholder}
+      error={showError(error, touched, warning)} />
   </Form.Field>
 )
 

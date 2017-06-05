@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form'
 import { Button, Container, Form, Message } from 'semantic-ui-react'
 
 import {renderField, renderSelect, renderTextarea} from 'helpers/forms'
+import stepsLayoutHOC from 'containers/StepsApp/StepsLayoutHOC'
 
 import './step.scss'
 
@@ -27,8 +28,9 @@ export class StepOne extends React.Component {
             component={renderField}
             type='text'
             label='Title'
-            placeholder="Your test's title" />
+            placeholder='For example: New search experience' />
           <Field name='platform' component={renderSelect} label='Platform'
+            placeholder='Choose a platform'
             options={[
               {
                 text: 'Android',
@@ -49,14 +51,14 @@ export class StepOne extends React.Component {
             type='textarea'
             component={renderTextarea}
             label='Hypotheses'
-            placeholder='What are your hypotheses?' />
+            placeholder='What do you assume will happen?' />
 
           <Field
             name='scenarios'
             type='textarea'
             component={renderTextarea}
-            label='Scenarios'
-            placeholder='Describe the scenarios you want to test' />
+            label='Stories'
+            placeholder='Describe each story you will walk the testers through.' />
 
           <Field
             name='activeStep'
@@ -107,8 +109,7 @@ const StepOneForm = reduxForm({
 function mapStateToProps (state, ownProps) {
   return {
     initialValues: state.tests[state.currentTest]
-
   }
 }
 
-export default connect(mapStateToProps)(StepOneForm)
+export default stepsLayoutHOC(connect(mapStateToProps)(StepOneForm))

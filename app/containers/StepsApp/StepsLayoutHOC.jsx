@@ -10,9 +10,9 @@ export default function stepsLayoutHOC (WrappedComponent) {
     render () {
       return (
         <Grid>
-          <Grid.Column mobile={16} tablet={10} computer={10}>
+          <Grid.Column mobile={16} tablet={10} computer={8}>
             <Grid.Row>
-              <WrappedComponent />
+              <WrappedComponent {...this.props} />
             </Grid.Row>
           </Grid.Column>
           <Grid.Column tablet={6} computer={6} className='columns hide-for-small-only medium-4 large-5 helper-buddy'>

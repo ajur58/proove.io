@@ -2,8 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import StepOne from 'steps/StepOne'
-
-import stepsLayoutHOC from 'containers/StepsApp/StepsLayoutHOC'
 import {startAddTest, clearCurrentTest} from 'actions/testActions'
 
 // Parent component that handles NewTest
@@ -27,4 +25,4 @@ class NewTest extends React.Component {
   }
 }
 
-export default stepsLayoutHOC(connect()(NewTest))
+export default connect()(NewTest)

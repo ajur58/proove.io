@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import StepsListing from 'containers/StepsListing'
+import stepsLayoutHOC from 'containers/StepsApp/StepsLayoutHOC'
 
 class StepOverview extends React.Component {
   render () {
@@ -44,6 +45,6 @@ class StepOverview extends React.Component {
   }
 }
 
-export default connect(
+export default stepsLayoutHOC(connect(
   (state) => state
-)(StepOverview)
+)(StepOverview))
