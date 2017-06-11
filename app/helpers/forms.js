@@ -13,13 +13,19 @@ export const renderField = ({ input, label, placeholder, type, meta: { touched, 
     error={showError(error, touched, warning)} />
 )
 
-export const renderSelect = ({ input, label, children, placeholder, options, meta: { touched, error, warning } }) => (
-  <Form.Field>
-    <label>{label}</label>
-    <Select simple {...input} options={options} placeholder={placeholder}
-      error={showError(error, touched, warning)} />
-  </Form.Field>
-)
+export const renderSelect = function ({ input, label, children, placeholder, options, meta: { touched, error, warning } }) {
+  const value = input.value
+  delete input.value
+  input.defaultValue = value
+  console.log(options)
+  return (
+    <Form.Field>
+      <label>{label}</label>
+      <Select options={options} placeholder={placeholder} {...input}
+        error={showError(error, touched, warning)} />
+    </Form.Field>
+  )
+}
 
 export const renderTextarea = ({ input, label, placeholder, rows, meta: { touched, error, warning } }) => (
   <Form.Field error={showError(error, touched, warning)}>

@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Route, Switch} from 'react-router-dom'
+import {Loader} from 'semantic-ui-react'
 
 import StepOne from 'steps/StepOne'
 import StepTwo from 'steps/StepTwo'
@@ -38,7 +39,7 @@ class StepsApp extends React.Component {
     }))
   }
   render () {
-    const {match} = this.props
+    const {match, currentTest} = this.props
     // Parent component that handles StepsApp
     // Had to use render inline for Route as a workaround to pass onSubmit prop
     const RoutedStep = (Step, path) => (
@@ -46,15 +47,22 @@ class StepsApp extends React.Component {
         <Step onSubmit={this.submitStep.bind(this)} {...props} />
       )} />
     )
-    return (
-      <Switch>
-        {/* @TODO Create object with steps and iterate with foreach */}
-        {RoutedStep(StepOne, 'basics')}
-        {RoutedStep(StepTwo, 'people')}
-        <Route exact path={`${match.url}`} component={StepOverview} />
-        <Route component={NoMatch} />
-      </Switch>
-    )
+
+    if (Number.isInteger(currentTest)) {
+      return (
+        <Switch>
+          {/* @TODO Create object with steps and iterate with foreach */}
+          {RoutedStep(StepOne, 'basics')}
+          {RoutedStep(StepTwo, 'people')}
+          <Route exact path={`${match.url}`} component={StepOverview} />
+          <Route component={NoMatch} />
+        </Switch>
+      )
+    } else {
+      return (
+        <Loader />
+      )
+    }
   }
 }
 
@@ -66,7 +74,8 @@ const NoMatch = ({ location }) => (
 
 function mapStateToProps (state, ownProps) {
   return {
-    tests: state.tests
+    tests: state.tests,
+    currentTest: state.currentTest
   }
 }
 
