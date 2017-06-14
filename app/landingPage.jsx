@@ -1,4 +1,17 @@
-$(document).foundation()
+$(document)
+    .ready(function() {
 
-// App css
-// require('style!css!sass!landingPageStyles')
+      // fix menu when passed
+      $('.masthead')
+        .visibility({
+          once: false,
+          onBottomPassed: function() {
+            $('.fixed.menu').transition('fade in');
+          },
+          onBottomPassedReverse: function() {
+            $('.fixed.menu').transition('fade out');
+          }
+        })
+      ;
+    })
+  ;
