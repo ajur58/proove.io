@@ -7,7 +7,6 @@ export var testsReducer = (state = [], action) => {
       ]
     case 'ADD_TESTS':
       return [
-        ...state,
         ...action.tests
       ]
     case 'UPDATE_TEST':
