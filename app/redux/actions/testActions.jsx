@@ -29,8 +29,7 @@ export var startAddTest = (testCore, redirect) => {
       modifiedAt: 0,
       modifiedBy: '',
       completed: false,
-      stepActive: 2,
-      stepScreen: 1
+      stepActive: 2
     }
 
     var testRef = firebaseRef.child(`tests/tuttich`).push(test)

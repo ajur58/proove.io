@@ -13,16 +13,17 @@ export const renderField = ({ input, label, placeholder, type, meta: { touched, 
     error={showError(error, touched, warning)} />
 )
 
-export const renderSelect = function ({ input, label, children, placeholder, options, meta: { touched, error, warning } }) {
+export const renderSelect = function ({ input, label, children, placeholder, options, handleOnChange, meta: { touched, error, warning } }) {
+  // switch value to defaultValue, otherwise you can never change it
   const value = input.value
   delete input.value
   input.defaultValue = value
-  console.log(options)
+
   return (
     <Form.Field>
       <label>{label}</label>
       <Select options={options} placeholder={placeholder} {...input}
-        error={showError(error, touched, warning)} />
+        error={showError(error, touched, warning)} onChange={handleOnChange} />
     </Form.Field>
   )
 }

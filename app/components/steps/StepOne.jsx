@@ -11,14 +11,19 @@ import './step.scss'
 export class StepOne extends React.Component {
   render () {
     var displayErrors = () => {
-      var errors = 'as'
-      return errors
+      console.log(this)
       // for (let s of form.stepOne.syncErrors) {
       //   console.log(s)
       // }
     }
 
-    const {handleSubmit} = this.props
+    const {handleSubmit, error} = this.props
+
+    // this was necessary because redux forms was not recognising onChange of semantic ui Dropdown
+    function handleSelectChange (e, {value}) {
+      this.props.change('platform', value)
+    }
+
     return (
       <Container className='step__form'>
         <h3>First step: Set the scene</h3>
@@ -31,6 +36,7 @@ export class StepOne extends React.Component {
             placeholder='For example: New search experience' />
           <Field name='platform' component={renderSelect} label='Platform'
             placeholder='Choose a platform'
+            handleOnChange={handleSelectChange.bind(this)}
             options={[
               {
                 text: 'Android',
@@ -60,17 +66,11 @@ export class StepOne extends React.Component {
             label='Stories'
             placeholder='Describe each story you will walk the testers through.' />
 
-          <Field
-            name='activeStep'
-            component='input'
-            type='hidden'
-            value={1}
-          />
-          <Message
+          {error && <Message
             error
             header='Oops, you missed some fields'
-            content={displayErrors()}
-          />
+            content={displayErrors.bind(this)}
+          />}
           <Button type='submit' primary>Save and Continue</Button>
         </Form>
       </Container>
@@ -82,7 +82,7 @@ function validate (formProps) {
   const errors = {}
 
   if (!formProps.title) {
-    errors.title = 'Please enter a title'
+    errors.title = 'Seems like you forgot to enter a title'
   }
 
   if (!formProps.platform) {
@@ -90,11 +90,11 @@ function validate (formProps) {
   }
 
   if (!formProps.hypotheses) {
-    errors.hypotheses = 'Please enter some hypotheses'
+    errors.hypotheses = 'Add some Hypotheses'
   }
 
   if (!formProps.scenarios) {
-    errors.scenarios = 'Please enter at least a scenario'
+    errors.scenarios = 'At least one Scenario is needed'
   }
 
   return errors

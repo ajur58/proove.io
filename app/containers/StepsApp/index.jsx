@@ -25,14 +25,8 @@ class StepsApp extends React.Component {
     testKey ? dispatch(getSingleTest(testKey)) : dispatch(clearCurrentTest())
   }
   submitStep (values) {
-    var {currentTest, dispatch, history} = this.props
+    var {dispatch, history} = this.props
     const testKey = this.props.match.params.testKey
-
-    if (values.stepActive && values.stepActive >= this.props.tests[currentTest]) {
-      values.stepActive++
-    } else {
-      delete values.stepActive
-    }
 
     dispatch(startUpdateTest(testKey, values, (testRefKey) => {
       history.push(`/get-approoved/${testRefKey}`)
