@@ -8,6 +8,21 @@ class StepOverview extends React.Component {
   render () {
     const {auth, currentTest, isFetching, match} = this.props
     const viewTest = this.props.tests[currentTest]
+
+    const stepActive = () => {
+      if (viewTest.hasOwnProperty('results')) {
+        return 6
+      } else if (viewTest.hasOwnProperty('showtime')) {
+        return 5
+      } else if (viewTest.hasOwnProperty('schedule')) {
+        return 4
+      } else if (viewTest.hasOwnProperty('people')) {
+        return 3
+      } else {
+        return 2
+      }
+    }
+
     const getFirstName = () => {
       var firstName = auth.displayName
       if (typeof firstName === 'string') {
@@ -38,7 +53,7 @@ class StepOverview extends React.Component {
               In the next step we’ll define on which dates you would like to conduct the tests. Easy peasy!
             </h5>
           </div>
-          <StepsListing viewTest={viewTest} match={match} />
+          <StepsListing viewTest={viewTest} match={match} stepActive={stepActive()} />
         </div>
       )
     }

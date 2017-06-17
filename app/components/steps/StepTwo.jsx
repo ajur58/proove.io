@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
+import { Button, Container, Form } from 'semantic-ui-react'
 
-import {renderField} from 'helpers/forms'
+import {renderInput, renderTextarea} from 'helpers/forms'
 import stepsLayoutHOC from 'containers/StepsApp/StepsLayoutHOC'
 
 import './step.scss'
@@ -11,40 +12,32 @@ export class StepTwo extends React.Component {
   render () {
     const {handleSubmit} = this.props
     return (
-      <div className='step__form'>
+      <Container className='step__form'>
         <h3>Step Two: People</h3>
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} error>
           <Field
-            name='amount'
-            component={renderField}
+            name='people[amount]'
+            component={renderInput}
             type='text'
             label='Number of testers'
             placeholder='How many testers do you need?' />
 
           <Field
-            name='reward'
-            component={renderField}
+            name='people[reward]'
+            component={renderInput}
             type='text'
             label='Reward'
             placeholder='How much will you pay them?' />
 
           <Field
-            name='skills'
-            component={renderField}
-            type='text'
-            label='Skills'
-            placeholder='Are you looking for any specific skills?' />
-
-          <fieldset className='fieldset'>
-            <legend className='label-text'>Age group</legend>
-            <input id='checkbox-young' type='checkbox' /><label htmlFor='checkbox-young'>Youngsters</label>
-            <input id='checkbox-adult' type='checkbox' /><label htmlFor='checkbox-adult'>Adults</label>
-            <input id='checkbox-elderly' type='checkbox' /><label htmlFor='checkbox-elderly'>Elderly</label>
-          </fieldset>
-
-          <button type='submit' className='button primary'>Save and Continue</button>
-        </form>
-      </div>
+            name='people[skills]'
+            type='textarea'
+            component={renderTextarea}
+            label='Tester Traits'
+            placeholder='Are you looking for any specific skills or traits like age group?' />
+          <Button type='submit' primary>Save and Continue</Button>
+        </Form>
+      </Container>
     )
   }
 }
@@ -52,20 +45,8 @@ export class StepTwo extends React.Component {
 function validate (formProps) {
   const errors = {}
 
-  if (!formProps.title) {
-    errors.title = 'Please enter a title'
-  }
-
-  if (!formProps.platform) {
-    errors.platform = 'Please choose a platform'
-  }
-
-  if (!formProps.hypotheses) {
-    errors.hypotheses = 'Please enter some hypotheses'
-  }
-
-  if (!formProps.scenarios) {
-    errors.scenarios = 'Please enter at least a scenario'
+  if (!formProps.amount) {
+    errors.amount = 'How many testers do you need?'
   }
 
   return errors

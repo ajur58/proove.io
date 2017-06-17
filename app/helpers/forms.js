@@ -5,7 +5,7 @@ const showError = (error, touched, warning) => {
   return touched && ((error && true))
 }
 
-export const renderField = ({ input, label, placeholder, type, meta: { touched, error, warning } }) => (
+export const renderInput = ({ input, label, placeholder, type, meta: { touched, error, warning } }) => (
   <Form.Input {...input}
     type={type}
     label={label}
@@ -36,13 +36,4 @@ export const renderTextarea = ({ input, label, placeholder, rows, meta: { touche
       placeholder={placeholder}
     />
   </Form.Field>
-)
-
-export const renderFieldset = ({ input, label, children, meta: { touched, error, warning } }) => (
-  <div>
-    <fieldset className='fieldset'>
-      <legend className='label-text'>{label}</legend>
-      {children}
-    </fieldset>
-  </div>
 )

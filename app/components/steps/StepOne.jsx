@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Button, Container, Form, Message } from 'semantic-ui-react'
 
-import {renderField, renderSelect, renderTextarea} from 'helpers/forms'
+import {renderInput, renderSelect, renderTextarea} from 'helpers/forms'
 import stepsLayoutHOC from 'containers/StepsApp/StepsLayoutHOC'
 
 import './step.scss'
@@ -30,7 +30,7 @@ export class StepOne extends React.Component {
         <Form onSubmit={handleSubmit} error>
           <Field
             name='title'
-            component={renderField}
+            component={renderInput}
             type='text'
             label='Title'
             placeholder='For example: New search experience' />
@@ -63,7 +63,7 @@ export class StepOne extends React.Component {
             name='scenarios'
             type='textarea'
             component={renderTextarea}
-            label='Stories'
+            label='Scenarios'
             placeholder='Describe each story you will walk the testers through.' />
 
           {error && <Message
