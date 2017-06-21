@@ -1,4 +1,4 @@
-import firebase, {firebaseRef} from 'app/firebase/'
+import {firebaseRef} from 'app/firebase/'
 import moment from 'moment'
 
 export var addTest = (test) => {
@@ -29,7 +29,7 @@ export var startAddTest = (testCore, redirect) => {
       modifiedAt: 0,
       modifiedBy: '',
       completed: false,
-      stepActive: 2
+      status: 'active'
     }
 
     var testRef = firebaseRef.child(`tests/tuttich`).push(test)
@@ -56,8 +56,6 @@ export var updateTest = (testKey, test) => {
 export var startUpdateTest = (testKey, test, redirect) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid
-
-    // set step active
     test = {
       ...test,
       modifiedAt: moment().unix(),
@@ -76,8 +74,6 @@ export var startUpdateTest = (testKey, test, redirect) => {
 export var startAddTests = () => {
   return (dispatch, getState) => {
     var testsRef = firebaseRef.child(`tests/tuttich`)
-
-    //@TODO delete all tests first
 
     return testsRef.once('value').then((snapshot) => {
       var tests = snapshot.val() || {}

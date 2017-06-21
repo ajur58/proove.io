@@ -10,13 +10,16 @@ class StepOverview extends React.Component {
     const viewTest = this.props.tests[currentTest]
 
     const stepActive = () => {
-      if (viewTest.hasOwnProperty('results')) {
+      // based on Airbnb guideline. never use hasOwnProperty directly on object
+      const has = Object.prototype.hasOwnProperty
+
+      if (has.call(viewTest, 'results')) {
         return 6
-      } else if (viewTest.hasOwnProperty('showtime')) {
+      } else if (has.call(viewTest, 'showtime')) {
         return 5
-      } else if (viewTest.hasOwnProperty('schedule')) {
+      } else if (has.call(viewTest, 'schedule')) {
         return 4
-      } else if (viewTest.hasOwnProperty('people')) {
+      } else if (has.call(viewTest, 'people')) {
         return 3
       } else {
         return 2

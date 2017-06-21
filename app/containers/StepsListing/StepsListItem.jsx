@@ -23,12 +23,12 @@ export class StepsListItem extends React.Component {
     }
     return (
       <Grid className='step'>
-        <Grid.Column width={13}>
+        <Grid.Column width={8}>
           <h3>{title}</h3> {showEditButton(status)}
           <p>{description}</p>
           {showContinueButton(status)}
         </Grid.Column>
-        <Grid.Column width='3'>
+        <Grid.Column width={4}>
           {showCheckedIcon(status)}
         </Grid.Column>
       </Grid>
