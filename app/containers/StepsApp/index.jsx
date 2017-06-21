@@ -5,6 +5,7 @@ import {Loader} from 'semantic-ui-react'
 
 import StepOne from 'steps/StepOne'
 import StepTwo from 'steps/StepTwo'
+import StepThree from 'steps/StepThree'
 import StepOverview from 'steps/StepOverview'
 
 import './steps_app.scss'
@@ -48,6 +49,7 @@ class StepsApp extends React.Component {
           {/* @TODO Create object with steps and iterate with foreach */}
           {RoutedStep(StepOne, 'basics')}
           {RoutedStep(StepTwo, 'people')}
+          {RoutedStep(StepThree, 'schedule')}
           <Route exact path={`${match.url}`} component={StepOverview} />
           <Route component={NoMatch} />
         </Switch>
