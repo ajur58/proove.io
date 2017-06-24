@@ -104,7 +104,28 @@ module.exports = {
             loader: 'style-loader'
           },
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+              sourceMap: true,
+              camelCase: true,
+              minimize: {
+                autoprefixer: {
+                  add: true,
+                  remove: true,
+                  browsers: ['ie >= 10', 'last 5 versions', '> 2%']
+                },
+                discardComments: {
+                  removeAll: true
+                },
+                discardUnused: false,
+                mergeIdents: false,
+                reduceIdents: false,
+                safe: true,
+                sourcemap: true
+              }
+            }
           },
           {
             loader: 'resolve-url-loader'

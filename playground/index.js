@@ -11,18 +11,18 @@
 // data.push({"country": "IN"});
 // console.log(data)
 
-var a = {
-	'first': 1,
-  'second': 2
-}
+var a = [
+	1,
+  2
+]
 
-var b = {
-	'third': 1
-}
+var b = [
+	1
+]
 
 console.log(a)
 console.log(b)
 console.log([
 	...a,
-  b
+  ...b
 ])

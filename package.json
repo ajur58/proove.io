@@ -8,7 +8,8 @@
     "build": "webpack -p",
     "deploy": "git heroku push master",
     "semantic:build": "gulp --gulpfile ./semantic/gulpfile.js clean && gulp --gulpfile ./semantic/gulpfile.js build-assets && gulp --gulpfile ./semantic/gulpfile.js build-css",
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
   "author": "Adam Juras",
   "license": "MIT",
