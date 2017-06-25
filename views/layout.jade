@@ -1,26 +1,202 @@
 doctype html
 html
   head
+    // Standard Meta
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
+    // Site Properties
     title= title
-    meta(charset='UTF-8')
   body
+    script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
     script(src="/javascripts/landingPage.js")
-    div.top-bar
-        div.top-bar-left
-          ul.menu
-            li.menu-text.logo
-             a(href='/') proove
-        div.top-bar-right
-            ul.menu
-              li
-                a(href='/pricing') Pricing
-              li
-                a(href='/blog') Blog
-              li
-                a(href='/about') About
-              li |
-              li
-                a(href='/app') Login
-    div.row.hero
-      div.columns.medium-8.large-10.small-centered
-        block content
+    // Following Menu
+    .ui.large.top.fixed.menu(style='display:none')
+      .ui.container
+        a.item 
+          b "How To Run Pragmatic User Tests" Handbook
+        .right.menu
+          .item
+            a.ui.button.primary(href='https://gum.co/eSYc') Get the complete Toolset for $149
+    // Page Contents
+    .pusher
+      .ui.vertical.masthead.center.aligned.segment
+        .ui.text.container
+          h1.ui.header
+            img.ui.middle.aligned.big.image(src='/images/lp/proove-logo.png')
+            | proove
+          h2
+            i Get true insights by running pragmatic user tests
+          .ui.middle.aligned.stackable.grid.container.claim
+            .row
+              .ten.wide.column.left.aligned
+                p
+                  | After running 250+ user tests and talking to other expets in the industry, we distilled our knowledge into a powerful toolset. 
+                  | Our team uses it every day to 
+                  b validate features
+                  | , 
+                  b reduce waste 
+                  | and to 
+                  b build better products.
+                p 
+                  | PMs, Founders, Devs, Designers, UXers, Marketeers. If you're a 
+                  i doer
+                  | , it's for you. 
+              .six.wide.left.floated.column
+                a.ui.huge.primary.button(href='#products')
+                  i.down.arrow.icon
+                  | Get the Handbook 
+      .ui.vertical.stripe.segment.nick
+        .ui.middle.aligned.stackable.grid.container
+          .row
+            h2.sectiontitle User testing is underrated.
+          .row
+            .ten.wide.column
+              h3.ui.header You feel that you don't have time for user tests. Why?
+              p
+                | When you think of validating your ideas with real users you have the feeling that it will take an eternity. Yet, when you finally decide to do it, you get results in no time and you always promise yourself to run them more often.
+            .six.wide.right.floated.column
+              img.ui.large.bordered.rounded.image(src='images/lp/thisisfine.jpg')
+          .row
+            .six.wide.floated.column
+              img.ui.large.bordered.rounded.image(src='images/lp/thumbsdown.gif')
+            .ten.wide.right.column
+              h3.ui.header Do you have those arguments with colleagues when everyone is defending their own opinion?
+              p
+                | Yes, they’re just opinions. The absolute truth is not owned by the PM, nor the designer, hell, not even by the CEO, but by the user. 
+          .row
+            .ten.wide.column
+              h3.ui.header Do you feel like hiding before shipping a feature?
+              p
+                | The planning was a couple of weeks ago and as the shipping date approaches you have this weird feeling in your stomach that the release will blow up. You know what helps? If you proove it.
+            .six.wide.right.floated.column
+              img.ui.large.bordered.rounded.image(src='images/lp/homer.gif')
+      .ui.vertical.stripe.segment.quote
+        .ui.equal.width.stackable.internally.celled.grid
+          .center.aligned.row
+            .column
+              h3 “If you don’t talk to users and don’t look at data, you don’t get a seat at the decision-making table.”
+              p
+                b Steve Huffman
+                |  CEO of Reddit
+            .column
+              h3 "Testing features with real people is the single most important thing any team-member can do."
+              p
+                b Elon Musk
+                |  CEO of Tesla and SpaceX
+      .ui.vertical.stripe.segment.founder
+        .ui.left.aligned.text.container
+          h2.sectiontitle Now anyone can run User Tests
+          p
+            | After running user tests for many small and large on- and offline companies,  I've started testerpool.com, a company for supplying testers on-demand, which has become a trusted supplier of testers for many user centric customers.
+            br
+            br
+            | Having talked with many UX agencies, Usability practitioners, Product Managers, Designers and Developers I believe I have had the chance to spot some of the more common problems of the industry. Many people talk about UX, but few people do it (yet).
+            br
+            br
+            | As a result, I distilled best practices and lessons learned which have been successfully applied by my colleagues and me. They have helped us make progress of becoming a more User Centric company and turning discussions into actions , actions into insights and insights into profit.
+            br
+            br
+            | Don't take me wrong. Proove will not help you transform your organization. But it helps you by enabling you and anyone else to run tests and validate their assumptions. This has been our single most important step towards becoming a user centric company.
+          p
+            img.ui.middle.aligned.tiny.image(src='/images/lp/micha-rounded.png')
+            span &nbsp; Michael Jahn, Product Manager & UX Advocate
+      .ui.vertical.stripe.segment.features
+        .ui.middle.aligned.stackable.grid.container
+          .row 
+            h2.sectiontitle What's included
+          .row
+            .ui.grid.container
+              .nine.wide.column
+                .row 
+                  h3 “How to conduct user tests” Handbook
+                  p 
+                  | All the knowledge required to run user tests. 60 pages, stripped down to the essentials so that you can get started in no time.
+                  br
+                  | Plus a checklist to follow every time you set up a test
+                  h4 Example questions answered in the Handbook
+                  .ui.list
+                    .item
+                      i.help.circle.icon
+                      .content When should I apply user testing?
+                    .item
+                      i.help.circle.icon
+                      .content How can I find testers?
+                    .item
+                      i.help.circle.icon
+                      .content Should I give them a reward?
+                .row 
+                    h3 7 ready-to-use templates
+                    p 
+                    | The templates we use every  day, in form of a nifty Google Drive. They include, but are not limited to: hypotheses, scenarios, evaluation, legal.
+                .row 
+                    h3 Reliable support
+                    p 
+                    | Even though the handbook should get you through most scenarios, there will be times when you'll hit roadblocks. Our team is always there to answer your questions.
+              .six.wide.right.floated.column
+                .ui.big.image
+                  img.small(src='images/lp/handbook-preview.png')
+      .ui.vertical.stripe.segment#products
+        .ui.center.aligned.grid.container
+          .row.left.aligned
+            h2.sectiontitle Unbunking the myth of user testing
+          .row
+            .six.wide.column.product.free
+              .ui.header 
+                h2 7-Step Checklist for 
+                  br 
+                  | Rapid User Testing
+                  .sub.header Perfect for people with some experience
+              .price FREE
+              .ui.left.aligned.container
+                .ui.relaxed.items
+                  .item
+                    .ui.tiny.image
+                      img(src='images/lp/icon_slack.png')
+                    .middle.aligned.content
+                      a.header Outline of steps to follow for setting up User Tests
+                  .item
+                    .ui.tiny.image
+                      img(src='images/lp/icon_slack.png')
+                    .middle.aligned.content
+                      a.header Invitation to our private Slack channel
+              a.ui.basic.primary.button(href='https://gum.co/NiOET  ') Free Download
+            .six.wide.column.product
+              .ui.header 
+                h2 "How To Run Pragmatic User Tests" Handbook
+                  .sub.header The extensive guide with explanations at every step
+              .price $149
+              .ui.left.aligned.container
+                .ui.relaxed.items
+                  .item
+                    .ui.tiny.image
+                      img(src='images/lp/icon_slack.png')
+                    .middle.aligned.content
+                      a.header 7 Step Checklist
+                  .item
+                    .ui.tiny.image
+                      img(src='images/lp/icon_slack.png')
+                    .middle.aligned.content
+                      a.header 12 ready-to-use Templates
+                  .item
+                    .ui.tiny.image
+                      img(src='images/lp/icon_slack.png')
+                    .middle.aligned.content
+                      a.header Invitation to our private Slack channel
+                  .item
+                    .ui.tiny.image
+                      img(src='images/lp/icon_slack.png')
+                    .middle.aligned.content
+                      a.header Real world examples
+                  .item
+                    .ui.tiny.image
+                      img(src='images/lp/icon_slack.png')
+                    .middle.aligned.content
+                      a.header Support for all the questions you have
+              a.ui.primary.button(href='https://gum.co/eSYc') Buy Now
+              br
+              br
+              .content 100% Money-Back Guarantee. No questions asked.
+      .ui.vertical.footer.segment
+        .ui.center.aligned.container
+          h5.header Made with <3 in Zürich, Switzerland

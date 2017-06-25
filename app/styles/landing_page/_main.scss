@@ -1,30 +1,136 @@
-.row {
-  max-width: none;
+body {
+  color: #434242;
 }
-h1.page-title{
-  line-height: 3rem;
-  margin: 8rem 0 1rem;
-  text-align: left;
+.hidden.menu {
+  display: none;
 }
-.menu {
-  li.menu-text {
-    a {
-      color: $black;
-      font-size: 1.5rem;
-      padding: 0;
-    }
+.masthead {
+  &.segment {
+    min-height: 500px;
+    padding: 1em 0em;
+  }
+  .logo.item img {
+    margin-right: 1em;
+  }
+  .ui.menu .ui.button {
+    margin-left: 0.5em;
+  }
+  h1.ui.header {
+    margin-top: 1em;
+    margin-bottom: 0em;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #434242;
+  }
+  h2 {
+    font-size: 1.5em;
+    font-weight: normal;
+  }
+  .claim {
+    margin-top: 3em;
+  }
+  h3.ui.header {
+    font-size: 1.3em;
+    font-weight: normal;
+  }
+  p {
+    font-size: 1.1em;
+  }
+  .primary.button{
+    font-size: 1.1em;
+  }
+}
+.ui.vertical.stripe {
+  padding: 8em 0em;
+}
+h2.sectiontitle {
+  font-weight: 700;
+  border-bottom: 2px solid $primary-color;
+}
+.ui.vertical.stripe.nick {
+  padding: 8em 0em;
+  h3 {
+    font-size: 1.5em;
+    text-transform: uppercase;
+  }
+  .floated.image {
+   clear: both;
+  }
+  p {
+    font-size: 1.33em;
+  }
+  .horizontal.divider {
+   margin: 3em 0em;
+  }
+}
+.quote.stripe.segment {
+  padding: 0em;
+  border: 0;
+  background-color: #555AE5;
+  color: #9FE5FF;
+
+  .grid .column {
+    padding-top: 5em;
+    padding-bottom: 5em;
+  }
+  p {
+    font-size: 1.33em;
+  }
+}
+.features {
+  h2 {
+    margin-bottom: 1em;
+  }
+  h3 {
+    margin-top: 2em;
   }
 }
 
-.hero {
-  background: #F3F3F3;
-  padding: 5rem 0;
-
-  .hero-form{
-    display: flex;
+.product {
+  background-color: #fff;
+  margin: 1em;
+  padding: 2em;
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.3);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.3);
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.3);
+  &.free {
+    max-height:460px;
   }
+  h2 {
+    font-weight: 700;
+  }
+  .price {
+    font-size: 2.5em;
+    font-weight: bold;
+  }
+}
 
-  .button {
-    margin-left:1rem;
+.footer.segment {
+  padding: 5em 0em;
+}
+.secondary.pointing.menu .toc.item {
+  display: none;
+}
+@media only screen and (max-width: 700px) {
+  .ui.fixed.menu {
+    display: none !important;
+  }
+  .secondary.pointing.menu .item,
+  .secondary.pointing.menu .menu {
+    display: none;
+  }
+  .secondary.pointing.menu .toc.item {
+    display: block;
+  }
+  .masthead.segment {
+    min-height: 350px;
+  }
+  .masthead h1.ui.header {
+    font-size: 2em;
+    margin-top: 1.5em;
+  }
+  .masthead h2 {
+    margin-top: 0.5em;
+    font-size: 1.5em;
   }
 }

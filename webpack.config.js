@@ -19,7 +19,10 @@ module.exports = {
       'app/app.jsx'
     ],
     landingPage: [
+      'semantic/dist/semantic.min.css',
       'app/styles/landingPage.scss',
+      'semantic/dist/components/visibility.min.js',
+      'semantic/dist/components/transition.min.js',
       'app/landingPage.jsx'
     ]
   },
