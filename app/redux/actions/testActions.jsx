@@ -115,7 +115,7 @@ export var getSingleTest = (testKey) => {
     // If tests are already in state, but out of sync with firebase
     // (eg. tests were added in the meantime)
     if (getState().tests.length > 0) {
-      dispatch(viewSingleTest(testKey, getState().tests))
+      dispatch(viewSingleTest(testKey, getState().tests));
     }
   }
 }
