@@ -147,6 +147,7 @@ export var deleteTest = (testKey = null) => {
     testKey
   }
 }
+
 export var startDeleteTest = (id) => {
   if (id) {
     return (dispatch, getState) => {
@@ -155,5 +156,26 @@ export var startDeleteTest = (id) => {
         dispatch(deleteTest(id))
       })
     }
+  }
+}
+
+export var markTestCompleted = (testKey = null, completed) => {
+  return {
+    type: 'MARK_TEST_COMPLETED',
+    testKey,
+    completed
+  }
+}
+
+// put callback on success and pass it back to the view
+export var startMarkTestCompleted = (testKey, completed, redirect) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid
+    var testRef = firebaseRef.child(`tests/tuttich/${testKey}/completed`).update(completed)
+
+    return testRef.then(() => {
+      dispatch(updateTest(testKey, test))
+      redirect(testKey)
+    })
   }
 }
