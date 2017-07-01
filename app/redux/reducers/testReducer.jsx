@@ -19,7 +19,7 @@ export var testsReducer = (state = [], action) => {
       });
       return editedArray;
     case 'DELETE_TEST':
-      return state.filter((test) => test.id !== action.testKey);
+      return state.filter((test) => test.id !== action.payload);
     case 'MARK_TEST_COMPLETED':
       var editedState = state.map((test) => {
         if (test.id === action.payload) {

@@ -2,6 +2,7 @@ import {firebaseRef} from 'app/firebase/';
 import moment from 'moment';
 import action from 'helpers/actionCreator';
 
+export const deleteTest = action('DELETE_TEST');
 export const markTestCompleted = action('MARK_TEST_COMPLETED');
 
 export var addTest = (test) => {
@@ -83,7 +84,7 @@ export var startAddTests = () => {
       var parsedTests = [];
 
       Object.keys(tests).forEach((testKey) => {
-        parsedTests.push({
+        tests[testKey].status === 'active' && parsedTests.push({
           id: testKey,
           ...tests[testKey]
         });
@@ -144,19 +145,15 @@ export var isFetching = (isFetching) => {
   };
 };
 
-export var deleteTest = (testKey = null) => {
-  return {
-    type: 'DELETE_TEST',
-    testKey
-  };
-};
-
-export var startDeleteTest = (id) => {
-  if (id) {
+export var startDeleteTest = (testKey) => {
+  if (testKey) {
     return (dispatch, getState) => {
-      var testRef = firebaseRef.child(`tests/tuttich/${id}`).remove();
+      const updateValues = {
+        status: 'deleted'
+      };
+      var testRef = firebaseRef.child(`tests/tuttich/${testKey}`).update(updateValues);
       return testRef.then(() => {
-        dispatch(deleteTest(id));
+        dispatch(deleteTest(testKey));
       });
     };
   }

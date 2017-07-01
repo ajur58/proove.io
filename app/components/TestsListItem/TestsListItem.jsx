@@ -67,7 +67,7 @@ class TestsListItem extends React.Component {
       </Dropdown>
     );
 
-    var {id, title, hypotheses, createdAt, platform, completed} = this.props;
+    var {id, completed, createdAt, hypotheses, platform, title} = this.props;
 
     return (
       <Card key={id}>
@@ -75,6 +75,7 @@ class TestsListItem extends React.Component {
           {DropdownMenu()}
           <Card.Header>
             <span>{title} on {renderPlatform(platform)}</span>
+            {completed && <Icon name='checkmark' />}
           </Card.Header>
           <Card.Meta>
             {renderDate()}
