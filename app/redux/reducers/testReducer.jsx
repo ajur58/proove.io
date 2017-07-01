@@ -3,16 +3,16 @@ export var testsReducer = (state = [], action) => {
     case 'ADD_TEST':
       return [
         ...state,
-        action.test
+        action.payload
       ];
     case 'ADD_TESTS':
       return [
-        ...action.tests
+        ...action.payload
       ];
     case 'UPDATE_TEST':
       var editedArray = state.map((test) => {
-        if (test.id === action.testKey) {
-          return Object.assign(test, action.test);
+        if (test.id === action.payload.id) {
+          return Object.assign(test, action.payload);
         } else {
           return test;
         }
@@ -49,7 +49,7 @@ export var currentTestReducer = (state = '', action) => {
 export var isFetchingReducer = (state = {}, action) => {
   switch (action.type) {
     case 'IS_FETCHING':
-      return action.isFetching;
+      return action.payload;
     default:
       return state;
   }
@@ -58,7 +58,7 @@ export var isFetchingReducer = (state = {}, action) => {
 export var searchTextReducer = (state = '', action) => {
   switch (action.type) {
     case 'SET_SEARCH_TEXT':
-      return action.searchText;
+      return action.payload;
     default:
       return state;
   }

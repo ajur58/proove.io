@@ -2,23 +2,16 @@ import {firebaseRef} from 'app/firebase/';
 import moment from 'moment';
 import action from 'helpers/actionCreator';
 
+export const addTest = action('ADD_TEST');
+export const addTests = action('ADD_TESTS');
+export const updateTest = action('UPDATE_TEST');
+export const clearCurrentTest = action('CLEAR_CURRENT_TEST');
 export const deleteTest = action('DELETE_TEST');
 export const markTestCompleted = action('MARK_TEST_COMPLETED');
 
-export var addTest = (test) => {
-  return {
-    type: 'ADD_TEST',
-    test
-  };
-};
-
-// Same as previous one, but reducer is different
-export var addTests = (tests) => {
-  return {
-    type: 'ADD_TESTS',
-    tests
-  };
-};
+export const toggleShowCompleted = action('TOGGLE_SHOW_COMPLETED');
+export const isFetching = action('IS_FETCHING');
+export const setSearchText = action('SET_SEARCH_TEXT');
 
 export var startAddTest = (testCore, redirect) => {
   return (dispatch, getState) => {
@@ -48,14 +41,6 @@ export var startAddTest = (testCore, redirect) => {
   };
 };
 
-export var updateTest = (testKey, test) => {
-  return {
-    type: 'UPDATE_TEST',
-    testKey,
-    test
-  };
-};
-
 // put callback on success and pass it back to the view
 export var startUpdateTest = (testKey, test, redirect) => {
   return (dispatch, getState) => {
@@ -68,7 +53,7 @@ export var startUpdateTest = (testKey, test, redirect) => {
     var testRef = firebaseRef.child(`tests/tuttich/${testKey}`).update(test);
 
     return testRef.then(() => {
-      dispatch(updateTest(testKey, test));
+      dispatch(updateTest(test));
       redirect(testKey);
     });
   };
@@ -94,12 +79,6 @@ export var startAddTests = () => {
   };
 };
 
-export var clearCurrentTest = () => {
-  return {
-    type: 'CLEAR_CURRENT_TEST'
-  };
-};
-
 // simple action that looks for a testkey in tests array,
 // then sets the index of currentTest to this value
 export var viewSingleTest = (testKey, tests) => {
@@ -121,27 +100,6 @@ export var getSingleTest = (testKey) => {
     if (getState().tests.length > 0) {
       dispatch(viewSingleTest(testKey, getState().tests));
     }
-  };
-};
-
-export var setSearchText = (searchText) => {
-  return {
-    type: 'SET_SEARCH_TEXT',
-    searchText
-  };
-};
-
-// toggleShowCompleted TOGGLE_SHOW_COMPLETED
-export var toggleShowCompleted = () => {
-  return {
-    type: 'TOGGLE_SHOW_COMPLETED'
-  };
-};
-
-export var isFetching = (isFetching) => {
-  return {
-    type: 'IS_FETCHING',
-    isFetching
   };
 };
 
