@@ -4,63 +4,71 @@ export var testsReducer = (state = [], action) => {
       return [
         ...state,
         action.test
-      ]
+      ];
     case 'ADD_TESTS':
       return [
         ...action.tests
-      ]
+      ];
     case 'UPDATE_TEST':
       var editedArray = state.map((test) => {
         if (test.id === action.testKey) {
-          return Object.assign(test, action.test)
+          return Object.assign(test, action.test);
         } else {
-          return test
+          return test;
         }
-      })
-      return editedArray
+      });
+      return editedArray;
     case 'DELETE_TEST':
-      return state.filter((test) => test.id !== action.testKey)
+      return state.filter((test) => test.id !== action.testKey);
+    case 'MARK_TEST_COMPLETED':
+      var editedState = state.map((test) => {
+        if (test.id === action.payload) {
+          test.completed = !test.completed;
+        }
+        return test;
+      });
+      return editedState;
     case 'LOGOUT':
-      return []
+      return [];
     default:
-      return state
+      return state;
   }
-}
+};
 
 export var currentTestReducer = (state = '', action) => {
   switch (action.type) {
     case 'VIEW_TEST':
-      return action.testIndex
+      return action.testIndex;
     case 'CLEAR_CURRENT_TEST':
-      return ''
+      return '';
     default:
-      return state
+      return state;
   }
-}
+};
 
 export var isFetchingReducer = (state = {}, action) => {
   switch (action.type) {
     case 'IS_FETCHING':
-      return action.isFetching
+      return action.isFetching;
     default:
-      return state
+      return state;
   }
-}
+};
 
 export var searchTextReducer = (state = '', action) => {
   switch (action.type) {
     case 'SET_SEARCH_TEXT':
-      return action.searchText
+      return action.searchText;
     default:
-      return state
+      return state;
   }
-}
+};
 
 export var showCompletedReducer = (state = false, action) => {
   switch (action.type) {
     case 'TOGGLE_SHOW_COMPLETED':
-      return !state
+      return !state;
     default:
-      return state
+      return state;
   }
-}
+};

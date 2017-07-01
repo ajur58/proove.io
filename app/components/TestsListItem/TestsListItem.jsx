@@ -1,38 +1,41 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import moment from 'moment'
-import {Button, Card, Icon, Dropdown} from 'semantic-ui-react'
+import React from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import moment from 'moment';
+import {Button, Card, Icon, Dropdown} from 'semantic-ui-react';
 
-import DeleteTestModal from './DeleteTestModal'
-import classes from './testsListItem.scss'
+import {startMarkTestCompleted} from 'actions/testActions';
+import DeleteTestModal from './DeleteTestModal';
+import classes from './testsListItem.scss';
 
 class TestsListItem extends React.Component {
 
   render () {
     let renderDate = () => {
-      return moment.unix(createdAt).format('MMM Do YYYY @ h:mm a')
-    }
+      return moment.unix(createdAt).format('MMM Do YYYY @ h:mm a');
+    };
     let renderPlatform = (platform) => {
-      let iconName = 'laptop'
+      let iconName = 'laptop';
       switch (platform) {
         case 'ios':
-          iconName = 'iOS'
-          break
+          iconName = 'iOS';
+          break;
         case 'android':
-          iconName = 'Android'
-          break
+          iconName = 'Android';
+          break;
         case 'web':
         default:
-          iconName = 'Web'
+          iconName = 'Web';
       }
 
-      return <span>{iconName}</span>
-    }
+      return <span>{iconName}</span>;
+    };
 
-    let toggleTestCompleted = (completed) => {
-
-    }
+    let toggleTestCompleted = () => {
+      this.props.dispatch(
+        startMarkTestCompleted(this.props.id, !this.props.completed)
+      );
+    };
 
     const trigger = (
       <Icon name='ellipsis vertical' size='large' />
@@ -41,9 +44,19 @@ class TestsListItem extends React.Component {
     const DropdownMenu = () => (
       <Dropdown trigger={trigger} icon={null} className={classes.moreButton}>
         <Dropdown.Menu>
-          <Dropdown.Item onClick={toggleTestCompleted.bind.this}>
-            <Icon name='checkmark box' size='large' color='grey' />
-            Mark as Done
+          <Dropdown.Item onClick={toggleTestCompleted.bind(this)}>
+            {!completed &&
+              <div>
+                <Icon name='checkmark box' size='large' color='grey' />
+                Mark as Done
+              </div>
+            }
+            {completed &&
+              <div>
+                <Icon name='square outline' size='large' color='grey' />
+                Mark as Open
+              </div>
+            }
           </Dropdown.Item>
           <Dropdown.Item>
             <Icon name='clone' size='large' color='grey' />
@@ -54,7 +67,7 @@ class TestsListItem extends React.Component {
       </Dropdown>
     );
 
-    var {id, title, hypotheses, createdAt, platform} = this.props
+    var {id, title, hypotheses, createdAt, platform, completed} = this.props;
 
     return (
       <Card key={id}>
@@ -80,8 +93,8 @@ class TestsListItem extends React.Component {
           </div>
         </Card.Content>
       </Card>
-    )
+    );
   }
 }
 
-export default connect()(TestsListItem)
+export default connect()(TestsListItem);

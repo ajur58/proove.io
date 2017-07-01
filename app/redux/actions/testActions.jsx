@@ -1,24 +1,27 @@
-import {firebaseRef} from 'app/firebase/'
-import moment from 'moment'
+import {firebaseRef} from 'app/firebase/';
+import moment from 'moment';
+import action from 'helpers/actionCreator';
+
+export const markTestCompleted = action('MARK_TEST_COMPLETED');
 
 export var addTest = (test) => {
   return {
     type: 'ADD_TEST',
     test
-  }
-}
+  };
+};
 
 // Same as previous one, but reducer is different
 export var addTests = (tests) => {
   return {
     type: 'ADD_TESTS',
     tests
-  }
-}
+  };
+};
 
 export var startAddTest = (testCore, redirect) => {
   return (dispatch, getState) => {
-    var uid = getState().auth.uid
+    var uid = getState().auth.uid;
     var test = {
       title: testCore['title'],
       platform: testCore['platform'],
@@ -30,85 +33,85 @@ export var startAddTest = (testCore, redirect) => {
       modifiedBy: '',
       completed: false,
       status: 'active'
-    }
+    };
 
-    var testRef = firebaseRef.child(`tests/tuttich`).push(test)
+    var testRef = firebaseRef.child(`tests/tuttich`).push(test);
 
     return testRef.then(() => {
       dispatch(addTest({
         ...test,
         id: testRef.key
-      }))
-      redirect(testRef.key)
-    })
-  }
-}
+      }));
+      redirect(testRef.key);
+    });
+  };
+};
 
 export var updateTest = (testKey, test) => {
   return {
     type: 'UPDATE_TEST',
     testKey,
     test
-  }
-}
+  };
+};
 
 // put callback on success and pass it back to the view
 export var startUpdateTest = (testKey, test, redirect) => {
   return (dispatch, getState) => {
-    const uid = getState().auth.uid
+    const uid = getState().auth.uid;
     test = {
       ...test,
       modifiedAt: moment().unix(),
       modifiedBy: uid
-    }
-    var testRef = firebaseRef.child(`tests/tuttich/${testKey}`).update(test)
+    };
+    var testRef = firebaseRef.child(`tests/tuttich/${testKey}`).update(test);
 
     return testRef.then(() => {
-      dispatch(updateTest(testKey, test))
-      redirect(testKey)
-    })
-  }
-}
+      dispatch(updateTest(testKey, test));
+      redirect(testKey);
+    });
+  };
+};
 
 // Delete & Add all tests to redux
 export var startAddTests = () => {
   return (dispatch, getState) => {
-    var testsRef = firebaseRef.child(`tests/tuttich`)
+    var testsRef = firebaseRef.child(`tests/tuttich`);
 
     return testsRef.once('value').then((snapshot) => {
-      var tests = snapshot.val() || {}
-      var parsedTests = []
+      var tests = snapshot.val() || {};
+      var parsedTests = [];
 
       Object.keys(tests).forEach((testKey) => {
         parsedTests.push({
           id: testKey,
           ...tests[testKey]
-        })
-      })
-      dispatch(addTests(parsedTests))
-    })
-  }
-}
+        });
+      });
+      dispatch(addTests(parsedTests));
+    });
+  };
+};
 
 export var clearCurrentTest = () => {
   return {
     type: 'CLEAR_CURRENT_TEST'
-  }
-}
+  };
+};
 
 // simple action that looks for a testkey in tests array,
 // then sets the index of currentTest to this value
 export var viewSingleTest = (testKey, tests) => {
   function hasKey (element) {
-    return element.id === testKey
+    return element.id === testKey;
   }
 
-  const testIndex = tests.findIndex(hasKey)
+  const testIndex = tests.findIndex(hasKey);
   return {
     type: 'VIEW_TEST',
     testIndex
-  }
-}
+  };
+};
 
 export var getSingleTest = (testKey) => {
   return (dispatch, getState) => {
@@ -117,65 +120,61 @@ export var getSingleTest = (testKey) => {
     if (getState().tests.length > 0) {
       dispatch(viewSingleTest(testKey, getState().tests));
     }
-  }
-}
+  };
+};
 
 export var setSearchText = (searchText) => {
   return {
     type: 'SET_SEARCH_TEXT',
     searchText
-  }
-}
+  };
+};
 
 // toggleShowCompleted TOGGLE_SHOW_COMPLETED
 export var toggleShowCompleted = () => {
   return {
     type: 'TOGGLE_SHOW_COMPLETED'
-  }
-}
+  };
+};
 
 export var isFetching = (isFetching) => {
   return {
     type: 'IS_FETCHING',
     isFetching
-  }
-}
+  };
+};
 
 export var deleteTest = (testKey = null) => {
   return {
     type: 'DELETE_TEST',
     testKey
-  }
-}
+  };
+};
 
 export var startDeleteTest = (id) => {
   if (id) {
     return (dispatch, getState) => {
-      var testRef = firebaseRef.child(`tests/tuttich/${id}`).remove()
+      var testRef = firebaseRef.child(`tests/tuttich/${id}`).remove();
       return testRef.then(() => {
-        dispatch(deleteTest(id))
-      })
-    }
+        dispatch(deleteTest(id));
+      });
+    };
   }
-}
-
-export var markTestCompleted = (testKey = null, completed) => {
-  return {
-    type: 'MARK_TEST_COMPLETED',
-    testKey,
-    completed
-  }
-}
+};
 
 // put callback on success and pass it back to the view
-export var startMarkTestCompleted = (testKey, completed, redirect) => {
+export var startMarkTestCompleted = (testKey, completed) => {
   return (dispatch, getState) => {
-    const uid = getState().auth.uid
-    var testRef = firebaseRef.child(`tests/tuttich/${testKey}/completed`).update(completed)
+    const uid = getState().auth.uid;
+    const updateValues = {
+      completed: completed,
+      modifiedAt: moment().unix(),
+      modifiedBy: uid
+    };
+    var testRef = firebaseRef.child(`tests/tuttich/${testKey}`).update(updateValues);
 
     return testRef.then(() => {
-      dispatch(updateTest(testKey, test))
-      redirect(testKey)
-    })
-  }
-}
+      dispatch(markTestCompleted(testKey));
+    });
+  };
+};

@@ -1,26 +1,26 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {Button, Header, Icon, Modal} from 'semantic-ui-react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import {connect} from 'react-redux';
+import {Button, Header, Icon, Modal} from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
-import {startDeleteTest} from 'actions/testActions'
+import {startDeleteTest} from 'actions/testActions';
 
 class DeleteTestModal extends React.Component {
   constructor (props) {
-    super(props)
+    super(props);
     this.state = {
       open: false
-    }
+    };
   }
   open (e) {
-    e.preventDefault()
-    this.setState({ open: true })
+    e.preventDefault();
+    this.setState({ open: true });
   }
   close () {
-    this.setState({ open: false })
+    this.setState({ open: false });
   }
   render () {
-    let {dispatch, testId, title} = this.props
+    let {dispatch, testId, title} = this.props;
     return (
       <Modal open={this.state.open} basic size='small'
         trigger={
@@ -44,7 +44,7 @@ class DeleteTestModal extends React.Component {
           </Button>
         </Modal.Actions>
       </Modal>
-    )
+    );
   }
 }
 
@@ -52,6 +52,6 @@ DeleteTestModal.propTypes = {
   testId: PropTypes.string,
   title: PropTypes.string,
   open: PropTypes.bool
-}
+};
 
-export default connect()(DeleteTestModal)
+export default connect()(DeleteTestModal);

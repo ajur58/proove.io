@@ -1,32 +1,32 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {Card} from 'semantic-ui-react'
+import React from 'react';
+import {connect} from 'react-redux';
+import {Card} from 'semantic-ui-react';
 
-import TestsListItem from 'TestsListItem'
-import * as TestAPI from 'TestApi'
+import TestsListItem from 'TestsListItem';
+import * as TestAPI from 'TestApi';
 
 class TestsList extends React.Component {
   render () {
-    var {tests, showCompleted, searchText} = this.props
+    var {tests, showCompleted, searchText} = this.props;
     var renderTests = () => {
-      var filteredTests = TestAPI.filterTests(tests, showCompleted, searchText)
+      var filteredTests = TestAPI.filterTests(tests, showCompleted, searchText);
       if (filteredTests.length === 0) {
         return (
           <p className='container__message'>No Tests To Show</p>
-        )
+        );
       } else {
         return filteredTests.map((test) => {
           return (
             <TestsListItem key={test.id} {...test} />
-          )
-        })
+          );
+        });
       }
-    }
+    };
     return (
       <Card.Group itemsPerRow='4' doubling>
         {renderTests()}
       </Card.Group>
-    )
+    );
   }
 }
 
@@ -35,7 +35,7 @@ function mapStateToProps (state, ownProps) {
     tests: state.tests,
     showCompleted: state.showCompleted,
     searchText: state.searchText
-  }
+  };
 }
 
-export default connect(mapStateToProps)(TestsList)
+export default connect(mapStateToProps)(TestsList);
