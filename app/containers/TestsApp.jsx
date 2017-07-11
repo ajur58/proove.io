@@ -1,8 +1,9 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import TestsList from 'TestsList'
-import TestsSearch from 'TestsSearch'
-import {Grid} from 'semantic-ui-react'
+import React from 'react';
+import {Link} from 'react-router-dom';
+import {Grid} from 'semantic-ui-react';
+
+import TestsList from 'TestsList';
+import TestsSearch from 'TestsSearch';
 
 const TestsApp = () => (
   <Grid>
@@ -18,6 +19,6 @@ const TestsApp = () => (
       </Grid.Column>
     </Grid.Row>
   </Grid>
-)
+);
 
-export default TestsApp
+export default TestsApp;

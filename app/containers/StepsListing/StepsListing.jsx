@@ -3,6 +3,8 @@ import React from 'react';
 import StepsListItem from './StepsListItem';
 import {StepsConfig} from './steps';
 
+import {Grid} from 'semantic-ui-react';
+
 import './steps_listing.scss';
 
 export class StepsListing extends React.Component {
@@ -10,7 +12,7 @@ export class StepsListing extends React.Component {
     const {match, stepActive} = this.props;
 
     return (
-      <div className='row step__list'>
+      <Grid>
         {
           StepsConfig.map((step) => {
             switch (true) {
@@ -27,7 +29,7 @@ export class StepsListing extends React.Component {
             }
           })
         }
-      </div>
+      </Grid>
     );
   }
 }

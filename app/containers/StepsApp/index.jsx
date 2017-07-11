@@ -1,1 +1,1 @@
-export { default } from './StepsApp'
+export { default } from './StepsApp';

@@ -1,22 +1,22 @@
-import React from 'react'
-import { Provider } from 'react-redux'
+import React from 'react';
+import { Provider } from 'react-redux';
 
 import {
   HashRouter as Router,
   Route,
   Redirect,
   Switch
-} from 'react-router-dom'
+} from 'react-router-dom';
 
-import createHistory from 'history/createBrowserHistory'
+import createHistory from 'history/createBrowserHistory';
 
-import Main from 'containers/Main'
-import Login from 'Login'
+import Main from 'containers/Main';
+import Login from 'Login';
 
 export class Root extends React.Component {
   render () {
-    const { store } = this.props
-    const history = createHistory()
+    const { store } = this.props;
+    const history = createHistory();
 
     const PrivateRoute = ({ component: Component, ...rest }) => (
       <Route {...rest} render={props => (
@@ -29,7 +29,7 @@ export class Root extends React.Component {
           }} />
         )
       )} />
-    )
+    );
 
     // opposite of PrivateRoute aka 'redirect if logged in'
     const LoginRoute = ({ component: Component, ...rest }) => (
@@ -43,7 +43,7 @@ export class Root extends React.Component {
           <Component {...props} />
         )
       )} />
-    )
+    );
 
     return (
       <Provider store={store}>
@@ -54,9 +54,9 @@ export class Root extends React.Component {
           </Switch>
         </Router>
       </Provider>
-    )
+    );
   }
 }
 
 // const mapStateToProps = (state) => { auth: state.auth }
-export default Root
+export default Root;

@@ -6,6 +6,7 @@ import {Loader} from 'semantic-ui-react';
 import StepOne from 'steps/StepOne';
 import StepTwo from 'steps/StepTwo';
 import StepThree from 'steps/StepThree';
+import StepFour from 'steps/StepFour';
 import StepOverview from 'steps/StepOverview';
 
 import './steps_app.scss';
@@ -28,7 +29,6 @@ class StepsApp extends React.Component {
   submitStep (values) {
     var {dispatch, history} = this.props;
     const testKey = this.props.match.params.testKey;
-
     dispatch(startUpdateTest(testKey, values, (testRefKey) => {
       history.push(`/get-approoved/${testRefKey}`);
     }));
@@ -50,6 +50,7 @@ class StepsApp extends React.Component {
           {RoutedStep(StepOne, 'basics')}
           {RoutedStep(StepTwo, 'people')}
           {RoutedStep(StepThree, 'schedule')}
+          {RoutedStep(StepFour, 'showtime')}
           <Route exact path={`${match.url}`} component={StepOverview} />
           <Route component={NoMatch} />
         </Switch>

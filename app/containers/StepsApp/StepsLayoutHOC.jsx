@@ -1,9 +1,9 @@
-import React from 'react'
-import {Grid} from 'semantic-ui-react'
+import React from 'react';
+import {Grid} from 'semantic-ui-react';
 
-import HelperBuddy from 'HelperBuddy'
+import HelperBuddy from 'HelperBuddy';
 
-import './steps_app.scss'
+import './steps_app.scss';
 
 export default function stepsLayoutHOC (WrappedComponent) {
   return class extends React.Component {
@@ -21,7 +21,7 @@ export default function stepsLayoutHOC (WrappedComponent) {
             </Grid.Row>
           </Grid.Column>
         </Grid>
-      )
+      );
     }
-  }
+  };
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Grid} from 'semantic-ui-react';
 
 import StepsListing from 'containers/StepsListing';
 import stepsLayoutHOC from 'containers/StepsApp/StepsLayoutHOC';
@@ -47,17 +48,20 @@ class StepOverview extends React.Component {
         );
       }
       return (
-        <div>
-          <div className='row'>
-            <h5 className='step__test-title'>{viewTest.title}</h5>
-            <hr className='step__test-title-hr' />
+        <Grid>
+          <Grid.Row>
+            <h5><strong>{viewTest.title}</strong></h5>
+          </Grid.Row>
+          <Grid.Row>
             <h2>You're doing great, {getFirstName()}</h2>
-            <h5>
+            <p>
               In the next step we’ll define on which dates you would like to conduct the tests. Easy peasy!
-            </h5>
-          </div>
-          <StepsListing viewTest={viewTest} match={match} stepActive={stepActive()} />
-        </div>
+            </p>
+          </Grid.Row>
+          <Grid.Row>
+            <StepsListing viewTest={viewTest} match={match} stepActive={stepActive()} />
+          </Grid.Row>
+        </Grid>
       );
     }
   }
